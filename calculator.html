@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Budget &amp; Debt Calculator | National Debt Consultants</title>
+<meta name="description" content="A free, accurate budget and debt calculator. See whether your income covers your essential expenses and current debt repayments — no contact details required to see your results.">
+<link rel="canonical" href="https://ndcsa.co.za/calculator.html">
+<meta name="theme-color" content="#1B1A18">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body data-page="calculator">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header" data-site-header data-nav-open="false">
+  <div class="wrap site-header__bar">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/svg/logo-placeholder.svg" alt="National Debt Consultants" width="130" height="34">
+    </a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <nav class="primary-nav" id="primary-nav" data-primary-nav aria-label="Primary">
+      <ul class="primary-nav__list">
+        <li><a href="/debt-review.html" data-page="debt-review">Debt Review</a></li>
+        <li><a href="/debt-mediation.html" data-page="debt-mediation">Debt Mediation</a></li>
+        <li><a href="/debt-review-removal.html" data-page="debt-review-removal">Debt Review Removal</a></li>
+        <li><a href="/calculator.html" data-page="calculator">Calculator</a></li>
+        <li><a href="/about.html" data-page="about">About</a></li>
+        <li><a href="/faqs.html" data-page="faqs">FAQs</a></li>
+        <li><a href="/contact.html" data-page="contact">Contact</a></li>
+      </ul>
+      <div class="primary-nav__actions">
+        <a class="btn btn-gold" href="/contact.html">Speak to a consultant</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section--tight surface-dark-alt">
+    <div class="wrap">
+      <p class="eyebrow">Budget &amp; Debt Calculator</p>
+      <h1>See where your money is really going</h1>
+      <p class="lede">Answer four short sets of questions. Your results appear straight away — no contact details needed. This gives you a budget summary, not a formal debt review proposal.</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap" style="max-width: 42rem;">
+      <p class="visually-hidden" aria-live="polite" data-calc-live></p>
+
+      <ol class="calc-progress" data-calc-progress>
+        <li data-state="current"><div class="track"><span></span></div>Income</li>
+        <li><div class="track"><span></span></div>Expenses</li>
+        <li><div class="track"><span></span></div>Debts</li>
+        <li><div class="track"><span></span></div>Results</li>
+      </ol>
+
+      <form data-calculator novalidate>
+
+        <section class="calc-step" data-step="1" data-active="true">
+          <h2>Your income</h2>
+          <p class="hint">Use amounts after tax — what actually lands in your account.</p>
+
+          <div class="field" data-field="takeHome">
+            <label for="calc-takeHome">Monthly take-home pay</label>
+            <div class="currency-input">
+              <span class="prefix" aria-hidden="true">R</span>
+              <input type="text" inputmode="decimal" id="calc-takeHome" name="takeHome" autocomplete="off" aria-describedby="calc-takeHome-error" required>
+            </div>
+            <p class="warning" role="status"></p>
+            <p class="error" id="calc-takeHome-error" role="alert"></p>
+          </div>
+
+          <div class="field" data-field="otherIncome">
+            <label for="calc-otherIncome">Other regular monthly income (optional)</label>
+            <div class="currency-input">
+              <span class="prefix" aria-hidden="true">R</span>
+              <input type="text" inputmode="decimal" id="calc-otherIncome" name="otherIncome" autocomplete="off" aria-describedby="calc-otherIncome-hint">
+            </div>
+            <p class="hint" id="calc-otherIncome-hint">Maintenance, rental or side income. Leave blank if none.</p>
+            <p class="warning" role="status"></p>
+            <p class="error" role="alert"></p>
+          </div>
+
+          <div class="calc-actions">
+            <span></span>
+            <button type="button" class="btn btn-gold" data-step-next>Next: Expenses</button>
+          </div>
+        </section>
+
+        <section class="calc-step" data-step="2">
+          <h2>Living expenses</h2>
+          <p class="hint">Enter essential monthly costs only. If something is already a loan or credit repayment, don&rsquo;t add it here — you&rsquo;ll enter it under &ldquo;Debts&rdquo; on the next step, so nothing gets counted twice. Categories that don&rsquo;t apply to you can stay blank.</p>
+
+          <div class="field" data-field="housing">
+            <label for="calc-housing">Rent, rates and levies</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-housing" name="housing" autocomplete="off"></div>
+            <p class="hint">Not your bond repayment — that goes under Debts.</p>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+          <div class="field" data-field="utilities">
+            <label for="calc-utilities">Water and electricity</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-utilities" name="utilities" autocomplete="off"></div>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+          <div class="field" data-field="groceries">
+            <label for="calc-groceries">Groceries and household supplies</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-groceries" name="groceries" autocomplete="off"></div>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+          <div class="field" data-field="transport">
+            <label for="calc-transport">Transport</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-transport" name="transport" autocomplete="off"></div>
+            <p class="hint">Fuel, public transport or e-hailing — not a vehicle finance instalment.</p>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+          <div class="field" data-field="insurance">
+            <label for="calc-insurance">Insurance and medical aid</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-insurance" name="insurance" autocomplete="off"></div>
+            <p class="hint">Not credit life cover linked to a specific loan.</p>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+          <div class="field" data-field="communication">
+            <label for="calc-communication">Cellphone and internet</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-communication" name="communication" autocomplete="off"></div>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+          <div class="field" data-field="educationChildcare">
+            <label for="calc-educationChildcare">School fees and childcare</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-educationChildcare" name="educationChildcare" autocomplete="off"></div>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+          <div class="field" data-field="otherExpenses">
+            <label for="calc-otherExpenses">Other essential living expenses (optional)</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-otherExpenses" name="otherExpenses" autocomplete="off"></div>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+
+          <div class="calc-actions">
+            <button type="button" class="btn btn-outline" data-step-back>Back</button>
+            <button type="button" class="btn btn-gold" data-step-next>Next: Debts</button>
+          </div>
+        </section>
+
+        <section class="calc-step" data-step="3">
+          <h2>Debt repayments</h2>
+          <p class="hint">Enter the current MONTHLY repayment for each type of debt — not the total balance you still owe. Leave a category blank if it doesn&rsquo;t apply.</p>
+
+          <div class="field" data-field="homeLoan">
+            <label for="calc-homeLoan">Home loan / bond instalment</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-homeLoan" name="homeLoan" autocomplete="off"></div>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+          <div class="field" data-field="vehicleFinance">
+            <label for="calc-vehicleFinance">Vehicle finance instalment</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-vehicleFinance" name="vehicleFinance" autocomplete="off"></div>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+          <div class="field" data-field="creditCards">
+            <label for="calc-creditCards">Credit card repayments</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-creditCards" name="creditCards" autocomplete="off"></div>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+          <div class="field" data-field="storeCards">
+            <label for="calc-storeCards">Store or retail account repayments</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-storeCards" name="storeCards" autocomplete="off"></div>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+          <div class="field" data-field="personalLoans">
+            <label for="calc-personalLoans">Personal loan repayments</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-personalLoans" name="personalLoans" autocomplete="off"></div>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+          <div class="field" data-field="otherDebt">
+            <label for="calc-otherDebt">Other debt repayments</label>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-otherDebt" name="otherDebt" autocomplete="off"></div>
+            <p class="hint">Student loans, garnishee/emolument orders, or any other credit agreement.</p>
+            <p class="warning" role="status"></p><p class="error" role="alert"></p>
+          </div>
+
+          <div class="calc-actions">
+            <button type="button" class="btn btn-outline" data-step-back>Back</button>
+            <button type="submit" class="btn btn-gold">See my results</button>
+          </div>
+        </section>
+
+        <section class="calc-step" data-step="4">
+          <h2>Your results</h2>
+          <div data-calc-results></div>
+
+          <div class="calc-actions">
+            <button type="button" class="btn btn-outline" data-step-edit>Edit my answers</button>
+            <button type="button" class="btn btn-ghost" data-step-reset>Start over</button>
+          </div>
+
+          <div class="card" style="margin-top: var(--space-lg);">
+            <h3>Want to talk it through?</h3>
+            <p>You can request a callback with no obligation. We won&rsquo;t see the numbers you entered above — only what you choose to share in the form.</p>
+            <a class="btn btn-gold" href="/contact.html?ref=calculator">Request a callback</a>
+          </div>
+        </section>
+
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="brand" href="/" style="color: var(--color-on-dark);">
+        <img class="brand__mark" src="/assets/svg/logo-placeholder.svg" alt="National Debt Consultants" width="130" height="34">
+      </a>
+      <p class="disclosure-note" style="margin-top: var(--space-sm);">This calculator gives a general budget summary based on what you enter. It is not a formal debt review proposal or financial advice.</p>
+    </div>
+    <div>
+      <h2>Explore</h2>
+      <ul>
+        <li><a href="/about.html">About NDC</a></li>
+        <li><a href="/faqs.html">FAQs</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Services</h2>
+      <ul>
+        <li><a href="/debt-review.html">Debt review</a></li>
+        <li><a href="/debt-mediation.html">Debt mediation</a></li>
+        <li><a href="/debt-review-removal.html">Debt review removal</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Legal</h2>
+      <ul>
+        <li><a href="/privacy-policy.html">Privacy policy</a></li>
+        <li><a href="/terms.html">Terms of use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p>&copy; <span data-year>2026</span> National Debt Consultants.</p>
+    <p><a href="/contact.html">Get in touch</a></p>
+  </div>
+</footer>
+
+<script src="/assets/js/nav.js" defer></script>
+<script src="/assets/js/budget-engine.js"></script>
+<script src="/assets/js/calculator.js" defer></script>
+<script src="/assets/js/analytics.js" defer></script>
+<script>document.querySelectorAll('[data-year]').forEach(function(el){ el.textContent = new Date().getFullYear(); });</script>
+</body>
+</html>

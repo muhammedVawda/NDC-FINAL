@@ -1,0 +1,55 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# ---------------------------------------------------------------------------
+# Redirects from the previous site structure.
+# UNCONFIRMED: the live ndcsa.co.za site could not be crawled from this build
+# environment (outbound access to it was blocked), so its real URL structure
+# is unknown. The mappings below are best-guess placeholders based on common
+# patterns for this type of site — audit them against the real old sitemap
+# (e.g. via Google Search Console) before relying on them, and add any real
+# old URLs found. See IMPLEMENTATION_NOTES.md.
+# ---------------------------------------------------------------------------
+[[redirects]]
+  from = "/debt-counselling"
+  to = "/debt-review.html"
+  status = 301
+
+[[redirects]]
+  from = "/debt-counselling.html"
+  to = "/debt-review.html"
+  status = 301
+
+[[redirects]]
+  from = "/mediation"
+  to = "/debt-mediation.html"
+  status = 301
+
+[[redirects]]
+  from = "/removal"
+  to = "/debt-review-removal.html"
+  status = 301
+
+[[redirects]]
+  from = "/contact-us"
+  to = "/contact.html"
+  status = 301
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
