@@ -17,7 +17,7 @@ import path from "node:path";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const SITE = "https://ndcsa.co.za";
-const CSS_V = "v=6";
+const CSS_V = "v=7";
 const LOGO_V = "v=3";
 
 const articles = JSON.parse(readFileSync(path.join(ROOT, "assets/data/articles.json"), "utf-8"));
@@ -309,6 +309,22 @@ ${header("debt-advice")}
       <div class="article-body stack">
         ${a.body.map(renderBlock).join("\n        ")}
       </div>
+
+      ${
+        a.sources && a.sources.length
+          ? `<div class="article-sources">
+        <h2>Sources</h2>
+        <p class="article-sources__note">Legal and regulatory points in this article are based on the following public sources. Legislation and regulator guidance can change &mdash; check the source for the current position.</p>
+        <ul class="article-sources__list">
+          ${a.sources
+            .map(
+              (s) => `<li><a href="${esc(s.url)}" rel="nofollow noopener" target="_blank">${esc(s.title)}</a>${s.publisher ? ` <span class="article-sources__publisher">&mdash; ${esc(s.publisher)}</span>` : ""}</li>`
+            )
+            .join("\n          ")}
+        </ul>
+      </div>`
+          : ""
+      }
 
       <div class="card" style="margin-top: var(--space-xl);">
         <h2>Want to talk through your own situation?</h2>

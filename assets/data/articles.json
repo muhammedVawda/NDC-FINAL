@@ -5,30 +5,123 @@
     "category": "Debt Counselling",
     "excerpt": "A plain-language walkthrough of what actually happens during formal debt review — from your first assessment to what protection it gives you along the way.",
     "publishedDate": "2026-08-04",
-    "updatedDate": "2026-09-15",
+    "updatedDate": "2026-09-21",
     "featured": true,
-    "relatedServices": ["/debt-review.html", "/debt-mediation.html"],
-    "relatedSlugs": ["debt-review-vs-debt-mediation", "what-to-do-when-you-cant-afford-repayments"],
+    "relatedServices": [
+      "/debt-review.html",
+      "/debt-mediation.html"
+    ],
+    "relatedSlugs": [
+      "debt-review-vs-debt-mediation",
+      "what-to-do-when-you-cant-afford-repayments"
+    ],
     "body": [
-      { "type": "p", "text": "“Debt counselling” and “debt review” refer to the same formal process in South Africa — a legally regulated route, introduced under the National Credit Act (NCA) and overseen by the National Credit Regulator (NCR), for consumers who are over-indebted. It's worth understanding the shape of the process before deciding whether it's right for you." },
-      { "type": "h2", "text": "Step 1: Assessment" },
-      { "type": "p", "text": "A registered debt counsellor reviews your income, monthly expenses, and everything you owe. This determines whether you're genuinely over-indebted — meaning your current repayments, alongside reasonable living costs, aren't manageable. Not everyone who applies qualifies; it depends on this assessment, not just on wanting the protection debt review offers." },
-      { "type": "h2", "text": "Step 2: A restructured repayment plan" },
-      { "type": "p", "text": "If you qualify, the debt counsellor works out a single, consolidated monthly repayment plan across your credit agreements, sized to what you can actually afford. This plan then needs to be proposed to your credit providers." },
-      { "type": "h2", "text": "Step 3: Credit provider agreement (or a court/Tribunal route)" },
-      { "type": "p", "text": "Credit providers aren't automatically obliged to accept a proposed plan. Where an agreement can't be reached, formal debt review has a legal escalation route — through the courts or the National Consumer Tribunal — that debt mediation, the informal alternative, does not have." },
-      { "type": "h2", "text": "What protection does it actually give you?" },
-      { "type": "p", "text": "While you're under formal debt review and complying with your plan, credit providers are restricted from taking further legal action against you for the debts included in it. That protection is specific to the formal process — it doesn't apply to informal negotiation (debt mediation), and it's why the two are genuinely different products, not two names for the same thing." },
-      { "type": "h2", "text": "What it isn't" },
-      { "type": "p", "text": "Debt review isn't a new loan or a debt consolidation loan — you're not borrowing more money. It's a restructuring of what you already owe. It also isn't guaranteed to lower your interest rate or monthly payment by a specific amount; what changes depends entirely on what's agreed with each individual credit provider." },
-      { "type": "h2", "text": "Your credit record during the process" },
-      { "type": "p", "text": "Being under formal debt review is reflected on your credit record for as long as you're in the process. This is a normal, expected part of how the system works — not a penalty — and it's removed once you exit through a legally recognised route, most commonly by receiving a clearance certificate after your included debts are paid in full." },
+      {
+        "type": "p",
+        "text": "“Debt counselling” and “debt review” refer to the same formal process in South Africa — a legally regulated route under the National Credit Act (NCA), overseen by the National Credit Regulator (NCR), for consumers who are over-indebted. Knowing the actual shape of the process makes it much easier to decide whether it's right for you."
+      },
+      {
+        "type": "h2",
+        "text": "Step 1: You apply, in terms of section 86"
+      },
+      {
+        "type": "p",
+        "text": "A consumer who is struggling to pay their credit agreements applies for debt review under section 86 of the NCA. This is something you apply for — it isn't applied to you without your involvement."
+      },
+      {
+        "type": "h2",
+        "text": "Step 2: The debt counsellor has 30 business days to make a determination"
+      },
+      {
+        "type": "p",
+        "text": "The regulations give a debt counsellor 30 business days from receiving your application to determine whether you are over-indebted, or not yet over-indebted but likely to struggle to meet your obligations in time. They review your income, expenses and everything you owe to reach that determination."
+      },
+      {
+        "type": "p",
+        "text": "An important nuance that's often misunderstood: the debt counsellor does not “declare” you over-indebted. They make a determination and refer it, with a proposal for how your debt could be restructured."
+      },
+      {
+        "type": "h2",
+        "text": "Step 3: A court declares over-indebtedness and grants the relief"
+      },
+      {
+        "type": "p",
+        "text": "It is the court that conducts a hearing, formally declares a consumer over-indebted, and grants debt relief by restructuring the credit agreement debt. This is why debt review carries real legal weight — and also why it follows a defined process rather than an instant fix."
+      },
+      {
+        "type": "p",
+        "text": "Under section 79 of the NCA, over-indebtedness isn't only about being unable to pay right now; it also covers a future or imminent inability to meet your obligations."
+      },
+      {
+        "type": "h2",
+        "text": "Everyone involved must act in good faith"
+      },
+      {
+        "type": "p",
+        "text": "The NCA requires all parties to the debt review process — you, your credit providers, and the debt counsellor — to participate in good faith. Credit providers are not automatically obliged to accept a proposed plan, which is part of why the court route matters."
+      },
+      {
+        "type": "h2",
+        "text": "What protection you actually get"
+      },
+      {
+        "type": "p",
+        "text": "While you are under formal debt review and complying with your restructured plan, credit providers are restricted from taking further legal action on the debts covered by it. That protection is specific to formal debt review — it does not apply to informal debt mediation."
+      },
+      {
+        "type": "h2",
+        "text": "How it ends"
+      },
+      {
+        "type": "p",
+        "text": "Once you have satisfied all the obligations under every credit agreement covered by the re-arrangement, a debt counsellor issues a clearance certificate in terms of section 71. Its effect matters: the detail of the debt review is then expunged from the credit bureaus' records. Long-term agreements such as a mortgage bond are treated differently — section 71 allows an exit once the shorter-term restructured debts are settled, even where a bond is still being paid."
+      },
+      {
+        "type": "h2",
+        "text": "What it isn't"
+      },
+      {
+        "type": "p",
+        "text": "Debt review is not a new loan or a consolidation loan — you aren't borrowing more money, you're changing the terms of what you already owe. It also doesn't guarantee a specific lower interest rate or instalment; what changes depends on what's agreed or ordered."
+      },
       {
         "type": "faq",
         "items": [
-          { "q": "Does debt counselling guarantee my interest rates will drop?", "a": "No. Any change to your rates or payments depends on what's agreed with each credit provider individually — it isn't a fixed or guaranteed outcome." },
-          { "q": "Can I be forced into debt review?", "a": "No. It follows an assessment and your own application — it isn't something that can be applied to you without your involvement." }
+          {
+            "q": "How long does the debt counsellor have to assess my application?",
+            "a": "The regulations allow 30 business days from receiving your application to make a determination on whether you are over-indebted."
+          },
+          {
+            "q": "Does the debt counsellor decide that I'm over-indebted?",
+            "a": "No. The debt counsellor makes a determination and a proposal; it is the court that declares a consumer over-indebted and grants the restructuring."
+          },
+          {
+            "q": "Does debt counselling guarantee my interest rates will drop?",
+            "a": "No. Any change depends on what is agreed with each credit provider or ordered by the court — it isn't a guaranteed outcome."
+          }
         ]
+      }
+    ],
+    "sources": [
+      {
+        "title": "National Credit Act 34 of 2005",
+        "url": "https://www.gov.za/documents/national-credit-act",
+        "publisher": "South African Government"
+      },
+      {
+        "title": "National Credit Act: Regulations: Debt counselling",
+        "url": "https://www.gov.za/sites/default/files/gcis_document/201409/3286922.pdf",
+        "publisher": "South African Government"
+      },
+      {
+        "title": "Unintentionally Trapped by Debt Review [2019] PER 69",
+        "url": "https://www.saflii.org/za/journals/PER/2019/69.html",
+        "publisher": "Potchefstroom Electronic Law Journal"
+      },
+      {
+        "title": "Circular 6 of 2017: Interpretation of section 71 of the NCA",
+        "url": "https://www.ncr.org.za/documents/Circulars/Circular 6 of 2017- Section 71.pdf",
+        "publisher": "National Credit Regulator"
       }
     ]
   },
@@ -39,21 +132,54 @@
     "excerpt": "Two different routes, often confused with each other. Here's what actually separates formal debt review from informal debt mediation — and how to think about which fits your situation.",
     "publishedDate": "2026-08-11",
     "featured": true,
-    "relatedServices": ["/debt-review.html", "/debt-mediation.html"],
-    "relatedSlugs": ["how-debt-counselling-works-in-south-africa", "common-debt-mistakes-to-avoid"],
+    "relatedServices": [
+      "/debt-review.html",
+      "/debt-mediation.html"
+    ],
+    "relatedSlugs": [
+      "how-debt-counselling-works-in-south-africa",
+      "common-debt-mistakes-to-avoid"
+    ],
     "body": [
-      { "type": "p", "text": "If you're comparing your options, it helps to see debt review and debt mediation side by side rather than treating them as interchangeable — because legally and practically, they aren't." },
-      { "type": "h2", "text": "Debt review: formal, regulated, with legal protection" },
-      { "type": "p", "text": "Debt review is a formal process under the National Credit Act, regulated by the National Credit Regulator. A registered debt counsellor restructures all your credit agreements into one plan. While you comply with it, you get legal protection from further action on those debts — and if a credit provider won't agree to the proposed plan, there's a route through the courts or the National Consumer Tribunal." },
-      { "type": "h2", "text": "Debt mediation: informal, flexible, no statutory protection" },
-      { "type": "p", "text": "Debt mediation is a negotiation, conducted account by account, outside that formal legal framework. It can be a reasonable option in some situations, but it comes with a real trade-off: there's no statutory protection. A creditor can decline your proposal, and can still pursue legal action against you during the negotiation." },
-      { "type": "h2", "text": "So which one is “better”?" },
-      { "type": "p", "text": "Neither is universally better — they solve different problems. Debt review suits people who need the legal protection and are prepared to work within a regulated, structured process. Debt mediation may suit people whose situation doesn't require (or doesn't qualify for) that level of formal intervention. This is exactly the kind of thing worth discussing with a consultant before deciding, rather than guessing from a comparison article alone." },
+      {
+        "type": "p",
+        "text": "If you're comparing your options, it helps to see debt review and debt mediation side by side rather than treating them as interchangeable — because legally and practically, they aren't."
+      },
+      {
+        "type": "h2",
+        "text": "Debt review: formal, regulated, with legal protection"
+      },
+      {
+        "type": "p",
+        "text": "Debt review is a formal process under the National Credit Act, regulated by the National Credit Regulator. A registered debt counsellor restructures all your credit agreements into one plan. While you comply with it, you get legal protection from further action on those debts — and if a credit provider won't agree to the proposed plan, there's a route through the courts or the National Consumer Tribunal."
+      },
+      {
+        "type": "h2",
+        "text": "Debt mediation: informal, flexible, no statutory protection"
+      },
+      {
+        "type": "p",
+        "text": "Debt mediation is a negotiation, conducted account by account, outside that formal legal framework. It can be a reasonable option in some situations, but it comes with a real trade-off: there's no statutory protection. A creditor can decline your proposal, and can still pursue legal action against you during the negotiation."
+      },
+      {
+        "type": "h2",
+        "text": "So which one is “better”?"
+      },
+      {
+        "type": "p",
+        "text": "Neither is universally better — they solve different problems. Debt review suits people who need the legal protection and are prepared to work within a regulated, structured process. Debt mediation may suit people whose situation doesn't require (or doesn't qualify for) that level of formal intervention. This is exactly the kind of thing worth discussing with a consultant before deciding, rather than guessing from a comparison article alone."
+      },
       {
         "type": "faq",
         "items": [
-          { "q": "Can I switch from debt mediation to debt review later?", "a": "That depends on your specific situation and would need a fresh assessment — it isn't automatic." },
-          { "q": "Does debt mediation affect my credit record the way debt review does?", "a": "The two processes are recorded differently. Speak to a consultant about how each would specifically affect your credit record." }
+          {
+            "q": "Can I switch from debt mediation to debt review later?",
+            "a": "That depends on your specific situation and would need a fresh assessment — it isn't automatic."
+          },
+          {
+            "q": "Does debt mediation affect my credit record the way debt review does?",
+            "a": "The two processes are recorded differently. Speak to a consultant about how each would specifically affect your credit record."
+          }
         ]
       }
     ]
@@ -65,26 +191,73 @@
     "excerpt": "A budget only works if it reflects what actually happens in your bank account. Here's a straightforward way to build one you can stick to.",
     "publishedDate": "2026-08-18",
     "featured": true,
-    "relatedServices": ["/calculator.html"],
-    "relatedSlugs": ["how-to-deal-with-multiple-creditors", "what-to-do-when-you-cant-afford-repayments"],
+    "relatedServices": [
+      "/calculator.html"
+    ],
+    "relatedSlugs": [
+      "how-to-deal-with-multiple-creditors",
+      "what-to-do-when-you-cant-afford-repayments"
+    ],
     "body": [
-      { "type": "p", "text": "Most budgets fail for a boring reason: they're built around what someone thinks their spending should look like, not what it actually is. A realistic budget starts with real numbers." },
-      { "type": "h2", "text": "1. Start with take-home pay, not gross salary" },
-      { "type": "p", "text": "Use what actually lands in your account after tax and deductions — that's the number you can genuinely work with, not your salary on paper." },
-      { "type": "h2", "text": "2. List fixed essentials first" },
-      { "type": "p", "text": "Rent or bond, transport to work, groceries, utilities, insurance, and minimum debt repayments. These are the costs that don't flex much month to month — get an honest total before anything else." },
-      { "type": "h2", "text": "3. Track variable spending for one real month" },
-      { "type": "p", "text": "Eating out, subscriptions, incidental purchases — these are usually where a budget quietly falls apart. Look at an actual bank statement rather than estimating from memory; most people underestimate this category significantly." },
-      { "type": "h2", "text": "4. Compare income to total outgoings honestly" },
-      { "type": "p", "text": "If essentials plus debt repayments already exceed your income, that's important information — not a failure on your part, but a sign that your current repayment structure may not be sustainable, and worth an honest conversation with a consultant rather than a stricter budget alone." },
-      { "type": "h2", "text": "5. Revisit it monthly, not once" },
-      { "type": "p", "text": "A budget is a working document. Income and expenses shift — a new account, a rent increase, a change in hours. Treat it as something you check in on regularly, not a one-time exercise." },
-      { "type": "p", "text": "Our free budget calculator can help you get a clear picture of where you stand in a few minutes — you don't need to share any contact details to see the results." },
+      {
+        "type": "p",
+        "text": "Most budgets fail for a boring reason: they're built around what someone thinks their spending should look like, not what it actually is. A realistic budget starts with real numbers."
+      },
+      {
+        "type": "h2",
+        "text": "1. Start with take-home pay, not gross salary"
+      },
+      {
+        "type": "p",
+        "text": "Use what actually lands in your account after tax and deductions — that's the number you can genuinely work with, not your salary on paper."
+      },
+      {
+        "type": "h2",
+        "text": "2. List fixed essentials first"
+      },
+      {
+        "type": "p",
+        "text": "Rent or bond, transport to work, groceries, utilities, insurance, and minimum debt repayments. These are the costs that don't flex much month to month — get an honest total before anything else."
+      },
+      {
+        "type": "h2",
+        "text": "3. Track variable spending for one real month"
+      },
+      {
+        "type": "p",
+        "text": "Eating out, subscriptions, incidental purchases — these are usually where a budget quietly falls apart. Look at an actual bank statement rather than estimating from memory; most people underestimate this category significantly."
+      },
+      {
+        "type": "h2",
+        "text": "4. Compare income to total outgoings honestly"
+      },
+      {
+        "type": "p",
+        "text": "If essentials plus debt repayments already exceed your income, that's important information — not a failure on your part, but a sign that your current repayment structure may not be sustainable, and worth an honest conversation with a consultant rather than a stricter budget alone."
+      },
+      {
+        "type": "h2",
+        "text": "5. Revisit it monthly, not once"
+      },
+      {
+        "type": "p",
+        "text": "A budget is a working document. Income and expenses shift — a new account, a rent increase, a change in hours. Treat it as something you check in on regularly, not a one-time exercise."
+      },
+      {
+        "type": "p",
+        "text": "Our free budget calculator can help you get a clear picture of where you stand in a few minutes — you don't need to share any contact details to see the results."
+      },
       {
         "type": "faq",
         "items": [
-          { "q": "Is the budget calculator the same as a debt review assessment?", "a": "No. It gives you a general budget summary, not a formal debt review proposal or a personalised repayment estimate — that requires a full assessment." },
-          { "q": "Is my information from the calculator stored anywhere?", "a": "No. The figures stay in your browser for that session and aren't saved on our servers unless you separately submit a callback request." }
+          {
+            "q": "Is the budget calculator the same as a debt review assessment?",
+            "a": "No. It gives you a general budget summary, not a formal debt review proposal or a personalised repayment estimate — that requires a full assessment."
+          },
+          {
+            "q": "Is my information from the calculator stored anywhere?",
+            "a": "No. The figures stay in your browser for that session and aren't saved on our servers unless you separately submit a callback request."
+          }
         ]
       }
     ]
@@ -95,24 +268,102 @@
     "category": "Credit & Credit Scores",
     "excerpt": "Your credit profile affects more than loan approvals. Here's what it actually reflects, and what does (and doesn't) show up on it during debt review.",
     "publishedDate": "2026-08-25",
-    "relatedServices": ["/debt-review.html", "/debt-review-removal.html"],
-    "relatedSlugs": ["debt-review-vs-debt-mediation", "common-debt-mistakes-to-avoid"],
+    "relatedServices": [
+      "/debt-review.html",
+      "/debt-review-removal.html"
+    ],
+    "relatedSlugs": [
+      "debt-review-vs-debt-mediation",
+      "common-debt-mistakes-to-avoid"
+    ],
     "body": [
-      { "type": "p", "text": "Your credit profile is a record, held by registered credit bureaus, of how you've managed credit agreements over time — accounts opened, repayment history, and any adverse listings. It's used by credit providers to assess new applications, but it also matters simply as a picture of your own financial history." },
-      { "type": "h2", "text": "What actually affects it" },
-      { "type": "p", "text": "Missed or late payments, the number and type of accounts you hold, how long you've held credit, and formal processes like debt review or judgments are all reflected on your profile over time." },
-      { "type": "h2", "text": "Debt review and your credit record" },
-      { "type": "p", "text": "Being under formal debt review is reflected on your credit record for the duration of the process. This is a normal, expected part of the system — not a punishment — and it's removed once you exit through a legally recognised route, such as receiving a clearance certificate after your debts are paid off in full." },
-      { "type": "h2", "text": "A word of caution" },
-      { "type": "p", "text": "The National Credit Regulator has publicly warned consumers about businesses promising fast debt review removal for a large upfront fee. Under section 126A(3) of the National Credit Act, a business offering to help remove information from your credit record generally can't take payment from you before that service has actually been carried out. If something sounds like an unusually fast, guaranteed fix, it's worth being cautious." },
-      { "type": "h2", "text": "Rebuilding after debt review" },
-      { "type": "p", "text": "Once you exit debt review properly — with a clearance certificate, where applicable — your credit record reflects that. Rebuilding a strong credit profile from there is a gradual process based on consistent, responsible use of credit going forward; there's no shortcut that skips this." },
+      {
+        "type": "p",
+        "text": "Your credit profile is a record, held by registered credit bureaus, of how you've managed credit over time — accounts, repayment history and any adverse listings. Credit providers use it to assess applications, but it's also simply a picture of your own financial history, and you have specific rights over it."
+      },
+      {
+        "type": "h2",
+        "text": "You are entitled to one free credit report a year"
+      },
+      {
+        "type": "p",
+        "text": "Under the National Credit Act, you may request your credit report from the credit bureaus once every twelve months at no cost. If you haven't looked at yours recently, that's a free and genuinely useful place to start — you can't fix what you can't see."
+      },
+      {
+        "type": "h2",
+        "text": "Disputing something that's wrong is also free"
+      },
+      {
+        "type": "p",
+        "text": "If information on your report is incorrect, you can lodge a dispute with the credit bureau to have it investigated and corrected. You do not pay the credit bureau to challenge information or to correct your profile. The Credit Ombud also resolves disputes between consumers and subscribing members of the non-bank credit industry, including credit bureaus, free of charge."
+      },
+      {
+        "type": "p",
+        "text": "This matters because it's exactly the space where some businesses charge large fees for something you are entitled to do yourself at no cost."
+      },
+      {
+        "type": "h2",
+        "text": "What affects your profile"
+      },
+      {
+        "type": "p",
+        "text": "Missed or late payments, the number and type of accounts you hold, how long you've held credit, and formal processes such as debt review or court judgments are all reflected over time."
+      },
+      {
+        "type": "h2",
+        "text": "Debt review and your credit record"
+      },
+      {
+        "type": "p",
+        "text": "Being under formal debt review is reflected on your credit record for the duration of the process. This is a normal part of how the system works. When you complete the process and a clearance certificate is issued under section 71 of the NCA, the detail of that debt review must be expunged from the credit bureaus' records."
+      },
+      {
+        "type": "h2",
+        "text": "Be cautious of paid “fast removal” offers"
+      },
+      {
+        "type": "p",
+        "text": "The NCR has publicly warned consumers about businesses promising fast debt review removal for a large upfront fee. Under section 126A(3) of the National Credit Act, a business offering to help remove information from your credit record generally cannot take payment from you before that service has actually been carried out. If an offer sounds like a guaranteed shortcut, treat it carefully."
+      },
       {
         "type": "faq",
         "items": [
-          { "q": "Can my income improving alone get me removed from debt review?", "a": "No. Removal follows specific legal routes and requires an assessment — an improved income alone doesn't automatically qualify you." },
-          { "q": "What is a clearance certificate?", "a": "It's the document a registered debt counsellor issues once the debts covered by your restructured plan have been paid off in full, confirming you've completed debt review, used to update your status with the credit bureaus." }
+          {
+            "q": "How often can I get my credit report for free?",
+            "a": "The National Credit Act entitles you to request your credit report from the credit bureaus once every twelve months at no cost."
+          },
+          {
+            "q": "Does it cost money to fix a mistake on my credit report?",
+            "a": "No. You do not pay the credit bureau to lodge a dispute or to have incorrect information corrected, and the Credit Ombud's dispute service is free."
+          },
+          {
+            "q": "Can my income improving alone get me removed from debt review?",
+            "a": "No. Removal follows specific legal routes and requires an assessment — an improved income alone doesn't automatically qualify you."
+          }
         ]
+      }
+    ],
+    "updatedDate": "2026-09-21",
+    "sources": [
+      {
+        "title": "You are entitled to a free credit report",
+        "url": "https://www.vukuzenzele.gov.za/you-are-entitled-free-credit-report",
+        "publisher": "Vuk'uzenzele, South African Government"
+      },
+      {
+        "title": "National Credit Act 34 of 2005",
+        "url": "https://www.gov.za/documents/national-credit-act",
+        "publisher": "South African Government"
+      },
+      {
+        "title": "Circular 6 of 2017: Interpretation of section 71 of the NCA",
+        "url": "https://www.ncr.org.za/documents/Circulars/Circular 6 of 2017- Section 71.pdf",
+        "publisher": "National Credit Regulator"
+      },
+      {
+        "title": "Notebook on the National Credit Act, 2005",
+        "url": "https://www.thedtic.gov.za/wp-content/uploads/NCA_Brochure.pdf",
+        "publisher": "Department of Trade, Industry and Competition"
       }
     ]
   },
@@ -122,24 +373,67 @@
     "category": "Getting Out of Debt",
     "excerpt": "Struggling to keep up with repayments is more common than it feels. Here's a clear-headed way to work out what's actually going on, and what your options are.",
     "publishedDate": "2026-09-01",
-    "relatedServices": ["/debt-review.html", "/debt-mediation.html", "/calculator.html"],
-    "relatedSlugs": ["how-to-build-a-realistic-monthly-budget", "how-to-deal-with-multiple-creditors"],
+    "relatedServices": [
+      "/debt-review.html",
+      "/debt-mediation.html",
+      "/calculator.html"
+    ],
+    "relatedSlugs": [
+      "how-to-build-a-realistic-monthly-budget",
+      "how-to-deal-with-multiple-creditors"
+    ],
     "body": [
-      { "type": "p", "text": "If your repayments no longer fit comfortably alongside your living costs, the most useful first step isn't panic or avoidance — it's getting an honest, specific picture of your numbers." },
-      { "type": "h2", "text": "1. Get a real total, not an estimate" },
-      { "type": "p", "text": "List every debt, its monthly repayment, and your actual take-home income and essential expenses. It's uncomfortable, but a vague sense of “it's tight” makes it much harder to find the right next step than a specific number does." },
-      { "type": "h2", "text": "2. Understand that you have more than one option" },
-      { "type": "p", "text": "Depending on your situation, that might mean formal debt review (with legal protection, but a regulated process to follow), informal debt mediation (more flexible, but without statutory protection), or simply restructuring your own budget first. There isn't one correct answer that applies to everyone — it depends on your specific numbers." },
-      { "type": "h2", "text": "3. Don't wait for the situation to get worse before acting" },
-      { "type": "p", "text": "The earlier a genuinely unaffordable repayment structure is addressed, the more options tend to be available. Waiting until accounts are significantly in arrears narrows what can realistically be done." },
-      { "type": "h2", "text": "4. Be cautious of guaranteed outcomes" },
-      { "type": "p", "text": "Any legitimate assessment of your situation should be able to explain what depends on your circumstances and what depends on individual creditors agreeing to something — not promise a specific reduced payment or interest rate before that's actually been worked out." },
-      { "type": "h2", "text": "5. Talk to someone before choosing a path" },
-      { "type": "p", "text": "A short conversation with a consultant, working from your real numbers, is a far better basis for a decision than guessing between debt review and debt mediation from general information alone." },
+      {
+        "type": "p",
+        "text": "If your repayments no longer fit comfortably alongside your living costs, the most useful first step isn't panic or avoidance — it's getting an honest, specific picture of your numbers."
+      },
+      {
+        "type": "h2",
+        "text": "1. Get a real total, not an estimate"
+      },
+      {
+        "type": "p",
+        "text": "List every debt, its monthly repayment, and your actual take-home income and essential expenses. It's uncomfortable, but a vague sense of “it's tight” makes it much harder to find the right next step than a specific number does."
+      },
+      {
+        "type": "h2",
+        "text": "2. Understand that you have more than one option"
+      },
+      {
+        "type": "p",
+        "text": "Depending on your situation, that might mean formal debt review (with legal protection, but a regulated process to follow), informal debt mediation (more flexible, but without statutory protection), or simply restructuring your own budget first. There isn't one correct answer that applies to everyone — it depends on your specific numbers."
+      },
+      {
+        "type": "h2",
+        "text": "3. Don't wait for the situation to get worse before acting"
+      },
+      {
+        "type": "p",
+        "text": "The earlier a genuinely unaffordable repayment structure is addressed, the more options tend to be available. Waiting until accounts are significantly in arrears narrows what can realistically be done."
+      },
+      {
+        "type": "h2",
+        "text": "4. Be cautious of guaranteed outcomes"
+      },
+      {
+        "type": "p",
+        "text": "Any legitimate assessment of your situation should be able to explain what depends on your circumstances and what depends on individual creditors agreeing to something — not promise a specific reduced payment or interest rate before that's actually been worked out."
+      },
+      {
+        "type": "h2",
+        "text": "5. Talk to someone before choosing a path"
+      },
+      {
+        "type": "p",
+        "text": "A short conversation with a consultant, working from your real numbers, is a far better basis for a decision than guessing between debt review and debt mediation from general information alone."
+      },
       {
         "type": "faq",
         "items": [
-          { "q": "Will speaking to a consultant commit me to anything?", "a": "No. Requesting a callback is an enquiry, not a commitment — a consultant reviews your request and contacts you to talk through your situation." }
+          {
+            "q": "Will speaking to a consultant commit me to anything?",
+            "a": "No. Requesting a callback is an enquiry, not a commitment — a consultant reviews your request and contacts you to talk through your situation."
+          }
         ]
       }
     ]
@@ -150,22 +444,58 @@
     "category": "Debt Management",
     "excerpt": "Owing several different creditors makes everything feel more chaotic than it needs to. Here's how to bring some order to it before deciding what to do next.",
     "publishedDate": "2026-09-08",
-    "relatedServices": ["/debt-review.html", "/debt-mediation.html"],
-    "relatedSlugs": ["what-to-do-when-you-cant-afford-repayments", "common-debt-mistakes-to-avoid"],
+    "relatedServices": [
+      "/debt-review.html",
+      "/debt-mediation.html"
+    ],
+    "relatedSlugs": [
+      "what-to-do-when-you-cant-afford-repayments",
+      "common-debt-mistakes-to-avoid"
+    ],
     "body": [
-      { "type": "p", "text": "When debt is spread across several credit providers — a credit card here, a store account there, a personal loan somewhere else — it's easy to lose track of the overall picture. That's usually the first problem worth solving, before deciding on a strategy." },
-      { "type": "h2", "text": "1. Build one single list" },
-      { "type": "p", "text": "Every account, its outstanding balance, its minimum monthly repayment, and who it's with. Scattered across statements and apps, this information is hard to act on; in one place, patterns become obvious — which accounts are largest, which are most urgent, which are manageable." },
-      { "type": "h2", "text": "2. Understand the difference between restructuring and consolidating" },
-      { "type": "p", "text": "Formal debt review restructures your existing repayments into a single, revised monthly plan — it is not a new loan or a consolidation loan product. That distinction matters: you're not taking on new debt to pay off old debt, you're changing the terms of what you already owe." },
-      { "type": "h2", "text": "3. Know that creditors don't have to agree to everything" },
-      { "type": "p", "text": "Whether you're pursuing formal debt review or informal debt mediation, a credit provider isn't automatically obliged to accept a proposed plan. Under debt review, unresolved disputes have a route through the courts or the National Consumer Tribunal; under debt mediation, a creditor can simply decline." },
-      { "type": "h2", "text": "4. A single combined plan doesn't remove complexity overnight" },
-      { "type": "p", "text": "Even once a restructured plan is in place, it still needs to be maintained — consistent payments, kept up over time. It simplifies the structure of what you owe, but doesn't remove the need for an ongoing, realistic budget alongside it." },
+      {
+        "type": "p",
+        "text": "When debt is spread across several credit providers — a credit card here, a store account there, a personal loan somewhere else — it's easy to lose track of the overall picture. That's usually the first problem worth solving, before deciding on a strategy."
+      },
+      {
+        "type": "h2",
+        "text": "1. Build one single list"
+      },
+      {
+        "type": "p",
+        "text": "Every account, its outstanding balance, its minimum monthly repayment, and who it's with. Scattered across statements and apps, this information is hard to act on; in one place, patterns become obvious — which accounts are largest, which are most urgent, which are manageable."
+      },
+      {
+        "type": "h2",
+        "text": "2. Understand the difference between restructuring and consolidating"
+      },
+      {
+        "type": "p",
+        "text": "Formal debt review restructures your existing repayments into a single, revised monthly plan — it is not a new loan or a consolidation loan product. That distinction matters: you're not taking on new debt to pay off old debt, you're changing the terms of what you already owe."
+      },
+      {
+        "type": "h2",
+        "text": "3. Know that creditors don't have to agree to everything"
+      },
+      {
+        "type": "p",
+        "text": "Whether you're pursuing formal debt review or informal debt mediation, a credit provider isn't automatically obliged to accept a proposed plan. Under debt review, unresolved disputes have a route through the courts or the National Consumer Tribunal; under debt mediation, a creditor can simply decline."
+      },
+      {
+        "type": "h2",
+        "text": "4. A single combined plan doesn't remove complexity overnight"
+      },
+      {
+        "type": "p",
+        "text": "Even once a restructured plan is in place, it still needs to be maintained — consistent payments, kept up over time. It simplifies the structure of what you owe, but doesn't remove the need for an ongoing, realistic budget alongside it."
+      },
       {
         "type": "faq",
         "items": [
-          { "q": "Is a combined repayment plan the same as a consolidation loan?", "a": "No. Restructuring your repayments through debt review is not a new loan — it's a revised repayment plan across your existing credit agreements." }
+          {
+            "q": "Is a combined repayment plan the same as a consolidation loan?",
+            "a": "No. Restructuring your repayments through debt review is not a new loan — it's a revised repayment plan across your existing credit agreements."
+          }
         ]
       }
     ]
@@ -176,23 +506,270 @@
     "category": "Personal Finance",
     "excerpt": "Some of the most common ways a manageable debt situation becomes a harder one — and how to steer around them.",
     "publishedDate": "2026-09-15",
-    "relatedServices": ["/debt-review.html", "/debt-review-removal.html"],
-    "relatedSlugs": ["understanding-your-credit-profile", "how-to-deal-with-multiple-creditors"],
+    "relatedServices": [
+      "/debt-review.html",
+      "/debt-review-removal.html"
+    ],
+    "relatedSlugs": [
+      "understanding-your-credit-profile",
+      "how-to-deal-with-multiple-creditors"
+    ],
     "body": [
-      { "type": "h2", "text": "Avoiding the problem instead of assessing it" },
-      { "type": "p", "text": "It's a natural response to avoid looking closely at a stressful number, but avoidance tends to narrow your options over time rather than protect you. An honest, early assessment usually leaves more paths open than waiting does." },
-      { "type": "h2", "text": "Trusting a guarantee that sounds too clean" },
-      { "type": "p", "text": "Be cautious of anyone promising a specific reduced interest rate, a fast debt review removal, or a guaranteed outcome before actually assessing your situation. The National Credit Regulator has specifically warned about businesses charging large upfront fees for promised fast removal from debt review — and under the National Credit Act, that kind of service generally can't be paid for upfront before it's actually delivered." },
-      { "type": "h2", "text": "Confusing debt review with a new loan" },
-      { "type": "p", "text": "Debt review restructures your existing repayments — it isn't a consolidation loan, and you're not borrowing new money to solve the problem. Going into it expecting a loan product can lead to real confusion about what's actually happening to your finances." },
-      { "type": "h2", "text": "Assuming debt mediation gives the same protection as debt review" },
-      { "type": "p", "text": "They're genuinely different: formal debt review carries legal protection from further action while you comply, with an escalation route through the courts or the National Consumer Tribunal if a creditor won't agree. Debt mediation doesn't carry that statutory protection — a creditor can decline a proposal or still pursue legal action during the negotiation." },
-      { "type": "h2", "text": "Not revisiting your budget once a plan is in place" },
-      { "type": "p", "text": "A restructured repayment plan only works alongside a realistic budget that's kept up to date. Income and expenses change — treating the plan as “set and forget” is one of the more common ways people fall behind again." },
+      {
+        "type": "h2",
+        "text": "Avoiding the problem instead of assessing it"
+      },
+      {
+        "type": "p",
+        "text": "It's a natural response to avoid looking closely at a stressful number, but avoidance tends to narrow your options over time rather than protect you. An honest, early assessment usually leaves more paths open than waiting does."
+      },
+      {
+        "type": "h2",
+        "text": "Trusting a guarantee that sounds too clean"
+      },
+      {
+        "type": "p",
+        "text": "Be cautious of anyone promising a specific reduced interest rate, a fast debt review removal, or a guaranteed outcome before actually assessing your situation. The National Credit Regulator has specifically warned about businesses charging large upfront fees for promised fast removal from debt review — and under the National Credit Act, that kind of service generally can't be paid for upfront before it's actually delivered."
+      },
+      {
+        "type": "h2",
+        "text": "Confusing debt review with a new loan"
+      },
+      {
+        "type": "p",
+        "text": "Debt review restructures your existing repayments — it isn't a consolidation loan, and you're not borrowing new money to solve the problem. Going into it expecting a loan product can lead to real confusion about what's actually happening to your finances."
+      },
+      {
+        "type": "h2",
+        "text": "Assuming debt mediation gives the same protection as debt review"
+      },
+      {
+        "type": "p",
+        "text": "They're genuinely different: formal debt review carries legal protection from further action while you comply, with an escalation route through the courts or the National Consumer Tribunal if a creditor won't agree. Debt mediation doesn't carry that statutory protection — a creditor can decline a proposal or still pursue legal action during the negotiation."
+      },
+      {
+        "type": "h2",
+        "text": "Not revisiting your budget once a plan is in place"
+      },
+      {
+        "type": "p",
+        "text": "A restructured repayment plan only works alongside a realistic budget that's kept up to date. Income and expenses change — treating the plan as “set and forget” is one of the more common ways people fall behind again."
+      },
       {
         "type": "faq",
         "items": [
-          { "q": "If I've made one of these mistakes already, is it too late?", "a": "No — these are common, and a consultant can help you understand your current situation and realistic next steps, regardless of what's already happened." }
+          {
+            "q": "If I've made one of these mistakes already, is it too late?",
+            "a": "No — these are common, and a consultant can help you understand your current situation and realistic next steps, regardless of what's already happened."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "prescribed-debt-when-a-debt-is-too-old-to-claim",
+    "title": "Prescribed Debt: When a Debt Becomes Too Old to Claim",
+    "category": "Credit & Credit Scores",
+    "excerpt": "South African law puts a time limit on most ordinary debts. Here's what “prescribed debt” means, why acknowledging an old debt can restart the clock, and what collectors may not do.",
+    "publishedDate": "2026-09-21",
+    "featured": true,
+    "relatedServices": [
+      "/debt-review.html",
+      "/contact.html"
+    ],
+    "relatedSlugs": [
+      "understanding-your-credit-profile",
+      "how-to-deal-with-multiple-creditors"
+    ],
+    "sources": [
+      {
+        "title": "Prescription Act 68 of 1969",
+        "url": "https://www.saflii.org/za/legis/consol_act/pa1969171/",
+        "publisher": "SAFLII"
+      },
+      {
+        "title": "Prescription of Debt in the Consumer-Credit Industry [2019] PER 51",
+        "url": "https://www.saflii.org/za/journals/PER/2019/51.html",
+        "publisher": "Potchefstroom Electronic Law Journal"
+      },
+      {
+        "title": "National Credit Act 34 of 2005",
+        "url": "https://www.gov.za/documents/national-credit-act",
+        "publisher": "South African Government"
+      },
+      {
+        "title": "Promise to pay — prolonging prescription [2013] DEREBUS 128",
+        "url": "https://www.saflii.org/za/journals/DEREBUS/2013/128.html",
+        "publisher": "De Rebus"
+      }
+    ],
+    "body": [
+      {
+        "type": "p",
+        "text": "If an old debt resurfaces years later — a store account you'd forgotten, a call from a collector about something from a previous job — it's worth knowing that South African law puts a time limit on most ordinary debts. The term for this is prescription."
+      },
+      {
+        "type": "h2",
+        "text": "The three-year rule"
+      },
+      {
+        "type": "p",
+        "text": "Section 11(d) of the Prescription Act 68 of 1969 sets a prescription period of three years for ordinary debts, which includes most consumer credit debt. Once a debt has prescribed, it is extinguished, and a collector cannot successfully sustain a claim on it."
+      },
+      {
+        "type": "p",
+        "text": "Not every debt falls under the three-year period — some categories, such as mortgage bonds and judgment debts, have longer periods. This is one of the reasons it's worth getting a proper view of a specific debt rather than assuming."
+      },
+      {
+        "type": "h2",
+        "text": "What the National Credit Act adds"
+      },
+      {
+        "type": "p",
+        "text": "Section 126B of the National Credit Act specifically regulates practices around prescribed consumer debts — including prohibiting the sale of prescribed consumer debt, and the continued collection or re-activation of it. In other words, this isn't only a technical defence you have to raise: there are rules about what may be done with these debts in the first place."
+      },
+      {
+        "type": "h2",
+        "text": "The trap: acknowledging the debt can restart the clock"
+      },
+      {
+        "type": "p",
+        "text": "This is the part that catches people out. If you acknowledge the debt — for example by promising to pay, agreeing to a payment arrangement, or making a payment towards it — prescription can be interrupted and the period can begin running again. A collector asking you to “just pay something small to show good faith” on a very old debt may be doing exactly that."
+      },
+      {
+        "type": "p",
+        "text": "So if you're contacted about a debt you believe is very old, the safer move is to ask for the details in writing and get advice before agreeing to anything or making a payment."
+      },
+      {
+        "type": "h2",
+        "text": "What this doesn't mean"
+      },
+      {
+        "type": "p",
+        "text": "Prescription is not a strategy for dealing with current debt. It applies to debts that have already run their course untouched — it is not a way to avoid debts you are actively repaying or that are still within their period. If you're struggling with current repayments, that's a different problem with different solutions, such as debt review."
+      },
+      {
+        "type": "h2",
+        "text": "What to do if you think a debt has prescribed"
+      },
+      {
+        "type": "p",
+        "text": "Ask the collector for the full details of the debt in writing, including when the last payment or acknowledgement was made. Check your credit report — you're entitled to one free copy a year — to see what is actually listed against your name. Then get advice specific to that debt before responding, because the consequences of a casual acknowledgement are real."
+      },
+      {
+        "type": "faq",
+        "items": [
+          {
+            "q": "How long before an ordinary debt prescribes in South Africa?",
+            "a": "Section 11(d) of the Prescription Act 68 of 1969 sets three years for ordinary debts. Some categories, such as mortgage bonds and judgment debts, have longer periods."
+          },
+          {
+            "q": "Can paying a small amount restart the clock on an old debt?",
+            "a": "It can. Acknowledging a debt — including by making a payment or agreeing to a payment arrangement — can interrupt prescription so that the period starts running again."
+          },
+          {
+            "q": "Is a prescribed debt still collectable?",
+            "a": "A prescribed debt is extinguished and will not support a claim, and the National Credit Act restricts selling, collecting or re-activating prescribed consumer debt."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "your-rights-with-credit-bureaus",
+    "title": "Your Rights With Credit Bureaus (And What They Cost: Nothing)",
+    "category": "Credit & Credit Scores",
+    "excerpt": "You can see your credit report free once a year, dispute mistakes at no cost, and escalate to a free ombud. Here's how to use rights you already have.",
+    "publishedDate": "2026-09-21",
+    "relatedServices": [
+      "/debt-review-removal.html",
+      "/contact.html"
+    ],
+    "relatedSlugs": [
+      "understanding-your-credit-profile",
+      "prescribed-debt-when-a-debt-is-too-old-to-claim"
+    ],
+    "sources": [
+      {
+        "title": "You are entitled to a free credit report",
+        "url": "https://www.vukuzenzele.gov.za/you-are-entitled-free-credit-report",
+        "publisher": "Vuk'uzenzele, South African Government"
+      },
+      {
+        "title": "National Credit Act 34 of 2005",
+        "url": "https://www.gov.za/documents/national-credit-act",
+        "publisher": "South African Government"
+      },
+      {
+        "title": "Notebook on the National Credit Act, 2005",
+        "url": "https://www.thedtic.gov.za/wp-content/uploads/NCA_Brochure.pdf",
+        "publisher": "Department of Trade, Industry and Competition"
+      }
+    ],
+    "body": [
+      {
+        "type": "p",
+        "text": "A surprising number of people pay for things the National Credit Act already gives them for free. If your credit record matters to you — and it does if you're planning to apply for anything, or recovering from a difficult period — these are the rights worth knowing."
+      },
+      {
+        "type": "h2",
+        "text": "1. One free credit report every twelve months"
+      },
+      {
+        "type": "p",
+        "text": "The National Credit Act entitles you to request your credit report from the credit bureaus once every twelve months at no cost. Your report sets out your borrowing and repayment history and gives you a view of your current credit status — including accounts you may have forgotten about."
+      },
+      {
+        "type": "h2",
+        "text": "2. Disputing incorrect information is free"
+      },
+      {
+        "type": "p",
+        "text": "If something on your report is wrong, you can lodge a dispute with the credit bureau to have it investigated and corrected. You do not pay the credit bureau to challenge information or to have your profile corrected. There is no need to pay a third party for the act of lodging a dispute itself."
+      },
+      {
+        "type": "h2",
+        "text": "3. The Credit Ombud is free too"
+      },
+      {
+        "type": "p",
+        "text": "The Credit Ombud is a recognised industry ombud scheme that resolves disputes between consumers and subscribing members of the non-bank credit industry, including credit providers and credit bureaus. Its services are free to consumers. If a dispute with a bureau isn't resolved properly, that's an escalation route available to you."
+      },
+      {
+        "type": "h2",
+        "text": "Why this matters for “debt review removal” offers"
+      },
+      {
+        "type": "p",
+        "text": "Knowing these rights makes it much easier to judge an offer. Under section 126A(3) of the National Credit Act, a business offering to help remove information from your credit record generally cannot take payment from you before that service has actually been carried out. Combined with the fact that disputes themselves are free, a large upfront fee for a promised quick fix deserves real scepticism."
+      },
+      {
+        "type": "p",
+        "text": "That's not to say legitimate help doesn't exist — exiting debt review properly, for example, follows defined legal routes and can genuinely require professional assistance. The point is that you should know what you're paying for, and what you could do yourself at no cost."
+      },
+      {
+        "type": "h2",
+        "text": "A sensible order to do this in"
+      },
+      {
+        "type": "p",
+        "text": "Get your free report first. Read it properly and note anything that looks wrong or unfamiliar. Dispute genuine errors directly with the bureau. Then, if you need help with your actual debt position rather than with the record itself, speak to a consultant about your options."
+      },
+      {
+        "type": "faq",
+        "items": [
+          {
+            "q": "How do I get my free credit report?",
+            "a": "Request it from a registered credit bureau. The National Credit Act entitles you to one free report every twelve months."
+          },
+          {
+            "q": "Do I have to pay someone to fix an error on my credit report?",
+            "a": "No. Lodging a dispute with the credit bureau to correct incorrect information is free, and the Credit Ombud's dispute service is also free to consumers."
+          },
+          {
+            "q": "Can a company charge me upfront to remove information from my credit record?",
+            "a": "Under section 126A(3) of the National Credit Act, a business offering that service generally cannot take payment from you before the service has actually been carried out."
+          }
         ]
       }
     ]

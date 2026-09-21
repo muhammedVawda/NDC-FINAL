@@ -1006,3 +1006,29 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
   background: var(--surface-card);
   max-width: none;
 }
+
+/* Article sources — attribution for legal/regulatory claims. */
+.article-sources {
+  margin-top: var(--space-xl);
+  padding: var(--space-md);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--color-neutral-100);
+}
+.article-sources > h2 { font-size: var(--fs-md); }
+.article-sources__note {
+  margin-top: var(--space-2xs);
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+}
+.article-sources__list {
+  margin-top: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  font-size: var(--fs-sm);
+  list-style: none;
+  padding: 0;
+}
+.article-sources__list a { color: var(--color-gold-700); font-weight: 600; }
+.article-sources__publisher { color: var(--color-neutral-600); font-weight: 400; }
