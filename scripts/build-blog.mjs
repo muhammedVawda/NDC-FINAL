@@ -17,7 +17,7 @@ import path from "node:path";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const SITE = "https://ndcsa.co.za";
-const CSS_V = "v=12";
+const CSS_V = "v=13";
 const LOGO_V = "v=3";
 
 const articles = JSON.parse(readFileSync(path.join(ROOT, "assets/data/articles.json"), "utf-8"));
@@ -284,8 +284,17 @@ for (const a of articles) {
     .filter(Boolean)
     .slice(0, 3);
 
+  // Brand suffix is appended only when the result still fits in a
+  // search result (~60 chars). Mechanically appending it to an already
+  // long headline just guarantees a truncated, worse-looking title.
+  // `seoTitle` in articles.json overrides the H1 where a shorter,
+  // search-intent-led title reads better than the editorial headline.
+  const baseTitle = a.seoTitle || a.title;
+  const BRAND = " | National Debt Consultants";
+  const pageTitle = (baseTitle + BRAND).length <= 60 ? baseTitle + BRAND : baseTitle;
+
   const html = `${head({
-    title: `${a.title} | National Debt Consultants`,
+    title: pageTitle,
     description: a.excerpt,
     canonical,
     ogImage: `${SITE}/assets/img/og-image.png`,
@@ -327,6 +336,28 @@ ${header("debt-advice")}
             )
             .join("\n          ")}
         </ul>
+      </div>`
+          : ""
+      }
+
+      ${
+        (a.relatedServices || []).length
+          ? `<div class="article-parent">
+        <p class="article-parent__label">Part of</p>
+        <div class="article-parent__links">
+          ${(a.relatedServices || [])
+            .map(function (s) {
+              var names = {
+                "/debt-review.html": "Debt Review",
+                "/debt-mediation.html": "Debt Mediation",
+                "/debt-review-removal.html": "Debt Review Removal",
+                "/calculator.html": "Budget Calculator",
+                "/contact.html": "Contact",
+              };
+              return `<a href="${s}">${names[s] || s}</a>`;
+            })
+            .join("\n          ")}
+        </div>
       </div>`
           : ""
       }
@@ -485,7 +516,7 @@ console.log("Categories:", CATEGORIES.join(", "));
 // can cite and link to them, using the same source of truth as the site.
 const kbPath = path.join(ROOT, "assets/data/knowledge.json");
 const kb = JSON.parse(readFileSync(kbPath, "utf-8"));
-kb.entries = kb.entries.filter((e) => e.type !== "article");
+kb.entries = kb.entries.filter((e) => e.type !== "article" && e.type !== "alias");
 for (const a of articles) {
   const bodyText = a.body
     .map((b) => (b.type === "faq" ? b.items.map((i) => i.q + " " + i.a).join(" ") : b.type === "ul" ? b.items.join(" ") : b.text || ""))
@@ -498,5 +529,48 @@ for (const a of articles) {
     text: `${a.excerpt} ${bodyText}`.slice(0, 1400),
   });
 }
+/*
+  Vocabulary aliases.
+
+  Retrieval matches on the words people actually type, which are often
+  not the words an article title uses. "How does inflation affect my
+  finances?" scored below threshold because "finances" appears nowhere
+  in the inflation article. These entries add natural phrasings that
+  point at the same canonical article.
+
+  Generated here rather than hand-added to knowledge.json: an earlier
+  hand-added entry was silently wiped on the next build, because this
+  script rebuilds the article-typed entries from scratch.
+*/
+const ALIASES = [
+  {
+    id: "alias-inflation",
+    title: "How inflation affects your finances, money and household budget",
+    slug: "how-inflation-affects-household-debt",
+    text: "Inflation affects your finances by raising the cost of everyday living while your debt repayments stay fixed. Statistics South Africa publishes the Consumer Price Index (CPI) monthly as the official measure of consumer inflation. When prices rise faster than income, the money left over each month shrinks, which is why repayments become unmanageable without borrowing anything new. Headline inflation is an average; your experience depends on what you actually spend on, such as food, transport and electricity."
+  },
+  {
+    id: "alias-interest-rates",
+    title: "Interest rates, repo rate and prime explained for your money",
+    slug: "how-interest-rates-affect-your-repayments",
+    text: "The South African Reserve Bank sets the repo rate and banks price lending off it, with prime as the common benchmark. Whether a rate change reaches your monthly payment depends on whether your credit agreement is linked to a variable rate or fixed. Home loans are usually linked; personal loans are often fixed. The National Credit Act prescribes maximum interest rates for different categories of credit agreement."
+  },
+  {
+    id: "alias-getting-out-of-debt",
+    title: "Getting out of debt, paying off debt and debt help options",
+    slug: "what-to-do-when-you-cant-afford-repayments",
+    text: "If you are struggling to pay debt, the useful first step is an honest picture of your numbers: total income, essential expenses and every debt with its monthly repayment. Options depend on your situation and may include formal debt review with legal protection, informal debt mediation without statutory protection, or restructuring your own budget first. Acting earlier generally leaves more options open."
+  }
+];
+for (const al of ALIASES) {
+  kb.entries.push({
+    id: al.id,
+    type: "alias",
+    title: al.title,
+    url: `/debt-advice/${al.slug}.html`,
+    text: al.text
+  });
+}
+
 writeFileSync(kbPath, JSON.stringify(kb, null, 2) + "\n");
 console.log(`Knowledge base: ${kb.entries.length} entries`);
