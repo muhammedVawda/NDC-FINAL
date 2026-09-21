@@ -1032,3 +1032,188 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
 }
 .article-sources__list a { color: var(--color-gold-700); font-weight: 600; }
 .article-sources__publisher { color: var(--color-neutral-600); font-weight: 400; }
+
+/* ============================================================
+   MOTION SYSTEM
+   ============================================================
+   Principles:
+   1. Motion signals hierarchy and progress. Nothing moves for
+      decoration, and nothing loops forever in the periphery.
+   2. One easing family (--ease-standard) and one distance (14px)
+      so every reveal on the site feels like the same hand.
+   3. Content is visible BY DEFAULT. The hidden-then-revealed
+      state only exists under .js-motion, which is set by an
+      inline script before paint. With JS off, blocked, or
+      broken, everything renders normally — important here
+      because these pages are the SEO surface.
+   4. prefers-reduced-motion removes movement everywhere, not
+      just in the places it was convenient to remember.
+   ============================================================ */
+
+:root {
+  --motion-rise: 14px;
+  --motion-duration: 620ms;
+  --motion-stagger: 70ms;
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.28, 1);
+}
+
+/* Reveal: only armed when JS is running. */
+.js-motion [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, var(--motion-rise), 0);
+  transition:
+    opacity var(--motion-duration) var(--ease-out-soft),
+    transform var(--motion-duration) var(--ease-out-soft);
+  transition-delay: calc(var(--reveal-index, 0) * var(--motion-stagger));
+  will-change: opacity, transform;
+}
+.js-motion [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* Header: condenses once the page has moved. Gives back vertical
+   space on scroll and makes the sticky bar feel deliberate rather
+   than simply stuck. */
+.site-header {
+  transition:
+    padding-block var(--duration-base) var(--ease-out-soft),
+    box-shadow var(--duration-base) var(--ease-out-soft);
+}
+.site-header__bar {
+  transition: padding-block var(--duration-base) var(--ease-out-soft);
+}
+.site-header[data-scrolled="true"] {
+  box-shadow: 0 6px 24px -12px rgba(0, 0, 0, 0.6);
+}
+.site-header[data-scrolled="true"] .site-header__bar {
+  padding-block: calc(var(--space-xs) * 0.4);
+}
+.site-header[data-scrolled="true"] .brand__mark {
+  height: 62px;
+}
+@media (min-width: 62rem) {
+  .site-header[data-scrolled="true"] .brand__mark { height: 92px; }
+}
+.brand__mark { transition: height var(--duration-base) var(--ease-out-soft); }
+
+/* Hero: a short entrance sequence, then it stops. The logo keeps
+   its existing animation; these are the text/CTA layers. */
+.js-motion .hero__grid > div > .eyebrow,
+.js-motion .hero__grid > div > h1,
+.js-motion .hero__grid > div > .lede,
+.js-motion .hero__grid > div > .hero__actions,
+.js-motion .hero__grid > div > .hero__note {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  animation: hero-enter 760ms var(--ease-out-soft) forwards;
+}
+.js-motion .hero__grid > div > .eyebrow      { animation-delay: 60ms; }
+.js-motion .hero__grid > div > h1            { animation-delay: 140ms; }
+.js-motion .hero__grid > div > .lede         { animation-delay: 240ms; }
+.js-motion .hero__grid > div > .hero__actions{ animation-delay: 340ms; }
+.js-motion .hero__grid > div > .hero__note   { animation-delay: 430ms; }
+@keyframes hero-enter { to { opacity: 1; transform: none; } }
+
+/* NO decorative layer behind the hero logo.
+   A radial "depth" glow was tried here and removed: the logo asset is
+   an opaque plate whose background is matched exactly to the hero, so
+   anything painted behind it reads as a lighter patch around the
+   plate's edge — the precise artefact that earlier rounds of this
+   project were spent eliminating. Depth in the hero comes from
+   typography, spacing and the entrance sequence instead.
+
+   Pointer-driven depth, desktop only, capped at a few pixels.
+   Applied to a wrapper so the logo's own blending is untouched. */
+.hero__brand-visual {
+  --tilt-x: 0px;
+  --tilt-y: 0px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .js-motion .hero__logo-img {
+    transform: translate3d(var(--tilt-x), var(--tilt-y), 0);
+    transition: transform 500ms var(--ease-out-soft);
+  }
+}
+
+/* Card depth on hover — restrained, consistent across card types. */
+.pathway-card, .service-card {
+  transition:
+    transform var(--duration-fast) var(--ease-out-soft),
+    box-shadow var(--duration-fast) var(--ease-out-soft),
+    border-color var(--duration-fast) var(--ease-out-soft);
+}
+.card.pathway-card:hover, .card.service-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Link underline that draws in rather than snapping on. */
+.article-body a:not(.btn),
+.faq-answer a,
+.lede a {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--duration-base) var(--ease-out-soft);
+  border-bottom: 1px solid currentColor;
+}
+.article-body a:not(.btn):hover,
+.faq-answer a:hover,
+.lede a:hover { background-size: 100% 1px; }
+
+/* Button press feedback — small, physical, not bouncy. */
+.btn { transition:
+    transform var(--duration-fast) var(--ease-out-soft),
+    background var(--duration-fast) var(--ease-out-soft),
+    box-shadow var(--duration-fast) var(--ease-out-soft),
+    border-color var(--duration-fast) var(--ease-out-soft); }
+.btn-gold:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(1px) scale(0.995); }
+
+/* Accordion chevron + answer easing. */
+.faq-item summary { transition: color var(--duration-fast) var(--ease-out-soft); }
+.faq-item summary:hover { color: var(--color-gold-700); }
+.surface-dark .faq-item summary:hover,
+.surface-dark-alt .faq-item summary:hover { color: var(--color-gold-300); }
+
+/* Calculator: result figures settle in rather than snapping. */
+.js-motion [data-countup] { font-variant-numeric: tabular-nums; }
+
+/* Bank/credit-provider rail: restrained by default, clearer on
+   interaction. Kept as text badges — these are named institutions,
+   not partners, and the existing disclaimer stays. */
+.creditor-badge {
+  transition:
+    color var(--duration-base) var(--ease-out-soft),
+    border-color var(--duration-base) var(--ease-out-soft),
+    background var(--duration-base) var(--ease-out-soft);
+}
+.footer-creditors__list:hover .creditor-badge { opacity: 0.55; }
+.footer-creditors__list .creditor-badge:hover {
+  opacity: 1;
+  color: var(--color-on-dark);
+  border-color: var(--color-gold-500);
+  background: rgba(247, 199, 7, 0.06);
+}
+
+/* ---- The escape hatch. Motion off means motion off. ---- */
+@media (prefers-reduced-motion: reduce) {
+  .js-motion [data-reveal],
+  .js-motion .hero__grid > div > .eyebrow,
+  .js-motion .hero__grid > div > h1,
+  .js-motion .hero__grid > div > .lede,
+  .js-motion .hero__grid > div > .hero__actions,
+  .js-motion .hero__grid > div > .hero__note {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .js-motion .hero__logo-img { transform: none !important; }
+  .card.pathway-card:hover, .card.service-card:hover { transform: none; }
+  .btn-gold:hover, .btn:active { transform: none; }
+}
