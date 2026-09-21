@@ -268,3 +268,45 @@ this type of site. **These are unverified**, because the real
 launch, pull the real list of indexed URLs for the old site (Google Search
 Console, an XML sitemap if one exists, or server logs) and replace these
 placeholder redirects with accurate ones.
+
+## 10. Vercel deployment (`vercel.json` + `api/`)
+
+The site deploys to **either Netlify or Vercel**; both configs are kept in
+sync and neither is dead weight.
+
+`netlify.toml` rewrites `/api/*` to `/.netlify/functions/*`. Vercel has no
+such rewrite and calls handlers as `(req, res)`, not `handler(event)`. The
+frontend calls `/api/chat` (`assets/js/chat.js`) and `/api/contact`
+(`assets/js/contact-form.js`) directly, so on Vercel both would 404 — the
+site would look completely fine while the assistant and the contact form
+silently failed. `api/_adapter.js` wraps the existing Netlify handlers in
+Vercel's signature rather than duplicating them, so validation, rate
+limiting, the grounded system prompt and the not-configured guards live in
+exactly one place.
+
+Two constraints are easy to undo by accident, so they are recorded here —
+`vercel.json` is strict JSON and **cannot carry comments**. Vercel's config
+validator rejects unknown top-level properties, including a `"//"` comment
+key (which is only a `package.json` convention) and, out of caution since
+the schema could not be fetched from the build environment to confirm it,
+`$schema` has been left out too.
+
+1. **`cleanUrls` is deliberately `false`.** Every canonical tag, every
+   sitemap `<loc>` and all internal navigation on this site use explicit
+   `.html` paths. With `cleanUrls: true`, Vercel 308-redirects
+   `/page.html` to `/page`, which would put a redirect hop in front of ~29
+   internal links per page and point every canonical at a redirecting URL.
+   If clean URLs are ever wanted, the canonicals, the sitemap generator in
+   `scripts/build-blog.mjs` and the internal links must all change first.
+
+2. **`api/gone.js` exists to preserve a 410.** `netlify.toml` serves the
+   removed Month-End Challenge page with status 410; Vercel's `redirects`
+   only speak 3xx, so the status is served from a function behind a
+   `rewrites` entry. 410 tells Google to drop the URL, where 404 leaves it
+   being re-crawled for months. This is a deliberate choice, not a stray
+   file.
+
+Import settings used: Application Preset **Other**, root directory `./`,
+build/output/install commands all **empty**. There is no `package.json` and
+no `public/` directory at the root, so Vercel runs no install and no build
+and serves the repo root statically — which is correct for this site.
