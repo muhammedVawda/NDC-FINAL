@@ -362,7 +362,13 @@ p + p { margin-top: var(--space-sm); }
 
 /* ============ Hero ============ */
 .hero {
-  background: linear-gradient(180deg, var(--color-charcoal-900) 0%, var(--color-slate-900) 100%);
+  /* Flat and matched exactly to the logo asset's own flattened background
+     colour. The hero logo image has a large opaque interior baked to
+     --color-charcoal-900; a two-stop gradient hero background drifts away
+     from that flat colour by the bottom of the image (measured ~18-20
+     units per channel toward --color-slate-900), which is exactly what
+     produced the visible dark patch there. */
+  background: var(--color-charcoal-900);
   color: var(--color-on-dark);
   position: relative;
   overflow: hidden;
