@@ -773,5 +773,674 @@
         ]
       }
     ]
+  },
+  {
+    "slug": "what-documents-do-i-need-for-debt-review",
+    "title": "What Documents Do I Need for Debt Review?",
+    "category": "Debt Review",
+    "excerpt": "A practical checklist of what a debt counsellor typically asks for, why each item is needed, and what to do if you're self-employed or missing something.",
+    "publishedDate": "2026-09-21",
+    "featured": true,
+    "relatedServices": [
+      "/debt-review.html",
+      "/contact.html"
+    ],
+    "relatedSlugs": [
+      "how-debt-counselling-works-in-south-africa",
+      "what-happens-after-you-apply-for-debt-review"
+    ],
+    "sources": [
+      {
+        "title": "National Credit Act 34 of 2005",
+        "url": "https://www.gov.za/documents/national-credit-act",
+        "publisher": "South African Government"
+      },
+      {
+        "title": "National Credit Act: Regulations: Debt counselling",
+        "url": "https://www.gov.za/sites/default/files/gcis_document/201409/3286922.pdf",
+        "publisher": "South African Government"
+      },
+      {
+        "title": "Notebook on the National Credit Act, 2005",
+        "url": "https://www.thedtic.gov.za/wp-content/uploads/NCA_Brochure.pdf",
+        "publisher": "Department of Trade, Industry and Competition"
+      }
+    ],
+    "body": [
+      {
+        "type": "p",
+        "text": "Gathering paperwork is the part of debt review people most often stall on. It helps to know that almost everything asked for exists to answer one question: what can you genuinely afford each month? A debt counsellor has to make a determination about whether you are over-indebted, and that determination has to rest on real figures rather than estimates."
+      },
+      {
+        "type": "p",
+        "text": "The exact list can vary between debt counsellors and depending on your circumstances. Confirm the specific requirements with the consultant handling your application — but the categories below are what you should expect to be asked for."
+      },
+      {
+        "type": "h2",
+        "text": "Proof of identity"
+      },
+      {
+        "type": "p",
+        "text": "A copy of your South African ID (smart card or green barcoded book). If you're married in community of property, your spouse's details normally matter too, because the joint estate affects the assessment."
+      },
+      {
+        "type": "h2",
+        "text": "Proof of income"
+      },
+      {
+        "type": "p",
+        "text": "If you're employed, recent payslips — usually the last three months. If your income varies (commission, overtime, seasonal work), a longer period gives a fairer picture of what you actually earn on average rather than in a good month."
+      },
+      {
+        "type": "p",
+        "text": "If you're self-employed, you won't have payslips, and that's expected. Instead you'd typically provide business bank statements, recent financial statements or management accounts, and any drawings records showing what you actually take out of the business. If you're paid in cash, say so early — it changes what evidence is realistic, and it's better dealt with upfront than discovered later."
+      },
+      {
+        "type": "h2",
+        "text": "Bank statements"
+      },
+      {
+        "type": "p",
+        "text": "Usually the last three months for every account you use. These matter more than most people expect: they show what actually leaves your account, including debit orders you may have forgotten and expenses you'd underestimate from memory. A budget built on guesses tends to collapse in month two."
+      },
+      {
+        "type": "h2",
+        "text": "Details of every credit agreement"
+      },
+      {
+        "type": "p",
+        "text": "For each debt: who the credit provider is, the account number, the outstanding balance, and the current monthly instalment. Recent statements or letters are ideal. Your credit report is useful here too — you're entitled to one free copy every twelve months, and it will surface accounts you may have lost track of."
+      },
+      {
+        "type": "h2",
+        "text": "Proof of residence and living expenses"
+      },
+      {
+        "type": "p",
+        "text": "A recent utility bill or lease. You'll also be asked to set out monthly living costs — rent or bond, transport, groceries, school fees, insurance, municipal charges. Be realistic rather than optimistic: understating your expenses produces a repayment plan you cannot actually keep."
+      },
+      {
+        "type": "h2",
+        "text": "“What if I'm missing something?”"
+      },
+      {
+        "type": "p",
+        "text": "Start the conversation anyway. Missing one document rarely stops an application outright; it usually just needs to be replaced with an equivalent, or followed up. Waiting months to apply because one payslip is missing is the more costly choice — the assessment can often begin while you retrieve the rest."
+      },
+      {
+        "type": "h2",
+        "text": "A note on what documents do not do"
+      },
+      {
+        "type": "p",
+        "text": "Submitting documents doesn't mean you qualify. The paperwork enables an assessment; the assessment determines whether you are over-indebted, and under the National Credit Act a court ultimately grants the restructuring. Anyone promising an outcome before seeing your numbers is not describing the real process."
+      },
+      {
+        "type": "faq",
+        "items": [
+          {
+            "q": "How many months of bank statements are needed?",
+            "a": "Typically the last three months for each account you use, though a longer period may be requested if your income varies. Confirm the exact requirement with the consultant handling your application."
+          },
+          {
+            "q": "What if I'm self-employed and have no payslip?",
+            "a": "That's expected. Business bank statements, financial statements or management accounts and drawings records are normally used instead. Mention it early so the right evidence is requested from the start."
+          },
+          {
+            "q": "Does submitting documents mean I qualify for debt review?",
+            "a": "No. The documents allow an assessment of whether you are over-indebted. That determination, and the court order that restructures the debt, come after."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "what-happens-after-you-apply-for-debt-review",
+    "title": "What Happens After You Apply for Debt Review?",
+    "category": "Debt Review",
+    "excerpt": "The stages between submitting your application and having a restructured repayment plan — including who decides what, and roughly how long each part takes.",
+    "publishedDate": "2026-09-21",
+    "featured": true,
+    "relatedServices": [
+      "/debt-review.html"
+    ],
+    "relatedSlugs": [
+      "what-documents-do-i-need-for-debt-review",
+      "can-debt-review-be-removed-or-terminated"
+    ],
+    "sources": [
+      {
+        "title": "National Credit Act 34 of 2005",
+        "url": "https://www.gov.za/documents/national-credit-act",
+        "publisher": "South African Government"
+      },
+      {
+        "title": "National Credit Act: Regulations: Debt counselling",
+        "url": "https://www.gov.za/sites/default/files/gcis_document/201409/3286922.pdf",
+        "publisher": "South African Government"
+      },
+      {
+        "title": "Unintentionally Trapped by Debt Review [2019] PER 69",
+        "url": "https://www.saflii.org/za/journals/PER/2019/69.html",
+        "publisher": "Potchefstroom Electronic Law Journal"
+      },
+      {
+        "title": "Circular 6 of 2017: Interpretation of section 71 of the NCA",
+        "url": "https://www.ncr.org.za/documents/Circulars/Circular 6 of 2017- Section 71.pdf",
+        "publisher": "National Credit Regulator"
+      }
+    ],
+    "body": [
+      {
+        "type": "p",
+        "text": "Applying is the start of a defined legal process, not a single event. Knowing the sequence makes the waiting far less stressful, because you can tell the difference between a normal gap and something that has actually stalled."
+      },
+      {
+        "type": "h2",
+        "text": "1. Your application is received and creditors are notified"
+      },
+      {
+        "type": "p",
+        "text": "Once you apply under section 86 of the National Credit Act, your credit providers and the credit bureaus are notified that you have applied for debt review. This is what begins the formal process."
+      },
+      {
+        "type": "h2",
+        "text": "2. The affordability assessment (up to 30 business days)"
+      },
+      {
+        "type": "p",
+        "text": "The regulations give the debt counsellor 30 business days from receiving your application to make a determination: are you over-indebted, or not yet over-indebted but likely to struggle to meet your obligations in time? This is where your income, expenses and debts are worked through properly."
+      },
+      {
+        "type": "p",
+        "text": "An important point that is widely misunderstood: the debt counsellor does not declare you over-indebted. They make a determination and prepare a proposal for how your debts could be restructured."
+      },
+      {
+        "type": "h2",
+        "text": "3. A proposal goes to your credit providers"
+      },
+      {
+        "type": "p",
+        "text": "The proposed restructured plan is put to the credit providers. They are not automatically obliged to accept it. The National Credit Act requires all parties — you, the credit providers and the debt counsellor — to participate in good faith, but agreement is not guaranteed."
+      },
+      {
+        "type": "h2",
+        "text": "4. The matter goes to court"
+      },
+      {
+        "type": "p",
+        "text": "It is the court that conducts a hearing, formally declares a consumer over-indebted, and grants relief by restructuring the credit agreement debt. This step is what gives debt review its legal weight — and it is also why the process takes longer than an informal arrangement."
+      },
+      {
+        "type": "h2",
+        "text": "5. You pay according to the plan"
+      },
+      {
+        "type": "p",
+        "text": "Once an arrangement or order is in place, you make a single monthly payment which is distributed to your credit providers. While you are complying, credit providers are restricted from taking further legal action on the debts covered by the plan."
+      },
+      {
+        "type": "h2",
+        "text": "6. Completion"
+      },
+      {
+        "type": "p",
+        "text": "When you have satisfied the obligations under the agreements covered by the re-arrangement, a clearance certificate is issued under section 71, and the detail of the debt review is expunged from the credit bureaus' records. Long-term debt such as a home loan is treated differently — section 71 allows an exit once the shorter-term restructured debts are settled, even where a bond continues."
+      },
+      {
+        "type": "h2",
+        "text": "How long does the whole thing take?"
+      },
+      {
+        "type": "p",
+        "text": "The assessment stage has a defined window (30 business days). The stages after that depend on creditor responses and court rolls, which is why no one can honestly quote you a single fixed timeline at the outset. Be cautious of anyone who does."
+      },
+      {
+        "type": "faq",
+        "items": [
+          {
+            "q": "How long does the affordability assessment take?",
+            "a": "The regulations allow the debt counsellor 30 business days from receiving the application to make a determination."
+          },
+          {
+            "q": "Can creditors still contact me during the process?",
+            "a": "Once you are under debt review and complying with the arrangement, credit providers are restricted from taking further legal action on the debts covered by it. If something feels wrong, raise it with your debt counsellor."
+          },
+          {
+            "q": "Is there a guaranteed timeline for the whole process?",
+            "a": "No. Only the assessment stage has a set window. The rest depends on creditor responses and court processes."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "can-debt-review-be-removed-or-terminated",
+    "title": "Can Debt Review Be Removed or Terminated?",
+    "category": "Debt Review",
+    "excerpt": "“Removal” means different things at different stages. Here's what actually applies — and why anyone guaranteeing a quick exit for a fee deserves scrutiny.",
+    "publishedDate": "2026-09-21",
+    "featured": true,
+    "relatedServices": [
+      "/debt-review-removal.html",
+      "/contact.html"
+    ],
+    "relatedSlugs": [
+      "understanding-your-credit-profile",
+      "what-happens-after-you-apply-for-debt-review"
+    ],
+    "sources": [
+      {
+        "title": "National Credit Act 34 of 2005",
+        "url": "https://www.gov.za/documents/national-credit-act",
+        "publisher": "South African Government"
+      },
+      {
+        "title": "Circular 6 of 2017: Interpretation of section 71 of the NCA",
+        "url": "https://www.ncr.org.za/documents/Circulars/Circular 6 of 2017- Section 71.pdf",
+        "publisher": "National Credit Regulator"
+      },
+      {
+        "title": "Explanatory Note to the Withdrawal Guidelines",
+        "url": "https://www.ncr.org.za/documents/Withdrawal_guidelines/Explanatory%20Note%20to%20the%20Withdrawal%20Guidelines.pdf",
+        "publisher": "National Credit Regulator"
+      },
+      {
+        "title": "Unintentionally Trapped by Debt Review [2019] PER 69",
+        "url": "https://www.saflii.org/za/journals/PER/2019/69.html",
+        "publisher": "Potchefstroom Electronic Law Journal"
+      }
+    ],
+    "body": [
+      {
+        "type": "p",
+        "text": "When people ask about “removing debt review” they usually mean one of several quite different things. The honest answer depends entirely on which one applies to you, and on what stage you are at."
+      },
+      {
+        "type": "h2",
+        "text": "What people usually mean"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "“I've finished paying and I want the debt review flag off my credit record.”",
+          "“I applied, but I've changed my mind and it hasn't gone to court yet.”",
+          "“My circumstances improved and I can afford my original instalments again.”",
+          "“I'm already under a court order and I want out.”"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "If you have completed the process"
+      },
+      {
+        "type": "p",
+        "text": "This is the cleanest route. Once the debts covered by your re-arrangement are satisfied, a registered debt counsellor issues a clearance certificate under section 71 of the National Credit Act, and the detail of the debt review must then be expunged from the credit bureaus' records."
+      },
+      {
+        "type": "h2",
+        "text": "If a court order is already in place"
+      },
+      {
+        "type": "p",
+        "text": "Exiting before the debts are settled is a different matter, and generally requires a court application. Removal follows specific legal routes — an improved income on its own does not automatically qualify you, and there is no administrative shortcut that bypasses the order."
+      },
+      {
+        "type": "h2",
+        "text": "If your circumstances have genuinely changed"
+      },
+      {
+        "type": "p",
+        "text": "A change in income doesn't automatically end debt review, but it is a legitimate reason to have your situation reassessed. What is available to you depends on your stage in the process and what the court order (if any) says."
+      },
+      {
+        "type": "h2",
+        "text": "The warning worth taking seriously"
+      },
+      {
+        "type": "p",
+        "text": "The National Credit Regulator has publicly warned consumers about businesses promising fast debt review removal in exchange for a large upfront fee. Under section 126A(3) of the National Credit Act, a business offering to help remove information from your credit record generally cannot take payment from you before that service has actually been carried out."
+      },
+      {
+        "type": "p",
+        "text": "So: be sceptical of a guaranteed outcome quoted before anyone has looked at your file, and be especially sceptical of a large fee demanded upfront for that promise."
+      },
+      {
+        "type": "h2",
+        "text": "What an honest answer looks like"
+      },
+      {
+        "type": "p",
+        "text": "Anyone dealing with this properly should ask what stage you are at, whether an order exists, and what your current position with creditors is — before telling you what's possible. If someone tells you removal is simple without asking any of that, they are not describing your actual situation."
+      },
+      {
+        "type": "faq",
+        "items": [
+          {
+            "q": "Can I be removed from debt review just because I can afford my payments again?",
+            "a": "No. Removal follows specific legal routes and requires an assessment. An improved income alone doesn't automatically qualify you."
+          },
+          {
+            "q": "Can a company guarantee they'll remove me from debt review?",
+            "a": "Treat guarantees with caution. The NCR has warned about businesses promising fast removal for large upfront fees, and s126A(3) of the NCA generally prohibits taking payment before such a service is actually carried out."
+          },
+          {
+            "q": "What is a clearance certificate?",
+            "a": "The document a registered debt counsellor issues once the debts covered by your re-arrangement are paid in full. It's used to update your status with the credit bureaus."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "how-inflation-affects-household-debt",
+    "title": "How Inflation Affects Household Debt",
+    "category": "Cost of Living",
+    "excerpt": "Inflation quietly changes what your salary covers. Here's the mechanism, in plain language, and what it means if you're already repaying debt.",
+    "publishedDate": "2026-09-21",
+    "featured": true,
+    "relatedServices": [
+      "/calculator.html",
+      "/contact.html"
+    ],
+    "relatedSlugs": [
+      "how-to-build-a-realistic-monthly-budget",
+      "how-interest-rates-affect-your-repayments"
+    ],
+    "sources": [
+      {
+        "title": "Inflation — Consumer Price Index releases",
+        "url": "https://www.statssa.gov.za/?cat=33",
+        "publisher": "Statistics South Africa"
+      },
+      {
+        "title": "South African Reserve Bank",
+        "url": "https://www.resbank.co.za/",
+        "publisher": "South African Reserve Bank"
+      }
+    ],
+    "body": [
+      {
+        "type": "p",
+        "text": "Inflation is measured in South Africa by Statistics South Africa through the Consumer Price Index (CPI), published monthly. It tracks how the price of a representative basket of goods and services changes over time. When you hear “inflation is 4,3%”, it means that basket costs about 4,3% more than it did a year earlier."
+      },
+      {
+        "type": "p",
+        "text": "Inflation figures change every month. For the current number, check the Stats SA CPI release directly — the link is in the sources below. This article is about what the number means for you, which doesn't change month to month."
+      },
+      {
+        "type": "h2",
+        "text": "The part that matters if you have debt"
+      },
+      {
+        "type": "p",
+        "text": "Your debt repayments are usually fixed amounts. Your living costs are not. When prices rise and your income doesn't rise by the same amount, the gap comes out of the same place: whatever was left over each month."
+      },
+      {
+        "type": "p",
+        "text": "That's why people often describe debt becoming “unmanageable” without having borrowed anything new. Nothing about the debt changed — the space around it shrank."
+      },
+      {
+        "type": "h2",
+        "text": "A simple illustration"
+      },
+      {
+        "type": "p",
+        "text": "Suppose you earn R18 000 after tax, your essential living costs are R11 000, and your debt repayments are R5 000. You have R2 000 of breathing room. If living costs rise by 6% over a year to roughly R11 660, and your income stays flat, that R2 000 becomes about R1 340 — a third less — with no change to your debt at all."
+      },
+      {
+        "type": "p",
+        "text": "These are illustrative figures to show the mechanism, not a prediction about your situation."
+      },
+      {
+        "type": "h2",
+        "text": "Why averages can mislead"
+      },
+      {
+        "type": "p",
+        "text": "Headline inflation is an average across a broad basket. Your personal experience depends on what you actually spend money on. If most of your income goes to food, transport and electricity, and those categories rise faster than the average, your real cost increase can be higher than the headline figure suggests."
+      },
+      {
+        "type": "h2",
+        "text": "What you can actually do"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Rebuild your budget from recent bank statements rather than memory — costs drift upward quietly.",
+          "Look at your total debt repayments as a share of take-home pay, and watch that share over time.",
+          "Deal with an unaffordable repayment structure early, while more options are still open.",
+          "Be wary of covering a shortfall with new short-term credit, which raises next month's fixed commitments."
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "When it stops being a budgeting problem"
+      },
+      {
+        "type": "p",
+        "text": "If essential living costs plus debt repayments consistently exceed your income, tightening the budget further has limits. That's the point at which it's worth having your actual numbers assessed rather than trying to absorb the gap indefinitely."
+      },
+      {
+        "type": "faq",
+        "items": [
+          {
+            "q": "Where does South Africa's official inflation figure come from?",
+            "a": "Statistics South Africa publishes the Consumer Price Index (CPI) monthly. It's the official measure of consumer inflation."
+          },
+          {
+            "q": "Does inflation increase what I owe?",
+            "a": "Not directly. Your repayments are typically fixed amounts. Inflation reduces what's left of your income after living costs, which is what makes existing repayments harder to meet."
+          },
+          {
+            "q": "Is this article's example based on my situation?",
+            "a": "No. The figures are illustrative, to show how the mechanism works. Use the budget calculator for a picture based on your own numbers."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "how-interest-rates-affect-your-repayments",
+    "title": "How Interest Rates Affect Your Monthly Repayments",
+    "category": "Cost of Living",
+    "excerpt": "Repo rate, prime rate, fixed versus linked — what actually moves your instalment, and which of your debts are exposed.",
+    "publishedDate": "2026-09-21",
+    "relatedServices": [
+      "/calculator.html",
+      "/debt-review.html"
+    ],
+    "relatedSlugs": [
+      "how-inflation-affects-household-debt",
+      "how-to-deal-with-multiple-creditors"
+    ],
+    "sources": [
+      {
+        "title": "South African Reserve Bank",
+        "url": "https://www.resbank.co.za/",
+        "publisher": "South African Reserve Bank"
+      },
+      {
+        "title": "National Credit Act 34 of 2005",
+        "url": "https://www.gov.za/documents/national-credit-act",
+        "publisher": "South African Government"
+      }
+    ],
+    "body": [
+      {
+        "type": "p",
+        "text": "Interest rate changes are reported as though everyone is affected equally. In practice, whether a rate change reaches your bank account depends on the kind of credit agreements you hold."
+      },
+      {
+        "type": "h2",
+        "text": "Repo rate and prime rate"
+      },
+      {
+        "type": "p",
+        "text": "The South African Reserve Bank sets the repo rate — the rate at which it lends to commercial banks. Banks price their lending off that, and the prime rate is the benchmark most consumer lending is quoted against, usually as “prime plus” some margin based on your risk profile."
+      },
+      {
+        "type": "p",
+        "text": "When the repo rate moves, prime typically moves with it, and credit linked to prime follows."
+      },
+      {
+        "type": "h2",
+        "text": "Which of your debts actually move"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Home loans: usually linked to prime, so instalments move when rates move.",
+          "Vehicle finance: depends on the agreement — some are linked, some fixed.",
+          "Credit cards and store accounts: rates vary, and are often already near the maximum permitted.",
+          "Personal loans: frequently fixed for the term, so an existing loan's instalment may not change."
+        ]
+      },
+      {
+        "type": "p",
+        "text": "If you're unsure which of yours are linked or fixed, the agreement itself says so. It's worth actually checking rather than assuming — people are often surprised in both directions."
+      },
+      {
+        "type": "h2",
+        "text": "Why a small percentage feels big"
+      },
+      {
+        "type": "p",
+        "text": "On long-term debt, a small rate change applies to a large outstanding balance for many years, so the effect on the monthly instalment is more noticeable than the percentage sounds. On a short-term loan that's nearly repaid, the same change barely registers."
+      },
+      {
+        "type": "h2",
+        "text": "Rate caps exist"
+      },
+      {
+        "type": "p",
+        "text": "The National Credit Act and its regulations prescribe maximum interest rates for different categories of credit agreement. A credit provider cannot charge whatever it likes. If you believe you're being charged beyond what's permitted, that is something to raise — with the provider, and if unresolved, with the regulator."
+      },
+      {
+        "type": "h2",
+        "text": "What to do when rates rise"
+      },
+      {
+        "type": "p",
+        "text": "Recalculate your budget with the new instalment rather than waiting to see whether you cope. If the new total pushes your repayments past what your income can carry alongside essential expenses, that is worth addressing early rather than after arrears build up."
+      },
+      {
+        "type": "faq",
+        "items": [
+          {
+            "q": "Who sets interest rates in South Africa?",
+            "a": "The South African Reserve Bank sets the repo rate. Banks set their own lending rates off that, with prime as the common benchmark."
+          },
+          {
+            "q": "Will a rate cut reduce all my repayments?",
+            "a": "Only on agreements linked to a variable rate such as prime. Fixed-rate agreements keep the same instalment."
+          },
+          {
+            "q": "Is there a limit on what interest I can be charged?",
+            "a": "Yes. The National Credit Act and its regulations prescribe maximum rates for different categories of credit agreement."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-know-if-i-am-over-indebted",
+    "title": "How Do I Know If I Am Over-Indebted?",
+    "category": "Getting Out of Debt",
+    "excerpt": "Over-indebtedness has a specific legal meaning in South Africa — and some practical warning signs that usually show up well before it does.",
+    "publishedDate": "2026-09-21",
+    "relatedServices": [
+      "/calculator.html",
+      "/debt-review.html"
+    ],
+    "relatedSlugs": [
+      "what-to-do-when-you-cant-afford-repayments",
+      "how-to-build-a-realistic-monthly-budget"
+    ],
+    "sources": [
+      {
+        "title": "National Credit Act 34 of 2005",
+        "url": "https://www.gov.za/documents/national-credit-act",
+        "publisher": "South African Government"
+      },
+      {
+        "title": "Notebook on the National Credit Act, 2005",
+        "url": "https://www.thedtic.gov.za/wp-content/uploads/NCA_Brochure.pdf",
+        "publisher": "Department of Trade, Industry and Competition"
+      }
+    ],
+    "body": [
+      {
+        "type": "p",
+        "text": "“Over-indebted” isn't just a description of feeling stretched. Under the National Credit Act it's a specific finding — and it covers more than being unable to pay today."
+      },
+      {
+        "type": "h2",
+        "text": "The legal meaning"
+      },
+      {
+        "type": "p",
+        "text": "Section 79 of the National Credit Act frames over-indebtedness in terms of whether a consumer is or will be unable to satisfy their obligations under all their credit agreements in a timely manner. Importantly, it extends beyond an existing inability to a future or imminent one — you do not have to already be in default."
+      },
+      {
+        "type": "p",
+        "text": "A debt counsellor makes a determination on this after assessing your income, expenses and debts. A court then declares over-indebtedness and grants relief."
+      },
+      {
+        "type": "h2",
+        "text": "Practical warning signs"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "You use credit to cover ordinary monthly expenses like food, fuel or electricity.",
+          "You take new credit largely to service existing credit.",
+          "You pay minimums on revolving accounts and the balance never really falls.",
+          "You're juggling which account to skip each month.",
+          "Essential expenses plus debt repayments exceed take-home pay, so any shortfall is financed."
+        ]
+      },
+      {
+        "type": "p",
+        "text": "None of these individually proves anything. A pattern of them, sustained over months, is usually a structural problem rather than a run of bad months."
+      },
+      {
+        "type": "h2",
+        "text": "A rough self-check"
+      },
+      {
+        "type": "p",
+        "text": "Add your take-home pay. Subtract essential living costs. Subtract total monthly debt repayments. If the result is consistently negative or near zero with no buffer, you're relying on something to go right every month — which is precisely what fails when a car needs repairs or a medical cost appears."
+      },
+      {
+        "type": "p",
+        "text": "The budget calculator on this site does this arithmetic for you and gives you a summary. It's a general budget picture, not a formal assessment."
+      },
+      {
+        "type": "h2",
+        "text": "Why acting early matters"
+      },
+      {
+        "type": "p",
+        "text": "Because over-indebtedness under the Act includes a future inability to pay, you don't have to wait until accounts are in arrears to seek help. Earlier generally means more options remain open — once matters reach judgment stage, the range of realistic outcomes narrows."
+      },
+      {
+        "type": "faq",
+        "items": [
+          {
+            "q": "Do I have to be behind on payments to be over-indebted?",
+            "a": "No. Section 79 of the NCA covers a future or imminent inability to meet obligations, not only an existing one."
+          },
+          {
+            "q": "Can I decide myself that I'm over-indebted?",
+            "a": "You can recognise the signs, but the finding follows an assessment by a debt counsellor and a declaration by a court."
+          },
+          {
+            "q": "Does the calculator tell me if I qualify for debt review?",
+            "a": "No. It gives a general budget summary. Qualifying requires a full assessment of your circumstances."
+          }
+        ]
+      }
+    ]
   }
 ]

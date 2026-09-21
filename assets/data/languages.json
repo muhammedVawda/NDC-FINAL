@@ -1,0 +1,116 @@
+{
+  "_note": "Language registry for the NDC site. `status` is the single source of truth and is deliberately honest: only 'published' languages are offered as translated routes, emitted in hreflang, or used by the assistant. 'pending-translation' languages are listed in the selector as not-yet-available rather than silently machine-translated, because a mistranslation of debt or legal terminology on this site can cause real harm. Moving a language to 'published' requires a human translator with financial/legal terminology experience to review assets/data/i18n/<code>.json and set reviewedBy/reviewedDate.",
+  "default": "en",
+  "languages": [
+    {
+      "code": "en",
+      "hreflang": "en-ZA",
+      "name": "English",
+      "endonym": "English",
+      "status": "published",
+      "urlPrefix": "",
+      "reviewedBy": "source language",
+      "reviewedDate": "2026-09-21"
+    },
+    {
+      "code": "af",
+      "hreflang": "af-ZA",
+      "name": "Afrikaans",
+      "endonym": "Afrikaans",
+      "status": "pending-translation",
+      "urlPrefix": "/af",
+      "reviewedBy": null,
+      "reviewedDate": null
+    },
+    {
+      "code": "zu",
+      "hreflang": "zu-ZA",
+      "name": "isiZulu",
+      "endonym": "isiZulu",
+      "status": "pending-translation",
+      "urlPrefix": "/zu",
+      "reviewedBy": null,
+      "reviewedDate": null
+    },
+    {
+      "code": "xh",
+      "hreflang": "xh-ZA",
+      "name": "isiXhosa",
+      "endonym": "isiXhosa",
+      "status": "pending-translation",
+      "urlPrefix": "/xh",
+      "reviewedBy": null,
+      "reviewedDate": null
+    },
+    {
+      "code": "nso",
+      "hreflang": "nso-ZA",
+      "name": "Sepedi",
+      "endonym": "Sepedi",
+      "status": "pending-translation",
+      "urlPrefix": "/nso",
+      "reviewedBy": null,
+      "reviewedDate": null
+    },
+    {
+      "code": "tn",
+      "hreflang": "tn-ZA",
+      "name": "Setswana",
+      "endonym": "Setswana",
+      "status": "pending-translation",
+      "urlPrefix": "/tn",
+      "reviewedBy": null,
+      "reviewedDate": null
+    },
+    {
+      "code": "st",
+      "hreflang": "st-ZA",
+      "name": "Sesotho",
+      "endonym": "Sesotho",
+      "status": "pending-translation",
+      "urlPrefix": "/st",
+      "reviewedBy": null,
+      "reviewedDate": null
+    },
+    {
+      "code": "ts",
+      "hreflang": "ts-ZA",
+      "name": "Xitsonga",
+      "endonym": "Xitsonga",
+      "status": "pending-translation",
+      "urlPrefix": "/ts",
+      "reviewedBy": null,
+      "reviewedDate": null
+    },
+    {
+      "code": "ss",
+      "hreflang": "ss-ZA",
+      "name": "siSwati",
+      "endonym": "siSwati",
+      "status": "pending-translation",
+      "urlPrefix": "/ss",
+      "reviewedBy": null,
+      "reviewedDate": null
+    },
+    {
+      "code": "ve",
+      "hreflang": "ve-ZA",
+      "name": "Tshivenda",
+      "endonym": "Tshivenḓa",
+      "status": "pending-translation",
+      "urlPrefix": "/ve",
+      "reviewedBy": null,
+      "reviewedDate": null
+    },
+    {
+      "code": "nr",
+      "hreflang": "nr-ZA",
+      "name": "isiNdebele",
+      "endonym": "isiNdebele",
+      "status": "pending-translation",
+      "urlPrefix": "/nr",
+      "reviewedBy": null,
+      "reviewedDate": null
+    }
+  ]
+}

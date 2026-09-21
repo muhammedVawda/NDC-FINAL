@@ -162,6 +162,34 @@
       "text": "No. This site provides general information to help you understand your options. It doesn’t replace a personal assessment of your circumstances. See our terms of use."
     },
     {
+      "id": "checklist-debt-review",
+      "type": "checklist",
+      "title": "Documents needed for Debt Review",
+      "url": "/debt-advice/what-documents-do-i-need-for-debt-review.html",
+      "text": "What a debt counsellor typically asks for. The exact list can vary — confirm with the consultant handling your application. Documents typically required: South African ID (smart card or green book); Recent payslips (usually last 3 months); If self-employed: business bank statements, financial statements or management accounts, drawings records; Bank statements (usually last 3 months, all accounts you use); Details of every credit agreement — provider, account number, balance, monthly instalment; Proof of residence (recent utility bill or lease); A realistic list of monthly living expenses"
+    },
+    {
+      "id": "checklist-debt-review-removal",
+      "type": "checklist",
+      "title": "Documents needed for Debt Review Removal / Termination",
+      "url": "/debt-advice/can-debt-review-be-removed-or-terminated.html",
+      "text": "What's relevant depends heavily on your stage. These are the things that determine what options exist — not a guarantee of removal. Documents typically required: Your current debt review status and stage; Any court order granted in your matter; Clearance certificate, if your debts are already settled; Your current credit report; Debt counsellor details and correspondence; Current proof of income"
+    },
+    {
+      "id": "checklist-mediation",
+      "type": "checklist",
+      "title": "Documents needed for Debt Mediation",
+      "url": "/debt-advice/debt-review-vs-debt-mediation.html",
+      "text": "Mediation is informal negotiation, account by account, outside the formal debt review framework. It carries no statutory protection. Documents typically required: Details of the specific accounts you want negotiated; Recent statements for those accounts; Proof of income; Bank statements (usually last 3 months); A realistic monthly budget; Any correspondence from the creditor"
+    },
+    {
+      "id": "checklist-general",
+      "type": "checklist",
+      "title": "Documents needed for General Debt Help",
+      "url": "/debt-advice/what-to-do-when-you-cant-afford-repayments.html",
+      "text": "If you're not sure which route applies yet, this is enough to have a useful first conversation. Documents typically required: A list of every debt, its balance and monthly instalment; Your take-home pay; Your essential monthly expenses; Your credit report (free once every 12 months)"
+    },
+    {
       "id": "article-how-debt-counselling-works-in-south-africa",
       "type": "article",
       "title": "How Debt Counselling Works in South Africa",
@@ -223,6 +251,177 @@
       "title": "Your Rights With Credit Bureaus (And What They Cost: Nothing)",
       "url": "/debt-advice/your-rights-with-credit-bureaus.html",
       "text": "You can see your credit report free once a year, dispute mistakes at no cost, and escalate to a free ombud. Here's how to use rights you already have. A surprising number of people pay for things the National Credit Act already gives them for free. If your credit record matters to you — and it does if you're planning to apply for anything, or recovering from a difficult period — these are the rights worth knowing. 1. One free credit report every twelve months The National Credit Act entitles you to request your credit report from the credit bureaus once every twelve months at no cost. Your report sets out your borrowing and repayment history and gives you a view of your current credit status — including accounts you may have forgotten about. 2. Disputing incorrect information is free If something on your report is wrong, you can lodge a dispute with the credit bureau to have it investigated and corrected. You do not pay the credit bureau to challenge information or to have your profile corrected. There is no need to pay a third party for the act of lodging a dispute itself. 3. The Credit Ombud is free too The Credit Ombud is a recognised industry ombud scheme that resolves disputes between consumers and subscribing members of the non-bank credit industry, including credit providers and credit bureaus. Its services are free to consumers. If a dispute with a bureau isn't resolved"
+    },
+    {
+      "id": "article-what-documents-do-i-need-for-debt-review",
+      "type": "article",
+      "title": "What Documents Do I Need for Debt Review?",
+      "url": "/debt-advice/what-documents-do-i-need-for-debt-review.html",
+      "text": "A practical checklist of what a debt counsellor typically asks for, why each item is needed, and what to do if you're self-employed or missing something. Gathering paperwork is the part of debt review people most often stall on. It helps to know that almost everything asked for exists to answer one question: what can you genuinely afford each month? A debt counsellor has to make a determination about whether you are over-indebted, and that determination has to rest on real figures rather than estimates. The exact list can vary between debt counsellors and depending on your circumstances. Confirm the specific requirements with the consultant handling your application — but the categories below are what you should expect to be asked for. Proof of identity A copy of your South African ID (smart card or green barcoded book). If you're married in community of property, your spouse's details normally matter too, because the joint estate affects the assessment. Proof of income If you're employed, recent payslips — usually the last three months. If your income varies (commission, overtime, seasonal work), a longer period gives a fairer picture of what you actually earn on average rather than in a good month. If you're self-employed, you won't have payslips, and that's expected. Instead you'd typically provide business bank statements, recent financial statements or management accounts,"
+    },
+    {
+      "id": "article-what-happens-after-you-apply-for-debt-review",
+      "type": "article",
+      "title": "What Happens After You Apply for Debt Review?",
+      "url": "/debt-advice/what-happens-after-you-apply-for-debt-review.html",
+      "text": "The stages between submitting your application and having a restructured repayment plan — including who decides what, and roughly how long each part takes. Applying is the start of a defined legal process, not a single event. Knowing the sequence makes the waiting far less stressful, because you can tell the difference between a normal gap and something that has actually stalled. 1. Your application is received and creditors are notified Once you apply under section 86 of the National Credit Act, your credit providers and the credit bureaus are notified that you have applied for debt review. This is what begins the formal process. 2. The affordability assessment (up to 30 business days) The regulations give the debt counsellor 30 business days from receiving your application to make a determination: are you over-indebted, or not yet over-indebted but likely to struggle to meet your obligations in time? This is where your income, expenses and debts are worked through properly. An important point that is widely misunderstood: the debt counsellor does not declare you over-indebted. They make a determination and prepare a proposal for how your debts could be restructured. 3. A proposal goes to your credit providers The proposed restructured plan is put to the credit providers. They are not automatically obliged to accept it. The National Credit Act requires all parties — you, the c"
+    },
+    {
+      "id": "article-can-debt-review-be-removed-or-terminated",
+      "type": "article",
+      "title": "Can Debt Review Be Removed or Terminated?",
+      "url": "/debt-advice/can-debt-review-be-removed-or-terminated.html",
+      "text": "“Removal” means different things at different stages. Here's what actually applies — and why anyone guaranteeing a quick exit for a fee deserves scrutiny. When people ask about “removing debt review” they usually mean one of several quite different things. The honest answer depends entirely on which one applies to you, and on what stage you are at. What people usually mean “I've finished paying and I want the debt review flag off my credit record.” “I applied, but I've changed my mind and it hasn't gone to court yet.” “My circumstances improved and I can afford my original instalments again.” “I'm already under a court order and I want out.” If you have completed the process This is the cleanest route. Once the debts covered by your re-arrangement are satisfied, a registered debt counsellor issues a clearance certificate under section 71 of the National Credit Act, and the detail of the debt review must then be expunged from the credit bureaus' records. If a court order is already in place Exiting before the debts are settled is a different matter, and generally requires a court application. Removal follows specific legal routes — an improved income on its own does not automatically qualify you, and there is no administrative shortcut that bypasses the order. If your circumstances have genuinely changed A change in income doesn't automatically end debt review, but it is a legit"
+    },
+    {
+      "id": "article-how-inflation-affects-household-debt",
+      "type": "article",
+      "title": "How Inflation Affects Household Debt",
+      "url": "/debt-advice/how-inflation-affects-household-debt.html",
+      "text": "Inflation quietly changes what your salary covers. Here's the mechanism, in plain language, and what it means if you're already repaying debt. Inflation is measured in South Africa by Statistics South Africa through the Consumer Price Index (CPI), published monthly. It tracks how the price of a representative basket of goods and services changes over time. When you hear “inflation is 4,3%”, it means that basket costs about 4,3% more than it did a year earlier. Inflation figures change every month. For the current number, check the Stats SA CPI release directly — the link is in the sources below. This article is about what the number means for you, which doesn't change month to month. The part that matters if you have debt Your debt repayments are usually fixed amounts. Your living costs are not. When prices rise and your income doesn't rise by the same amount, the gap comes out of the same place: whatever was left over each month. That's why people often describe debt becoming “unmanageable” without having borrowed anything new. Nothing about the debt changed — the space around it shrank. A simple illustration Suppose you earn R18 000 after tax, your essential living costs are R11 000, and your debt repayments are R5 000. You have R2 000 of breathing room. If living costs rise by 6% over a year to roughly R11 660, and your income stays flat, that R2 000 becomes about R1 340 — a"
+    },
+    {
+      "id": "article-how-interest-rates-affect-your-repayments",
+      "type": "article",
+      "title": "How Interest Rates Affect Your Monthly Repayments",
+      "url": "/debt-advice/how-interest-rates-affect-your-repayments.html",
+      "text": "Repo rate, prime rate, fixed versus linked — what actually moves your instalment, and which of your debts are exposed. Interest rate changes are reported as though everyone is affected equally. In practice, whether a rate change reaches your bank account depends on the kind of credit agreements you hold. Repo rate and prime rate The South African Reserve Bank sets the repo rate — the rate at which it lends to commercial banks. Banks price their lending off that, and the prime rate is the benchmark most consumer lending is quoted against, usually as “prime plus” some margin based on your risk profile. When the repo rate moves, prime typically moves with it, and credit linked to prime follows. Which of your debts actually move Home loans: usually linked to prime, so instalments move when rates move. Vehicle finance: depends on the agreement — some are linked, some fixed. Credit cards and store accounts: rates vary, and are often already near the maximum permitted. Personal loans: frequently fixed for the term, so an existing loan's instalment may not change. If you're unsure which of yours are linked or fixed, the agreement itself says so. It's worth actually checking rather than assuming — people are often surprised in both directions. Why a small percentage feels big On long-term debt, a small rate change applies to a large outstanding balance for many years, so the effect on t"
+    },
+    {
+      "id": "article-how-do-i-know-if-i-am-over-indebted",
+      "type": "article",
+      "title": "How Do I Know If I Am Over-Indebted?",
+      "url": "/debt-advice/how-do-i-know-if-i-am-over-indebted.html",
+      "text": "Over-indebtedness has a specific legal meaning in South Africa — and some practical warning signs that usually show up well before it does. “Over-indebted” isn't just a description of feeling stretched. Under the National Credit Act it's a specific finding — and it covers more than being unable to pay today. The legal meaning Section 79 of the National Credit Act frames over-indebtedness in terms of whether a consumer is or will be unable to satisfy their obligations under all their credit agreements in a timely manner. Importantly, it extends beyond an existing inability to a future or imminent one — you do not have to already be in default. A debt counsellor makes a determination on this after assessing your income, expenses and debts. A court then declares over-indebtedness and grants relief. Practical warning signs You use credit to cover ordinary monthly expenses like food, fuel or electricity. You take new credit largely to service existing credit. You pay minimums on revolving accounts and the balance never really falls. You're juggling which account to skip each month. Essential expenses plus debt repayments exceed take-home pay, so any shortfall is financed. None of these individually proves anything. A pattern of them, sustained over months, is usually a structural problem rather than a run of bad months. A rough self-check Add your take-home pay. Subtract essential l"
+    },
+    {
+      "id": "topic-inflation-finances",
+      "type": "article",
+      "title": "How inflation affects your finances, money and household budget",
+      "url": "/debt-advice/how-inflation-affects-household-debt.html",
+      "text": "Inflation affects your finances by raising the cost of everyday living while your debt repayments stay fixed. Statistics South Africa publishes the Consumer Price Index (CPI) monthly as the official measure of consumer inflation. When prices rise faster than your income, the money left over each month shrinks, which is why debt repayments can become unmanageable without borrowing anything new. Headline inflation is an average, so your personal experience depends on what you actually spend money on, such as food, transport and electricity. For the current figure, check the Stats SA CPI release directly."
     }
-  ]
+  ],
+  "checklists": {
+    "debt-review": {
+      "label": "Debt Review",
+      "intro": "What a debt counsellor typically asks for. The exact list can vary — confirm with the consultant handling your application.",
+      "learnMore": "/debt-advice/what-documents-do-i-need-for-debt-review.html",
+      "items": [
+        {
+          "item": "South African ID (smart card or green book)",
+          "why": "Confirms identity. If you're married in community of property, your spouse's details usually matter too, because the joint estate affects the assessment."
+        },
+        {
+          "item": "Recent payslips (usually last 3 months)",
+          "why": "Establishes your actual income. If your pay varies with commission or overtime, a longer period gives a fairer average."
+        },
+        {
+          "item": "If self-employed: business bank statements, financial statements or management accounts, drawings records",
+          "why": "Replaces payslips. Mention self-employment early so the right evidence is requested from the start."
+        },
+        {
+          "item": "Bank statements (usually last 3 months, all accounts you use)",
+          "why": "Shows what actually leaves your account, including debit orders you may have forgotten. A budget built on memory tends to collapse."
+        },
+        {
+          "item": "Details of every credit agreement — provider, account number, balance, monthly instalment",
+          "why": "The restructuring proposal has to cover every debt. Your free annual credit report helps surface accounts you've lost track of."
+        },
+        {
+          "item": "Proof of residence (recent utility bill or lease)",
+          "why": "Standard verification, and supports the housing cost figure in your budget."
+        },
+        {
+          "item": "A realistic list of monthly living expenses",
+          "why": "Understating expenses produces a repayment plan you cannot actually keep. Be realistic rather than optimistic."
+        }
+      ]
+    },
+    "debt-review-removal": {
+      "label": "Debt Review Removal / Termination",
+      "intro": "What's relevant depends heavily on your stage. These are the things that determine what options exist — not a guarantee of removal.",
+      "learnMore": "/debt-advice/can-debt-review-be-removed-or-terminated.html",
+      "items": [
+        {
+          "item": "Your current debt review status and stage",
+          "why": "“Removal” means different things before application, after application, and after a court order. The stage decides what's possible."
+        },
+        {
+          "item": "Any court order granted in your matter",
+          "why": "Exiting before debts are settled generally requires a court application. The existing order defines the starting point."
+        },
+        {
+          "item": "Clearance certificate, if your debts are already settled",
+          "why": "Issued under section 71 of the NCA once the covered debts are paid. It's what triggers the debt review detail being expunged from the credit bureaus."
+        },
+        {
+          "item": "Your current credit report",
+          "why": "Shows what is actually listed against your name right now. You're entitled to one free copy every twelve months."
+        },
+        {
+          "item": "Debt counsellor details and correspondence",
+          "why": "Your current debt counsellor is a party to the process; their records matter to what happens next."
+        },
+        {
+          "item": "Current proof of income",
+          "why": "If your circumstances have genuinely changed, that's a legitimate basis for reassessment — though improved income alone doesn't automatically qualify you."
+        }
+      ]
+    },
+    "mediation": {
+      "label": "Debt Mediation",
+      "intro": "Mediation is informal negotiation, account by account, outside the formal debt review framework. It carries no statutory protection.",
+      "learnMore": "/debt-advice/debt-review-vs-debt-mediation.html",
+      "items": [
+        {
+          "item": "Details of the specific accounts you want negotiated",
+          "why": "Mediation is handled account by account rather than as one combined plan."
+        },
+        {
+          "item": "Recent statements for those accounts",
+          "why": "Establishes the current balance and arrears position a proposal has to address."
+        },
+        {
+          "item": "Proof of income",
+          "why": "Any proposal has to be based on what you can realistically pay."
+        },
+        {
+          "item": "Bank statements (usually last 3 months)",
+          "why": "Supports an affordability picture the creditor can assess."
+        },
+        {
+          "item": "A realistic monthly budget",
+          "why": "A proposal a creditor accepts but you can't sustain helps nobody."
+        },
+        {
+          "item": "Any correspondence from the creditor",
+          "why": "Letters of demand or notices affect urgency and what's still available to negotiate."
+        }
+      ]
+    },
+    "general": {
+      "label": "General Debt Help",
+      "intro": "If you're not sure which route applies yet, this is enough to have a useful first conversation.",
+      "learnMore": "/debt-advice/what-to-do-when-you-cant-afford-repayments.html",
+      "items": [
+        {
+          "item": "A list of every debt, its balance and monthly instalment",
+          "why": "A vague sense of “it's tight” makes it much harder to find the right next step than a specific number does."
+        },
+        {
+          "item": "Your take-home pay",
+          "why": "The figure everything else is measured against."
+        },
+        {
+          "item": "Your essential monthly expenses",
+          "why": "Rent or bond, transport, groceries, utilities. This is what determines what's genuinely left."
+        },
+        {
+          "item": "Your credit report (free once every 12 months)",
+          "why": "Surfaces accounts you may have forgotten and shows what's listed against your name."
+        }
+      ]
+    }
+  }
 }
