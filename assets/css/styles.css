@@ -746,3 +746,263 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
 }
 .divider { border: none; border-top: 1px solid var(--border-subtle); margin-block: var(--space-lg); }
 
+
+/* ============ Debt Advice (blog) ============
+   Built entirely from existing tokens — same card, radius, shadow,
+   spacing and type scale as the rest of the site, so the section reads
+   as part of the original design rather than a bolted-on blog. */
+.surface-page-alt { background: var(--color-neutral-100); }
+
+.breadcrumb {
+  font-size: var(--fs-sm);
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-sm);
+}
+.breadcrumb a { color: var(--color-ink-soft); }
+.breadcrumb span[aria-hidden] { margin-inline: var(--space-3xs); color: var(--color-neutral-500); }
+.breadcrumb [aria-current="page"] { color: var(--color-ink); font-weight: 600; }
+
+.article-meta {
+  margin-top: var(--space-sm);
+  font-size: var(--fs-sm);
+  color: var(--color-neutral-600);
+}
+/* Comfortable reading measure — the wrap is already capped at 46rem on
+   article pages, this keeps paragraphs from running wide inside it. */
+.article-body > p { max-width: var(--measure); }
+.article-body > h2 { margin-top: var(--space-lg); font-size: var(--fs-lg); }
+.article-faq { margin-top: var(--space-xl); }
+.article-faq > h2 { font-size: var(--fs-lg); margin-bottom: var(--space-2xs); }
+
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+.blog-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.blog-card h3 { font-size: var(--fs-md); }
+.blog-card__excerpt { color: var(--color-ink-soft); font-size: var(--fs-base); }
+.blog-card__meta { margin-top: auto; padding-top: var(--space-2xs); font-size: var(--fs-sm); color: var(--color-neutral-600); }
+.blog-card[hidden] { display: none; }
+
+.blog-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-md);
+}
+.blog-filters { display: flex; flex-wrap: wrap; gap: var(--space-2xs); }
+.blog-filter {
+  font: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  padding: 0.45em 1em;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-card);
+  color: var(--color-ink-soft);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard);
+}
+.blog-filter:hover { background: var(--color-neutral-100); }
+.blog-filter.is-active {
+  background: var(--color-charcoal-900);
+  border-color: var(--color-charcoal-900);
+  color: var(--color-on-dark);
+}
+.blog-search input {
+  font: inherit;
+  font-size: var(--fs-base);
+  padding: var(--space-2xs) var(--space-sm);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  background: var(--surface-card);
+  color: var(--color-ink);
+  min-width: min(100%, 18rem);
+}
+.blog-empty {
+  margin-top: var(--space-lg);
+  padding: var(--space-lg);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-md);
+  text-align: center;
+  color: var(--color-ink-soft);
+}
+
+/* ============ Debt assistant (chat) ============
+   Same tokens as the rest of the site: charcoal panel, brand yellow
+   accent, existing radius/shadow/spacing scale. Deliberately small and
+   quiet so it doesn't dominate the page. */
+.chat-launcher {
+  position: fixed;
+  right: var(--space-sm);
+  bottom: var(--space-sm);
+  z-index: 200;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: 0.7em 1.1em;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--color-charcoal-900);
+  color: var(--color-on-dark);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--duration-fast) var(--ease-standard),
+              background var(--duration-fast) var(--ease-standard);
+}
+.chat-launcher:hover { transform: translateY(-2px); background: var(--color-charcoal-800); }
+.chat-launcher svg { width: 20px; height: 20px; color: var(--color-gold-500); }
+/* Clear of the mobile action bar so it never covers those buttons. */
+[data-has-mobile-bar="true"] .chat-launcher { bottom: calc(var(--space-sm) + 4.25rem); }
+/* Must match the breakpoint where .mobile-actions itself hides (64rem),
+   or the launcher drops back down onto a still-visible action bar. */
+@media (min-width: 64rem) {
+  [data-has-mobile-bar="true"] .chat-launcher { bottom: var(--space-sm); }
+}
+
+/* `hidden` must win over the panel's own display:flex, or the panel
+   renders open on page load. */
+.chat-panel[hidden] { display: none; }
+.chat-panel {
+  position: fixed;
+  right: var(--space-sm);
+  bottom: calc(var(--space-sm) + 3.5rem);
+  z-index: 201;
+  width: min(23rem, calc(100vw - 2 * var(--space-sm)));
+  max-height: min(34rem, calc(100svh - 6rem));
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+@media (max-width: 30rem) {
+  /* Full-width sheet on small phones, but never taller than the viewport. */
+  .chat-panel {
+    right: 0; left: 0; bottom: 0;
+    width: 100%;
+    max-height: 85svh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+}
+.chat-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-charcoal-900);
+  color: var(--color-on-dark);
+}
+.chat-head__title { font-family: var(--font-display); font-weight: 700; }
+.chat-head__sub { font-size: var(--fs-sm); color: var(--color-on-dark-soft); }
+.chat-head__actions { display: flex; gap: var(--space-3xs); }
+.chat-icon-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2rem; height: 2rem;
+  border: none; border-radius: var(--radius-sm);
+  background: transparent; color: var(--color-on-dark-soft);
+}
+.chat-icon-btn:hover { background: rgba(244,241,233,0.12); color: var(--color-on-dark); }
+.chat-icon-btn svg { width: 18px; height: 18px; }
+
+.chat-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  background: var(--surface-page);
+}
+.chat-msg { display: flex; flex-direction: column; gap: var(--space-3xs); max-width: 90%; }
+.chat-msg--user { align-self: flex-end; align-items: flex-end; }
+.chat-msg--assistant { align-self: flex-start; }
+.chat-bubble {
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+  max-width: none;
+}
+.chat-msg--assistant .chat-bubble {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--color-ink);
+}
+.chat-msg--user .chat-bubble {
+  background: var(--color-charcoal-900);
+  color: var(--color-on-dark);
+}
+.chat-sources, .chat-escalation { display: flex; flex-direction: column; gap: var(--space-3xs); font-size: var(--fs-sm); }
+.chat-sources__label { color: var(--color-neutral-600); font-size: var(--fs-sm); }
+.chat-source { color: var(--color-gold-700); font-weight: 600; text-decoration: underline; }
+.chat-escalation__row, .chat-suggestions { display: flex; flex-wrap: wrap; gap: var(--space-3xs); }
+.chat-chip {
+  font: inherit;
+  font-size: var(--fs-sm);
+  text-align: left;
+  padding: 0.4em 0.9em;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-card);
+  color: var(--color-ink-soft);
+  text-decoration: none;
+}
+.chat-chip:hover { background: var(--color-neutral-100); color: var(--color-ink); }
+
+.chat-typing .chat-bubble { display: flex; gap: 4px; align-items: center; }
+.chat-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--color-neutral-500);
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .chat-dot { animation: chat-blink 1.2s infinite ease-in-out; }
+  .chat-dot:nth-child(2) { animation-delay: 0.15s; }
+  .chat-dot:nth-child(3) { animation-delay: 0.3s; }
+}
+@keyframes chat-blink { 0%, 80%, 100% { opacity: 0.3; } 40% { opacity: 1; } }
+
+.chat-form {
+  display: flex; gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-sm);
+  border-top: 1px solid var(--border-subtle);
+  background: var(--surface-card);
+}
+.chat-input {
+  flex: 1;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: var(--space-2xs) var(--space-sm);
+  font-size: var(--fs-base);
+  background: var(--surface-page);
+  color: var(--color-ink);
+  min-width: 0;
+}
+.chat-send {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2.5rem; height: 2.5rem; flex-shrink: 0;
+  border: none; border-radius: 50%;
+  background: var(--color-gold-500);
+  color: var(--color-charcoal-900);
+}
+.chat-send:hover { background: var(--color-gold-300); }
+.chat-send svg { width: 18px; height: 18px; }
+.chat-send[disabled] { opacity: 0.5; cursor: not-allowed; }
+.chat-note {
+  padding: var(--space-3xs) var(--space-sm) var(--space-2xs);
+  font-size: 0.72rem;
+  color: var(--color-neutral-600);
+  background: var(--surface-card);
+  max-width: none;
+}
