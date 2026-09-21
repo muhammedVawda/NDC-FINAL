@@ -890,7 +890,9 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
   bottom: calc(var(--space-sm) + 3.5rem);
   z-index: 201;
   width: min(23rem, calc(100vw - 2 * var(--space-sm)));
-  max-height: min(34rem, calc(100svh - 6rem));
+  /* Tall enough that the callback form's two fields, consent and
+     submit button fit without scrolling on a laptop. */
+  max-height: min(38rem, calc(100svh - 6rem));
   display: flex;
   flex-direction: column;
   background: var(--surface-card);
@@ -904,7 +906,10 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
   .chat-panel {
     right: 0; left: 0; bottom: 0;
     width: 100%;
-    max-height: 85svh;
+    /* --chat-vh is set from visualViewport when the on-screen keyboard
+       is up. Without it the sheet keeps its full height and the
+       composer ends up behind the keyboard. */
+    max-height: min(85svh, var(--chat-vh, 85svh));
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   }
 }
@@ -1017,6 +1022,142 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
   color: var(--color-neutral-600);
   background: var(--surface-card);
   max-width: none;
+}
+
+/* ---- Assistant: guided options, persistent actions, callback form ----
+   Options are the primary control in the simplified flow, so they are
+   full-width buttons with sentence-length labels rather than pills — a
+   pill row wraps "Understanding my options for leaving debt review"
+   into unreadable fragments on a phone. Minimum target height is kept
+   at 44px, which is the smallest comfortable tap target. */
+.chat-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  align-self: stretch;
+}
+.chat-option {
+  font: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-align: left;
+  min-height: 44px;
+  padding: 0.65em 1em;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-card);
+  color: var(--color-ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: border-color var(--duration-fast) var(--ease-standard),
+              background var(--duration-fast) var(--ease-standard);
+}
+.chat-option:hover {
+  background: var(--color-neutral-100);
+  border-color: var(--color-gold-500);
+}
+.chat-option--primary {
+  background: var(--color-gold-500);
+  border-color: var(--color-gold-500);
+  color: var(--color-charcoal-900);
+}
+.chat-option--primary:hover { background: var(--color-gold-300); border-color: var(--color-gold-300); }
+
+/* Back / Start again / Request a callback. Sits above the composer and
+   stays put, so a callback is always one tap away and nobody has to
+   complete a branch to reach a person. */
+.chat-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs);
+  padding: var(--space-2xs) var(--space-sm);
+  border-top: 1px solid var(--border-subtle);
+  background: var(--surface-card);
+}
+.chat-action {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  min-height: 36px;
+  padding: 0.3em 0.85em;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-page);
+  color: var(--color-ink-soft);
+}
+.chat-action:hover { background: var(--color-neutral-100); color: var(--color-ink); }
+.chat-action--gold {
+  margin-left: auto;
+  background: var(--color-gold-500);
+  border-color: var(--color-gold-500);
+  color: var(--color-charcoal-900);
+}
+.chat-action--gold:hover { background: var(--color-gold-300); color: var(--color-charcoal-900); }
+.chat-action[hidden] { display: none; }
+
+.chat-form-card {
+  align-self: stretch;
+  padding: var(--space-sm);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-card);
+}
+.chat-callback { display: flex; flex-direction: column; gap: var(--space-2xs); }
+.chat-field { display: flex; flex-direction: column; gap: 2px; }
+.chat-field label { font-size: var(--fs-sm); font-weight: 600; color: var(--color-ink); }
+.chat-field__input {
+  font: inherit;
+  /* 16px minimum: anything smaller makes iOS Safari zoom the page on
+     focus, which throws the bottom sheet off-screen. */
+  font-size: 1rem;
+  min-height: 44px;
+  padding: 0.45em 0.7em;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--surface-page);
+  color: var(--color-ink);
+  width: 100%;
+}
+.chat-field__input:focus-visible { border-color: var(--color-gold-500); }
+.chat-field__input[aria-invalid="true"] { border-color: #B3261E; }
+.chat-field__hint { font-size: 0.75rem; color: var(--color-neutral-600); font-weight: 400; }
+.chat-field__error { font-size: 0.78rem; color: #B3261E; font-weight: 600; }
+.chat-field__error[hidden] { display: none; }
+.chat-consent__row { display: flex; gap: var(--space-2xs); align-items: flex-start; }
+.chat-consent__row input { margin-top: 0.25em; width: 1.05rem; height: 1.05rem; flex-shrink: 0; }
+.chat-consent__row label { font-weight: 400; font-size: 0.8rem; line-height: var(--lh-snug); }
+.chat-more summary {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-ink-soft);
+  cursor: pointer;
+  padding: 0.35em 0;
+  min-height: 32px;
+}
+.chat-more[open] summary { margin-bottom: var(--space-2xs); }
+.chat-more > .chat-field { margin-bottom: var(--space-2xs); }
+.chat-submit {
+  font: inherit;
+  font-weight: 700;
+  min-height: 46px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--color-gold-500);
+  color: var(--color-charcoal-900);
+  margin-top: var(--space-3xs);
+}
+.chat-submit:hover { background: var(--color-gold-300); }
+.chat-submit[disabled] { opacity: 0.6; cursor: not-allowed; }
+/* Honeypot: off-screen rather than display:none, because some bots skip
+   fields that are not rendered at all. aria-hidden + tabindex -1 in the
+   markup keep it away from real assistive tech. */
+.chat-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
 }
 
 /* Article sources — attribution for legal/regulatory claims. */
