@@ -57,6 +57,16 @@
     /\bhow much (will|do|would|can) i\b/i,
     /\b(am i|do i) (approved|qualify for a loan)\b/i,
     /\b(system prompt|api key|instructions you|your instructions|internal config|other users)\b/i,
+    /*
+      Guarantee-seeking questions. Extractive mode retrieves by topic, not
+      by intent — "can you guarantee you'll remove my debt review?" pulled
+      the FAQ about being cautious of firms promising exactly that, whose
+      answer begins "Yes." Read in reply to a guarantee question, that one
+      word is a promise this business must never make. Refuse and escalate.
+    */
+    /\b(guarantee|guaranteed|promise|100%|definitely)\b/i,
+    /\bwill (you|ndc) (remove|clear|cancel|erase)\b/i,
+    /\bcan you (remove|clear|cancel|erase|guarantee)\b/i,
   ];
   var MAX_INPUT = 500;
 
@@ -296,6 +306,81 @@
 
   // ---- UI --------------------------------------------------------------
 
+  /* ---------------------------------------------------------------
+     Document checklists
+     Rendered from knowledge.json so the same verified list powers the
+     UI and the assistant's prose answers. Each item can explain why
+     it's needed — people supply documents more readily when they
+     understand the reason.
+     --------------------------------------------------------------- */
+  function showChecklistMenu() {
+    loadKB().then(function () {
+      if (!kb || !kb.checklists) return;
+      addMessage("assistant", "Which checklist would you like? I'll show what's typically needed and why.");
+      var wrap = el("div", "chat-suggestions");
+      Object.keys(kb.checklists).forEach(function (key) {
+        var b = el("button", "chat-chip", kb.checklists[key].label);
+        b.type = "button";
+        b.addEventListener("click", function () {
+          track("chat_checklist_opened", { checklist: key });
+          wrap.remove();
+          showChecklist(key);
+        });
+        wrap.appendChild(b);
+      });
+      log.appendChild(wrap);
+      log.scrollTop = log.scrollHeight;
+    });
+  }
+
+  function showChecklist(key) {
+    var c = kb.checklists[key];
+    if (!c) return;
+    addMessage("user", c.label + " \u2014 document checklist");
+
+    var wrap = el("div", "chat-msg chat-msg--assistant");
+    var bubble = el("div", "chat-bubble");
+    bubble.appendChild(el("p", "chat-checklist__intro", c.intro));
+
+    var list = el("ul", "chat-checklist");
+    c.items.forEach(function (it) {
+      var li = el("li");
+      var row = el("div", "chat-checklist__row");
+      row.appendChild(el("span", "chat-checklist__tick", "\u2713"));
+      row.appendChild(el("span", "chat-checklist__item", it.item));
+      li.appendChild(row);
+
+      var why = el("button", "chat-checklist__why", "Why do I need this?");
+      why.type = "button";
+      why.setAttribute("aria-expanded", "false");
+      var reason = el("p", "chat-checklist__reason", it.why);
+      reason.hidden = true;
+      why.addEventListener("click", function () {
+        var open = reason.hidden;
+        reason.hidden = !open;
+        why.setAttribute("aria-expanded", open ? "true" : "false");
+        why.textContent = open ? "Hide" : "Why do I need this?";
+      });
+      li.appendChild(why);
+      li.appendChild(reason);
+      list.appendChild(li);
+    });
+    bubble.appendChild(list);
+    wrap.appendChild(bubble);
+
+    if (c.learnMore) {
+      var srcWrap = el("div", "chat-sources");
+      srcWrap.appendChild(el("span", "chat-sources__label", "Learn more:"));
+      var a = el("a", "chat-source", "Read the full guide");
+      a.href = c.learnMore;
+      srcWrap.appendChild(a);
+      wrap.appendChild(srcWrap);
+    }
+    log.appendChild(wrap);
+    log.scrollTop = log.scrollHeight;
+    escalation();
+  }
+
   var SUGGESTIONS = [
     "What is debt review?",
     "What's the difference between debt review and mediation?",
@@ -312,6 +397,17 @@
       "Hi — I'm the NDC assistant. I can answer questions using the information published on this website. I'm not a debt counsellor and I can't give personal financial advice, but I can point you in the right direction."
     );
     var chips = el("div", "chat-suggestions");
+
+    // Checklist gets its own entry point — it's a top task, and a menu
+    // is a better answer than making people phrase a question for it.
+    var docBtn = el("button", "chat-chip chat-chip--primary", "\ud83d\udcc4 Document checklist");
+    docBtn.type = "button";
+    docBtn.addEventListener("click", function () {
+      chips.remove();
+      showChecklistMenu();
+    });
+    chips.appendChild(docBtn);
+
     SUGGESTIONS.forEach(function (q) {
       var b = el("button", "chat-chip", q);
       b.type = "button";

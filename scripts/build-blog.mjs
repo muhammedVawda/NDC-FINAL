@@ -17,7 +17,7 @@ import path from "node:path";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const SITE = "https://ndcsa.co.za";
-const CSS_V = "v=9";
+const CSS_V = "v=12";
 const LOGO_V = "v=3";
 
 const articles = JSON.parse(readFileSync(path.join(ROOT, "assets/data/articles.json"), "utf-8"));
@@ -172,6 +172,8 @@ const FOOTER = `<footer class="site-footer">
     </ul>
   </div>
 
+  <div class="wrap footer-lang" data-lang-mount></div>
+
   <div class="wrap footer-bottom">
     <p>&copy; <span data-year>2026</span> National Debt Consultants. All rights reserved.</p>
   </div>
@@ -186,6 +188,7 @@ function bodyEnd(extraScripts) {
 <script src="/assets/js/nav.js" defer></script>
 <script src="/assets/js/analytics.js" defer></script>
 <script src="/assets/js/motion.js" defer></script>
+<script src="/assets/js/lang.js" defer></script>
 <script src="/assets/js/chat.js" defer></script>
 ${extraScripts || ""}<script>document.querySelectorAll('[data-year]').forEach(function(el){ el.textContent = new Date().getFullYear(); });</script>
 </body>
@@ -467,10 +470,12 @@ const blogUrls = [`  <url><loc>${SITE}/debt-advice/</loc><lastmod>${today}</last
   .concat(articles.map((a) => `  <url><loc>${SITE}/debt-advice/${a.slug}.html</loc><lastmod>${a.updatedDate || a.publishedDate}</lastmod><priority>0.6</priority></url>`))
   .join("\n");
 
-if (!sitemap.includes("/debt-advice/")) {
-  sitemap = sitemap.replace("</urlset>", `${blogUrls}\n</urlset>`);
-  writeFileSync(sitemapPath, sitemap);
-}
+// Rebuild the debt-advice block every run. A previous version only
+// appended when the section was absent, so articles added later never
+// reached the sitemap.
+sitemap = sitemap.replace(/\n?[ \t]*<url>(?:(?!<\/url>)[\s\S])*?\/debt-advice\/[\s\S]*?<\/url>/g, "");
+sitemap = sitemap.replace("</urlset>", `${blogUrls}\n</urlset>`);
+writeFileSync(sitemapPath, sitemap);
 
 console.log(`Generated ${articles.length} articles + landing page in /debt-advice/`);
 console.log("Categories:", CATEGORIES.join(", "));
