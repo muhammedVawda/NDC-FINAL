@@ -267,11 +267,14 @@ p + p { margin-top: var(--space-sm); }
 
 /* ============ Header / Nav ============ */
 .site-header {
+  /* Fully opaque and matched exactly to the logo asset's flattened background
+     colour (--color-charcoal-900). A translucent/blurred header would blend
+     with whatever scrolls behind it, shifting its rendered colour away from
+     the logo's fixed flat fill and re-exposing a visible rectangle. */
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(9, 22, 29, 0.94);
-  backdrop-filter: saturate(140%) blur(6px);
+  background: var(--color-charcoal-900);
   color: var(--color-on-dark);
   border-bottom: 1px solid var(--border-on-dark);
 }
@@ -359,9 +362,7 @@ p + p { margin-top: var(--space-sm); }
 
 /* ============ Hero ============ */
 .hero {
-  background:
-    radial-gradient(60% 90% at 82% 0%, rgba(247,199,7,0.14), transparent 60%),
-    linear-gradient(180deg, var(--color-charcoal-900) 0%, var(--color-slate-900) 100%);
+  background: linear-gradient(180deg, var(--color-charcoal-900) 0%, var(--color-slate-900) 100%);
   color: var(--color-on-dark);
   position: relative;
   overflow: hidden;
