@@ -112,6 +112,13 @@ html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; }
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within { scroll-behavior: smooth; }
 }
+/* Any in-page anchor target (e.g. #callback-form, #how-it-works) needs
+   enough top margin to clear the sticky header, or the header would
+   otherwise cover the first part of the section when jumped to. */
+[id] { scroll-margin-top: 110px; }
+@media (min-width: 62rem) {
+  [id] { scroll-margin-top: 165px; }
+}
 body {
   min-height: 100svh;
   font-family: var(--font-body);
@@ -381,6 +388,14 @@ p + p { margin-top: var(--space-sm); }
   z-index: 1;
   width: min(70%, 320px);
   margin-inline: auto;
+  /* The lettering + map artwork sits within the central ~55% of this
+     square image; everything outside that is the logo's own flat/vignette
+     background. Fading only that outer margin to transparent (never the
+     artwork itself) lets the hero's own background show through at the
+     edges instead of a hard rectangle boundary — recreating the blend in
+     CSS rather than cropping or fading any actual lettering. */
+  -webkit-mask-image: radial-gradient(ellipse at 50% 48%, #000 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse at 50% 48%, #000 60%, transparent 100%);
 }
 @media (min-width: 62rem) {
   .hero__logo-img { width: min(85%, 380px); }
@@ -502,6 +517,9 @@ p + p { margin-top: var(--space-sm); }
 .field[data-invalid="true"] select {
   border-color: var(--color-danger-ink);
 }
+.field[data-invalid="true"] .currency-input {
+  border-color: var(--color-danger-ink);
+}
 .field .error {
   color: var(--color-danger-ink);
   font-size: var(--fs-sm);
@@ -520,12 +538,45 @@ p + p { margin-top: var(--space-sm); }
   margin-top: var(--space-3xs);
 }
 .field[data-warning="true"] .warning { display: block; }
-.currency-input { position: relative; }
-.currency-input .prefix {
-  position: absolute; left: 0.9em; top: 50%; transform: translateY(-50%);
-  color: var(--color-neutral-600); font-weight: 600; pointer-events: none;
+/* Prefix lives in normal flow as a flex sibling of the input, not
+   absolutely positioned over it — this is what guarantees the "R" can
+   never overlap entered digits, regardless of any other input padding
+   rule's specificity. The wrapper (not the bare <input>) owns the
+   border/background/radius so focus and error states can be applied
+   consistently to the whole R + number group. */
+.currency-input {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  min-height: 48px;
+  transition: border-color var(--duration-fast) var(--ease-standard);
 }
-.currency-input input { padding-left: 2.2em; }
+.currency-input .prefix {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 0.9em;
+  color: var(--color-neutral-600);
+  font-weight: 600;
+  pointer-events: none;
+}
+.currency-input input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none !important;
+  background: transparent;
+  padding: 0.75em 0.9em 0.75em 0.35em !important;
+  min-height: 0;
+}
+.currency-input input:focus-visible {
+  outline: none;
+  border: none !important;
+}
+.currency-input:focus-within {
+  border-color: var(--color-gold-600);
+}
 
 fieldset { border: none; padding: 0; margin: 0 0 var(--space-lg); }
 fieldset legend { font-family: var(--font-display); font-size: var(--fs-md); font-weight: 600; margin-bottom: var(--space-sm); color: var(--color-ink); }
@@ -633,6 +684,42 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
   font-size: var(--fs-sm);
   color: var(--color-on-dark-soft);
   max-width: 62ch;
+}
+
+/* ============ Footer: NCR block + creditor row ============ */
+.footer-ncr {
+  margin-top: var(--space-md);
+  padding: var(--space-sm);
+  border: 1px solid var(--border-on-dark);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+}
+.footer-ncr strong { color: var(--color-on-dark); }
+.footer-contact { margin-top: var(--space-sm); font-size: var(--fs-sm); }
+.footer-contact a { display: block; }
+.footer-contact a + a { margin-top: var(--space-3xs); }
+
+.footer-creditors {
+  border-top: 1px solid var(--border-on-dark);
+  padding-block: var(--space-lg);
+}
+.footer-creditors h2 { font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-on-dark); margin-bottom: var(--space-2xs); }
+.footer-creditors__note { font-size: var(--fs-sm); color: var(--color-on-dark-soft); max-width: 62ch; margin-bottom: var(--space-sm); }
+.footer-creditors__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+.creditor-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2xs) var(--space-sm);
+  border: 1px solid var(--border-on-dark);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-on-dark-soft);
+  background: rgba(244, 241, 233, 0.04);
 }
 
 /* ============ Utility ============ */

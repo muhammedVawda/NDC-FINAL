@@ -103,6 +103,7 @@
       </ol>
 
       <form data-calculator novalidate>
+        <span id="currency-hint" class="visually-hidden">Amount in South African Rand</span>
 
         <section class="calc-step" data-step="1" data-active="true">
           <h2>Your income</h2>
@@ -112,7 +113,7 @@
             <label for="calc-takeHome">Monthly take-home pay</label>
             <div class="currency-input">
               <span class="prefix" aria-hidden="true">R</span>
-              <input type="text" inputmode="decimal" id="calc-takeHome" name="takeHome" autocomplete="off" aria-describedby="calc-takeHome-error" required>
+              <input type="text" inputmode="decimal" id="calc-takeHome" name="takeHome" autocomplete="off" aria-describedby="calc-takeHome-error currency-hint" required>
             </div>
             <p class="warning" role="status"></p>
             <p class="error" id="calc-takeHome-error" role="alert"></p>
@@ -122,7 +123,7 @@
             <label for="calc-otherIncome">Other regular monthly income (optional)</label>
             <div class="currency-input">
               <span class="prefix" aria-hidden="true">R</span>
-              <input type="text" inputmode="decimal" id="calc-otherIncome" name="otherIncome" autocomplete="off" aria-describedby="calc-otherIncome-hint">
+              <input type="text" inputmode="decimal" id="calc-otherIncome" name="otherIncome" autocomplete="off" aria-describedby="calc-otherIncome-hint currency-hint">
             </div>
             <p class="hint" id="calc-otherIncome-hint">Maintenance, rental or side income. Leave blank if none.</p>
             <p class="warning" role="status"></p>
@@ -141,45 +142,45 @@
 
           <div class="field" data-field="housing">
             <label for="calc-housing">Rent, rates and levies</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-housing" name="housing" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-housing" name="housing" autocomplete="off"></div>
             <p class="hint">Not your bond repayment — that goes under Debts.</p>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
           <div class="field" data-field="utilities">
             <label for="calc-utilities">Water and electricity</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-utilities" name="utilities" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-utilities" name="utilities" autocomplete="off"></div>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
           <div class="field" data-field="groceries">
             <label for="calc-groceries">Groceries and household supplies</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-groceries" name="groceries" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-groceries" name="groceries" autocomplete="off"></div>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
           <div class="field" data-field="transport">
             <label for="calc-transport">Transport</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-transport" name="transport" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-transport" name="transport" autocomplete="off"></div>
             <p class="hint">Fuel, public transport or e-hailing — not a vehicle finance instalment.</p>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
           <div class="field" data-field="insurance">
             <label for="calc-insurance">Insurance and medical aid</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-insurance" name="insurance" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-insurance" name="insurance" autocomplete="off"></div>
             <p class="hint">Not credit life cover linked to a specific loan.</p>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
           <div class="field" data-field="communication">
             <label for="calc-communication">Cellphone and internet</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-communication" name="communication" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-communication" name="communication" autocomplete="off"></div>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
           <div class="field" data-field="educationChildcare">
             <label for="calc-educationChildcare">School fees and childcare</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-educationChildcare" name="educationChildcare" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-educationChildcare" name="educationChildcare" autocomplete="off"></div>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
           <div class="field" data-field="otherExpenses">
             <label for="calc-otherExpenses">Other essential living expenses (optional)</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-otherExpenses" name="otherExpenses" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-otherExpenses" name="otherExpenses" autocomplete="off"></div>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
 
@@ -195,32 +196,32 @@
 
           <div class="field" data-field="homeLoan">
             <label for="calc-homeLoan">Home loan / bond instalment</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-homeLoan" name="homeLoan" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-homeLoan" name="homeLoan" autocomplete="off"></div>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
           <div class="field" data-field="vehicleFinance">
             <label for="calc-vehicleFinance">Vehicle finance instalment</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-vehicleFinance" name="vehicleFinance" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-vehicleFinance" name="vehicleFinance" autocomplete="off"></div>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
           <div class="field" data-field="creditCards">
             <label for="calc-creditCards">Credit card repayments</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-creditCards" name="creditCards" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-creditCards" name="creditCards" autocomplete="off"></div>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
           <div class="field" data-field="storeCards">
             <label for="calc-storeCards">Store or retail account repayments</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-storeCards" name="storeCards" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-storeCards" name="storeCards" autocomplete="off"></div>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
           <div class="field" data-field="personalLoans">
             <label for="calc-personalLoans">Personal loan repayments</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-personalLoans" name="personalLoans" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-personalLoans" name="personalLoans" autocomplete="off"></div>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
           <div class="field" data-field="otherDebt">
             <label for="calc-otherDebt">Other debt repayments</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input type="text" inputmode="decimal" id="calc-otherDebt" name="otherDebt" autocomplete="off"></div>
+            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-otherDebt" name="otherDebt" autocomplete="off"></div>
             <p class="hint">Student loans, garnishee/emolument orders, or any other credit agreement.</p>
             <p class="warning" role="status"></p><p class="error" role="alert"></p>
           </div>
@@ -262,6 +263,13 @@
       </picture>
       </a>
       <p class="disclosure-note" style="margin-top: var(--space-sm);">This calculator gives a general budget summary based on what you enter. It is not a formal debt review proposal or financial advice.</p>
+      <div class="footer-ncr">
+        <p>NCR debt counsellor registration number: <strong>NCR DC 4382</strong></p>
+      </div>
+      <div class="footer-contact">
+        <a href="tel:+27210541141">021 054 1141</a>
+        <a href="mailto:Marketing@ndcsa.co.za">Marketing@ndcsa.co.za</a>
+      </div>
     </div>
     <div>
       <h2>Explore</h2>
@@ -288,8 +296,22 @@
       </ul>
     </div>
   </div>
+  <div class="wrap footer-creditors">
+    <h2>Banks and credit providers</h2>
+    <p class="footer-creditors__note">Logos identify the respective credit providers and do not imply partnership, sponsorship or endorsement of NDC.</p>
+    <ul class="footer-creditors__list">
+      <li class="creditor-badge">Absa</li>
+      <li class="creditor-badge">FNB</li>
+      <li class="creditor-badge">Standard Bank</li>
+      <li class="creditor-badge">Nedbank</li>
+      <li class="creditor-badge">Capitec</li>
+      <li class="creditor-badge">African Bank</li>
+      <li class="creditor-badge">WesBank</li>
+    </ul>
+  </div>
+
   <div class="wrap footer-bottom">
-    <p>&copy; <span data-year>2026</span> National Debt Consultants.</p>
+    <p>&copy; <span data-year>2026</span> National Debt Consultants. All rights reserved.</p>
     <p><a href="/contact.html">Get in touch</a></p>
   </div>
 </footer>
