@@ -1309,3 +1309,23 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
   font-size: 0.72rem; line-height: 1.45; color: var(--color-neutral-600); max-width: none;
 }
 .footer-lang { margin-top: var(--space-md); }
+
+/* Article -> parent service links (completes the hub/spoke loop). */
+.article-parent {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border-subtle);
+}
+.article-parent__label {
+  font-size: var(--fs-sm); font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--color-neutral-600);
+}
+.article-parent__links { display: flex; flex-wrap: wrap; gap: var(--space-2xs); margin-top: var(--space-2xs); }
+.article-parent__links a {
+  font-size: var(--fs-sm); font-weight: 600;
+  padding: 0.4em 0.9em;
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-pill);
+  color: var(--color-gold-700); text-decoration: none;
+}
+.article-parent__links a:hover { background: var(--color-gold-100); border-color: var(--color-gold-500); }

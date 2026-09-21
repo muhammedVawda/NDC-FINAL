@@ -123,13 +123,14 @@
         "url": "https://www.ncr.org.za/documents/Circulars/Circular 6 of 2017- Section 71.pdf",
         "publisher": "National Credit Regulator"
       }
-    ]
+    ],
+    "seoTitle": "Debt Counselling in South Africa: How It Works"
   },
   {
     "slug": "debt-review-vs-debt-mediation",
     "title": "Debt Review vs Debt Mediation: What's the Real Difference?",
     "category": "Debt Management",
-    "excerpt": "Two different routes, often confused with each other. Here's what actually separates formal debt review from informal debt mediation — and how to think about which fits your situation.",
+    "excerpt": "Formal debt review carries legal protection; informal mediation does not. Here's what actually separates them, and how to think about which fits.",
     "publishedDate": "2026-08-11",
     "featured": true,
     "relatedServices": [
@@ -182,7 +183,8 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "Debt Review vs Debt Mediation Explained"
   },
   {
     "slug": "how-to-build-a-realistic-monthly-budget",
@@ -260,7 +262,8 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "How to Build a Realistic Monthly Budget"
   },
   {
     "slug": "understanding-your-credit-profile",
@@ -365,7 +368,8 @@
         "url": "https://www.thedtic.gov.za/wp-content/uploads/NCA_Brochure.pdf",
         "publisher": "Department of Trade, Industry and Competition"
       }
-    ]
+    ],
+    "seoTitle": "Understanding Your Credit Profile (SA)"
   },
   {
     "slug": "what-to-do-when-you-cant-afford-repayments",
@@ -436,7 +440,8 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "Can't Afford Your Debt Repayments?"
   },
   {
     "slug": "how-to-deal-with-multiple-creditors",
@@ -498,7 +503,8 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "How to Deal With Multiple Creditors"
   },
   {
     "slug": "common-debt-mistakes-to-avoid",
@@ -564,13 +570,14 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "Common Debt Mistakes to Avoid"
   },
   {
     "slug": "prescribed-debt-when-a-debt-is-too-old-to-claim",
     "title": "Prescribed Debt: When a Debt Becomes Too Old to Claim",
     "category": "Credit & Credit Scores",
-    "excerpt": "South African law puts a time limit on most ordinary debts. Here's what “prescribed debt” means, why acknowledging an old debt can restart the clock, and what collectors may not do.",
+    "excerpt": "South African law limits most ordinary debts to three years. What prescription means, and why acknowledging an old debt can restart the clock.",
     "publishedDate": "2026-09-21",
     "featured": true,
     "relatedServices": [
@@ -673,7 +680,8 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "Prescribed Debt in South Africa Explained"
   },
   {
     "slug": "your-rights-with-credit-bureaus",
@@ -772,7 +780,8 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "Your Free Credit Bureau Rights (SA)"
   },
   {
     "slug": "what-documents-do-i-need-for-debt-review",
@@ -892,7 +901,8 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "Debt Review Documents Checklist"
   },
   {
     "slug": "what-happens-after-you-apply-for-debt-review",
@@ -1012,7 +1022,8 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "After You Apply for Debt Review"
   },
   {
     "slug": "can-debt-review-be-removed-or-terminated",
@@ -1030,6 +1041,11 @@
       "what-happens-after-you-apply-for-debt-review"
     ],
     "sources": [
+      {
+        "title": "Circular 2 of 2025: Debt Review Removal",
+        "url": "https://www.ncr.org.za/documents/Circulars/Circular%202%20of%202025%20-%20Debt%20Review%20Removal%20(003)%20(002).pdf",
+        "publisher": "National Credit Regulator (March 2025)"
+      },
       {
         "title": "National Credit Act 34 of 2005",
         "url": "https://www.gov.za/documents/national-credit-act",
@@ -1095,11 +1111,29 @@
       },
       {
         "type": "h2",
-        "text": "The warning worth taking seriously"
+        "text": "What the National Credit Regulator said in March 2025"
       },
       {
         "type": "p",
-        "text": "The National Credit Regulator has publicly warned consumers about businesses promising fast debt review removal in exchange for a large upfront fee. Under section 126A(3) of the National Credit Act, a business offering to help remove information from your credit record generally cannot take payment from you before that service has actually been carried out."
+        "text": "In Circular 2 of 2025, the National Credit Regulator issued a public warning about “debt review removal” services. The circular records that consumers were being asked to pay fees of up to R10 000 upfront, and that in most instances the consumer's debt review status was not removed as claimed. The NCR states that such practices, and the advertising of them, are contrary to the National Credit Act."
+      },
+      {
+        "type": "p",
+        "text": "The legal point underneath it is specific: under the NCA, a person offering a service to improve a consumer's credit record or remove information from a credit bureau may not receive any payment from that consumer until the service has been fully performed. An upfront fee for promised removal is the thing the regulator is warning about."
+      },
+      {
+        "type": "h2",
+        "text": "How to protect yourself"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Be sceptical of “guaranteed” or “instant” removal, especially before anyone has looked at your file.",
+          "Do not pay a large upfront fee for a promised credit-record outcome.",
+          "Ask which specific legal route applies to your situation — clearance certificate, withdrawal, or a court application.",
+          "Check that whoever you deal with is a registered debt counsellor on the NCR's public register.",
+          "Remember that lodging a dispute with a credit bureau is free, and the Credit Ombud's service is free."
+        ]
       },
       {
         "type": "p",
@@ -1130,7 +1164,9 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "Can Debt Review Be Removed?",
+    "updatedDate": "2026-09-21"
   },
   {
     "slug": "how-inflation-affects-household-debt",
@@ -1238,7 +1274,8 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "How Inflation Affects Household Debt"
   },
   {
     "slug": "how-interest-rates-affect-your-repayments",
@@ -1341,7 +1378,8 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "How Interest Rates Affect Repayments"
   },
   {
     "slug": "how-do-i-know-if-i-am-over-indebted",
@@ -1441,6 +1479,7 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "Am I Over-Indebted? How to Tell"
   }
 ]
