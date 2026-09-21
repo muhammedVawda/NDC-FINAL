@@ -2,28 +2,30 @@
   National Debt Consultants — Design System
   =========================================
   PALETTE NOTE:
-  --color-gold-* and --color-charcoal-* are sampled directly from the
-  official NDC logo artwork (assets/img/ndc-logo-master.png) — gold-500 is
-  the logo's own gold, charcoal-900 is the logo's own dark navy background.
-  The 100/300/600/700 gold steps and the 800/700 charcoal steps are a tonal
-  ramp built from that sampled hue (same hue/saturation, varied lightness),
-  with gold-600/700 darkened enough to keep WCAG AA text contrast on light
-  backgrounds. --color-slate-* is a complementary dark blue-grey used for
-  secondary dark surfaces; it isn't present as a separate tone in the logo,
-  so it hasn't been changed.
+  --color-gold-* (the brand colour is yellow, not metallic gold — the
+  token name is kept only because it's already used throughout this file)
+  and --color-charcoal-* are sampled directly from the official NDC logo
+  artwork (assets/img/ndc-logo-master.png, a 1254x1254 source) — gold-500
+  is the logo's own yellow, charcoal-900 is the logo's own dark navy
+  background. The 100/300/600/700 yellow steps and the 800/700 charcoal
+  steps are a tonal ramp built from that sampled hue (same hue/saturation,
+  varied lightness), with gold-600/700 darkened enough to keep WCAG AA
+  text contrast on light backgrounds. --color-slate-* is a complementary
+  dark blue-grey used for secondary dark surfaces; it isn't present as a
+  separate tone in the logo, so it hasn't been changed.
 */
 
 :root {
   /* ---- Brand colour tokens (sampled from the official logo) ---- */
-  --color-gold-100: #FBF4E0;
-  --color-gold-300: #F3D368;
-  --color-gold-500: #EDBF25; /* primary gold accent — sampled from logo */
-  --color-gold-600: #84680B; /* gold text-safe on light backgrounds */
-  --color-gold-700: #5E4A08;
+  --color-gold-100: #FCF7E3;
+  --color-gold-300: #FBDE6A;
+  --color-gold-500: #F7C707; /* primary brand yellow — sampled from logo */
+  --color-gold-600: #8B7004; /* yellow text-safe on light backgrounds */
+  --color-gold-700: #635003;
 
-  --color-charcoal-900: #0C171E; /* deep navy-charcoal — sampled from logo background */
-  --color-charcoal-800: #162631;
-  --color-charcoal-700: #223B4A;
+  --color-charcoal-900: #09161D; /* deep navy-charcoal — sampled from logo background */
+  --color-charcoal-800: #112631;
+  --color-charcoal-700: #1D3B4B;
 
   --color-slate-900: #202A33; /* dark blue-grey */
   --color-slate-800: #2B3944;
@@ -268,7 +270,7 @@ p + p { margin-top: var(--space-sm); }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(27, 26, 24, 0.94);
+  background: rgba(9, 22, 29, 0.94);
   backdrop-filter: saturate(140%) blur(6px);
   color: var(--color-on-dark);
   border-bottom: 1px solid var(--border-on-dark);
@@ -287,9 +289,11 @@ p + p { margin-top: var(--space-sm); }
   text-decoration: none;
   color: var(--color-on-dark);
 }
-/* Logo's native crop is ~352x309 (a stacked mark+wordmark+tagline lockup,
+/* Logo's native crop is 1031x785 (a stacked mark+wordmark+tagline lockup,
    not a horizontal wordmark) — sized by height so the aspect ratio is
-   never distorted; width follows naturally (~1.14:1). */
+   never distorted; width follows naturally (~1.31:1). The PNG/WebP carries
+   a baked-in alpha fade on its own background margins so it blends into
+   the header/footer without a visible rectangle. */
 .brand__mark { height: 80px; width: auto; flex-shrink: 0; }
 @media (min-width: 62rem) {
   .brand__mark { height: 128px; width: auto; }
@@ -356,7 +360,7 @@ p + p { margin-top: var(--space-sm); }
 /* ============ Hero ============ */
 .hero {
   background:
-    radial-gradient(60% 90% at 82% 0%, rgba(214,168,58,0.14), transparent 60%),
+    radial-gradient(60% 90% at 82% 0%, rgba(247,199,7,0.14), transparent 60%),
     linear-gradient(180deg, var(--color-charcoal-900) 0%, var(--color-slate-900) 100%);
   color: var(--color-on-dark);
   position: relative;
@@ -387,15 +391,13 @@ p + p { margin-top: var(--space-sm); }
   position: relative;
   z-index: 1;
   width: min(70%, 320px);
+  height: auto;
   margin-inline: auto;
-  /* The lettering + map artwork sits within the central ~55% of this
-     square image; everything outside that is the logo's own flat/vignette
-     background. Fading only that outer margin to transparent (never the
-     artwork itself) lets the hero's own background show through at the
-     edges instead of a hard rectangle boundary — recreating the blend in
-     CSS rather than cropping or fading any actual lettering. */
-  -webkit-mask-image: radial-gradient(ellipse at 50% 48%, #000 60%, transparent 100%);
-  mask-image: radial-gradient(ellipse at 50% 48%, #000 60%, transparent 100%);
+  /* The PNG/WebP itself carries a real alpha channel that fades the logo's
+     own flat/vignette background to transparent at all four edges (baked in
+     from the source asset), leaving the hero's own background to show
+     through with no hard rectangle boundary. The lettering, map outline and
+     shadows stay fully opaque — only background-only margins are faded. */
 }
 @media (min-width: 62rem) {
   .hero__logo-img { width: min(85%, 380px); }
