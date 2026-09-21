@@ -1,27 +1,29 @@
 /*
   National Debt Consultants — Design System
   =========================================
-  PALETTE NOTE (read before changing brand colours):
-  The values below are an INTERPRETATION of the brand description supplied
-  for this project (golden yellow, deep charcoal, dark blue-grey, white and
-  soft neutrals), not colour values extracted from the actual NDC logo file.
-  The real logo image was not accessible in the build environment used to
-  create this site. Before launch, replace the --color-gold-*, --color-
-  charcoal-*, and --color-slate-* values below with hex codes sampled
-  directly from the approved logo artwork. See IMPLEMENTATION_NOTES.md.
+  PALETTE NOTE:
+  --color-gold-* and --color-charcoal-* are sampled directly from the
+  official NDC logo artwork (assets/img/ndc-logo-master.png) — gold-500 is
+  the logo's own gold, charcoal-900 is the logo's own dark navy background.
+  The 100/300/600/700 gold steps and the 800/700 charcoal steps are a tonal
+  ramp built from that sampled hue (same hue/saturation, varied lightness),
+  with gold-600/700 darkened enough to keep WCAG AA text contrast on light
+  backgrounds. --color-slate-* is a complementary dark blue-grey used for
+  secondary dark surfaces; it isn't present as a separate tone in the logo,
+  so it hasn't been changed.
 */
 
 :root {
-  /* ---- Brand colour tokens (interpretation — confirm against real logo) ---- */
-  --color-gold-100: #FBF1D9;
-  --color-gold-300: #E9C36B;
-  --color-gold-500: #D6A83A; /* primary gold accent */
-  --color-gold-600: #B4872A; /* gold text-safe on light backgrounds */
-  --color-gold-700: #8C6A1F;
+  /* ---- Brand colour tokens (sampled from the official logo) ---- */
+  --color-gold-100: #FBF4E0;
+  --color-gold-300: #F3D368;
+  --color-gold-500: #EDBF25; /* primary gold accent — sampled from logo */
+  --color-gold-600: #84680B; /* gold text-safe on light backgrounds */
+  --color-gold-700: #5E4A08;
 
-  --color-charcoal-900: #1B1A18; /* deep charcoal */
-  --color-charcoal-800: #262421;
-  --color-charcoal-700: #38352F;
+  --color-charcoal-900: #0C171E; /* deep navy-charcoal — sampled from logo background */
+  --color-charcoal-800: #162631;
+  --color-charcoal-700: #223B4A;
 
   --color-slate-900: #202A33; /* dark blue-grey */
   --color-slate-800: #2B3944;
@@ -276,7 +278,7 @@ p + p { margin-top: var(--space-sm); }
   text-decoration: none;
   color: var(--color-on-dark);
 }
-.brand__mark { height: 34px; width: auto; }
+.brand__mark { height: 56px; width: 56px; flex-shrink: 0; border-radius: var(--radius-sm); }
 .brand__name {
   font-family: var(--font-display);
   font-weight: 600;

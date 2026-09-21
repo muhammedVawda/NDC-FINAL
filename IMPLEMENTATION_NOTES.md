@@ -13,24 +13,23 @@ confirmation before launch. Read this before publishing.
   Everything on the new site was written fresh — it is **not** a proofread
   or corrected version of the old copy, because the old copy was never
   seen.
-- **No logo file or calculator screenshot was present in this environment.**
-  The task described a logo and an existing calculator screenshot as
-  supplied references, but neither file existed in the repository or
-  anywhere else on the filesystem at the start of this session, and none
-  was attached to the conversation in a readable form. Nothing was
-  fabricated to stand in for them:
-  - The header/footer brand mark (`assets/svg/logo-placeholder.svg`) is a
-    clearly-labelled placeholder wordmark, not a reconstruction of the real
-    logo. **Replace this file with the approved logo artwork before
-    launch.**
-  - The colour palette in `assets/css/styles.css` (`--color-gold-*`,
-    `--color-charcoal-*`, `--color-slate-*`) is a reasonable interpretation
-    of the brief's description ("golden yellow, deep charcoal, dark
-    blue-grey, white and soft neutrals"), not values sampled from the real
-    logo. **Re-sample and replace these tokens from the approved logo file
-    before launch.** Because the palette lives entirely in CSS custom
-    properties, this is a small, low-risk change — no other file needs to
-    change.
+- **UPDATE (later audit pass): the official logo was supplied and is now
+  wired in.** `assets/img/ndc-logo-master.png` is the real NDC logo
+  (square badge, 554×554 PNG, flat dark-navy background, no transparency)
+  as provided by the business. It replaced the old placeholder in the
+  header, footer, favicon, `apple-touch-icon`, web manifest and
+  `og:image`/`twitter:image`, at generated sizes (192px WebP+PNG for
+  header/footer, 32px/multi-size `.ico` for the browser tab, 180px for
+  Apple touch icon, 512px for the manifest and social image). The brand
+  colour tokens (`--color-gold-*`, `--color-charcoal-*`) in
+  `assets/css/styles.css` were re-sampled directly from this file's actual
+  pixels (gold ≈ `#EDBF25`, dark navy ≈ `#0C171E`), replacing the earlier
+  interpreted placeholder values — see the palette note at the top of that
+  file. `--color-slate-*` is unchanged (not a distinct tone in the logo).
+  No transparent-background or vector version of the logo has been
+  supplied; if one exists, swapping it in would remove the (very subtle,
+  now near-invisible since the header/footer navy was corrected to match)
+  square edge around the mark.
   - The known calculator regression (screenshot showing income R11,000,
     expenses R513,788, a fabricated "available income" of −R502,788
     alongside an advertised R5,524 saving and R3,719 proposed repayment)
@@ -67,8 +66,8 @@ details directly with NDC before adding them.
 
 | Location | What's there now | Action needed |
 |---|---|---|
-| Header/footer logo | Placeholder SVG wordmark | Swap in the real logo file |
-| `assets/css/styles.css` palette tokens | Interpreted, documented placeholder hex values | Replace with values sampled from the real logo |
+| Header/footer logo | Real NDC logo (badge mark), wired in | Done — swap for a transparent/vector version if the business has one |
+| `assets/css/styles.css` palette tokens | Sampled from the real logo | Done |
 | Footer, About, Privacy Policy, Terms | Plain-language notes that registration/company details are pending | Add the real, confirmed details |
 | Contact page "Other ways to reach us" | States that phone/WhatsApp/email will be added once confirmed | Add real, verified numbers — and confirm separately whether the phone number is also a WhatsApp number, since these are not automatically the same |
 | Mobile action bar | Only "Check my budget" and "Request a callback" (both safe, no fabricated contact channel) | Optionally add a direct Call/WhatsApp button once a verified number exists — the markup is a single `<a>` tag away in each page's `<nav class="mobile-actions">` |
