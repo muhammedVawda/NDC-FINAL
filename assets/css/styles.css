@@ -27,7 +27,7 @@
   --color-charcoal-800: #112631;
   --color-charcoal-700: #1D3B4B;
 
-  --color-slate-900: #202A33; /* dark blue-grey */
+  --color-slate-900: #202A33; /* dark blue-grey — no longer a page surface; see --surface-dark */
   --color-slate-800: #2B3944;
   --color-slate-700: #3E4E5A;
 
@@ -56,7 +56,19 @@
   /* ---- Semantic surface/text roles ---- */
   --surface-page: var(--color-neutral-50);
   --surface-card: var(--color-white);
-  --surface-dark: var(--color-slate-900);
+  /* Both dark surfaces resolve to the same charcoal, deliberately. This is
+     the exact colour sampled from the logo background and already used by
+     the header, the hero, the footer and every page masthead, so a band at
+     the old blue-grey read as a mismatch rather than as rhythm.
+
+     The two roles are kept as separate tokens so a future design can
+     diverge them again without hunting through markup. Note that on the
+     homepage the calculator and "why us" bands sit directly against each
+     other and now merge into one continuous block — that was already true
+     when both were slate, so it is not a regression, but anything that
+     relies on a seam between them must add an explicit divider rather than
+     assume a colour change. */
+  --surface-dark: var(--color-charcoal-900);
   --surface-dark-alt: var(--color-charcoal-900);
   --border-subtle: var(--color-neutral-300);
   --border-on-dark: rgba(244, 241, 233, 0.18);
