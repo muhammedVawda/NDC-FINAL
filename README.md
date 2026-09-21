@@ -10,11 +10,14 @@ still needs real business details, credentials, and legal sign-off.
 ## Project structure
 
 ```
-/                      Page templates (index.html, calculator.html, ...)
+/                      Page templates (index.html, calculator.html,
+                        month-end-challenge.html, ...)
 /assets/css/           Design tokens + all styles (styles.css)
-/assets/js/            budget-engine.js (pure calc logic), calculator.js,
+/assets/js/            budget-engine.js + calculator.js (calculator),
+                        game-engine.js + game.js (Month-End Challenge game),
                         contact-form.js, nav.js, analytics.js
-/assets/svg/           Placeholder logo — replace before launch
+/assets/img/            Official logo + generated favicon/social/manifest
+                        assets (see "Logo" below)
 /netlify/functions/    contact.js — server-side lead handler
 /scripts/              Test harnesses (not shipped to production)
 netlify.toml           Hosting config: redirects, headers, function routing
@@ -37,6 +40,7 @@ environment variables below set (or point `/api/contact` at a local stub).
 
 ```bash
 node scripts/test-calculator.mjs   # unit tests for the calculator engine
+node scripts/test-game.mjs         # unit tests for the Month-End Challenge game engine
 node scripts/e2e-check.cjs         # Playwright browser tests (needs Playwright + a local server on :8080)
 ```
 
