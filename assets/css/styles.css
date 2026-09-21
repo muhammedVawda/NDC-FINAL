@@ -397,17 +397,20 @@ p + p { margin-top: var(--space-sm); }
 .hero__logo-img {
   position: relative;
   z-index: 1;
-  width: min(70%, 320px);
+  width: min(78%, 360px);
   height: auto;
   margin-inline: auto;
-  /* The PNG/WebP itself carries a real alpha channel that fades the logo's
-     own flat/vignette background to transparent at all four edges (baked in
-     from the source asset), leaving the hero's own background to show
-     through with no hard rectangle boundary. The lettering, map outline and
-     shadows stay fully opaque — only background-only margins are faded. */
+  /* Source crop is trimmed tight around the artwork bounds (not the old
+     full-square canvas with large flat margins), so the visible artwork
+     fills almost the whole displayed width instead of a fraction of it.
+     The PNG/WebP itself carries a real alpha channel that fades the
+     logo's own flattened background to transparent at the (now much
+     narrower) outer margin, leaving the hero's own flat background to
+     show through with no rectangle boundary. Lettering, map outline and
+     shadows stay fully opaque. */
 }
 @media (min-width: 62rem) {
-  .hero__logo-img { width: min(85%, 380px); }
+  .hero__logo-img { width: min(85%, 480px); }
 }
 @media (prefers-reduced-motion: no-preference) {
   .hero__logo-img { animation: hero-logo-in 900ms var(--ease-standard) both; }
