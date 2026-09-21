@@ -17,7 +17,7 @@ import path from "node:path";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const SITE = "https://ndcsa.co.za";
-const CSS_V = "v=7";
+const CSS_V = "v=9";
 const LOGO_V = "v=3";
 
 const articles = JSON.parse(readFileSync(path.join(ROOT, "assets/data/articles.json"), "utf-8"));
@@ -71,6 +71,7 @@ function head({ title, description, canonical, ogImage, extraSchema }) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>(function(){try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("js-motion");}}catch(e){}})();</script>
 <link rel="stylesheet" href="/assets/css/styles.css?${CSS_V}">
 ${extraSchema || ""}</head>`;
 }
@@ -184,6 +185,7 @@ function bodyEnd(extraScripts) {
 
 <script src="/assets/js/nav.js" defer></script>
 <script src="/assets/js/analytics.js" defer></script>
+<script src="/assets/js/motion.js" defer></script>
 <script src="/assets/js/chat.js" defer></script>
 ${extraScripts || ""}<script>document.querySelectorAll('[data-year]').forEach(function(el){ el.textContent = new Date().getFullYear(); });</script>
 </body>
