@@ -1,0 +1,37 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+
+  "//": "cleanUrls is deliberately OFF. Every canonical tag, every sitemap <loc> and all internal navigation on this site use explicit .html paths. With cleanUrls on, Vercel 308-redirects /page.html to /page, which would make every canonical point at a redirecting URL and put a hop in front of every internal link. Matching the markup is worth more than prettier paths.",
+  "cleanUrls": false,
+  "trailingSlash": false,
+
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "geolocation=(), camera=(), microphone=()" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
+
+  "redirects": [
+    { "source": "/debt-counselling", "destination": "/debt-review.html", "permanent": true },
+    { "source": "/debt-counselling.html", "destination": "/debt-review.html", "permanent": true },
+    { "source": "/mediation", "destination": "/debt-mediation.html", "permanent": true },
+    { "source": "/removal", "destination": "/debt-review-removal.html", "permanent": true },
+    { "source": "/contact-us", "destination": "/contact.html", "permanent": true }
+  ],
+
+  "rewrites": [
+    { "source": "/month-end-challenge.html", "destination": "/api/gone" }
+  ]
+}
