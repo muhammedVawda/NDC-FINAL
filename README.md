@@ -10,11 +10,9 @@ still needs real business details, credentials, and legal sign-off.
 ## Project structure
 
 ```
-/                      Page templates (index.html, calculator.html,
-                        month-end-challenge.html, ...)
+/                      Page templates (index.html, calculator.html, ...)
 /assets/css/           Design tokens + all styles (styles.css)
 /assets/js/            budget-engine.js + calculator.js (calculator),
-                        game-engine.js + game.js (Month-End Challenge game),
                         contact-form.js, nav.js, analytics.js
 /assets/img/            Official logo + generated favicon/social/manifest
                         assets (see "Logo" below)
@@ -40,7 +38,6 @@ environment variables below set (or point `/api/contact` at a local stub).
 
 ```bash
 node scripts/test-calculator.mjs   # unit tests for the calculator engine
-node scripts/test-game.mjs         # unit tests for the Month-End Challenge game engine
 node scripts/e2e-check.cjs         # Playwright browser tests (needs Playwright + a local server on :8080)
 ```
 
@@ -77,13 +74,29 @@ validation logic) and update the `/api/contact` route accordingly.
   (`assets/img/ndc-logo-master.png`) — if the business supplies an updated
   or vector logo, re-sample from that file and update the tokens the same
   way.
-- **Logo**: `assets/img/ndc-logo-master.png` is the real NDC logo. The
-  header/footer, favicon, `apple-touch-icon.png`, `site.webmanifest` and
-  `og-image.png`/`twitter:image` are all generated from it (see
-  `assets/img/`). To replace it with a newer or vector version, drop the
-  new file in as `ndc-logo-master.png` and regenerate the derivative sizes
-  (192px WebP+PNG, 32px, 180px, 512px, and `favicon.ico`) the same way —
-  no other markup needs to change unless the aspect ratio changes.
+- **Logo**: `assets/img/ndc-logo-master.png` is the real NDC logo (a
+  554×554 square lockup: NDC mark + "NATIONAL DEBT CONSULTANTS" wordmark +
+  "we get your debt" tagline, on a dark navy background — no transparency).
+  Two crops are generated from it for different contexts:
+  - `ndc-logo-header.png`/`.webp` — a tight crop around just the lettering
+    (drops the wide flat margin around it) at native ~352×309 resolution,
+    used for the header and footer `.brand__mark`, where maximising
+    legibility at a small display size matters most.
+  - `ndc-logo-hero.png`/`.webp` — the full uncropped square (keeps the
+    vignette background art), used as the homepage hero's main visual,
+    where a larger canvas is available.
+  `ndc-logo-192.png`/`ndc-logo-512.png`/`apple-touch-icon.png`/
+  `favicon-32.png`/`favicon.ico` are the header crop centred on a square
+  canvas filled with the same sampled navy (`#0C171E`) so nothing is
+  stretched into a square. `og-image.png` reuses the 512px square version.
+  **Known limitation**: the source master is only 554×554px. The header
+  crop is native resolution up to ~170px display width (2x retina), and
+  the hero is native up to ~277px display width at 2x retina — beyond
+  that, images are upscaled from this source and will show mild softness
+  at very high pixel densities. For pixel-perfect sharpness at larger
+  sizes, source a higher-resolution or vector (SVG) original and repeat
+  this same crop-and-regenerate process — no other markup needs to change
+  unless the aspect ratio itself changes.
 - **Calculator categories/copy**: edit the fields directly in
   `calculator.html`; the calculation logic in `assets/js/budget-engine.js`
   reads field values by `name` attribute, so keep `name="..."` in sync

@@ -2,28 +2,30 @@
   National Debt Consultants — Design System
   =========================================
   PALETTE NOTE:
-  --color-gold-* and --color-charcoal-* are sampled directly from the
-  official NDC logo artwork (assets/img/ndc-logo-master.png) — gold-500 is
-  the logo's own gold, charcoal-900 is the logo's own dark navy background.
-  The 100/300/600/700 gold steps and the 800/700 charcoal steps are a tonal
-  ramp built from that sampled hue (same hue/saturation, varied lightness),
-  with gold-600/700 darkened enough to keep WCAG AA text contrast on light
-  backgrounds. --color-slate-* is a complementary dark blue-grey used for
-  secondary dark surfaces; it isn't present as a separate tone in the logo,
-  so it hasn't been changed.
+  --color-gold-* (the brand colour is yellow, not metallic gold — the
+  token name is kept only because it's already used throughout this file)
+  and --color-charcoal-* are sampled directly from the official NDC logo
+  artwork (assets/img/ndc-logo-master.png, a 1254x1254 source) — gold-500
+  is the logo's own yellow, charcoal-900 is the logo's own dark navy
+  background. The 100/300/600/700 yellow steps and the 800/700 charcoal
+  steps are a tonal ramp built from that sampled hue (same hue/saturation,
+  varied lightness), with gold-600/700 darkened enough to keep WCAG AA
+  text contrast on light backgrounds. --color-slate-* is a complementary
+  dark blue-grey used for secondary dark surfaces; it isn't present as a
+  separate tone in the logo, so it hasn't been changed.
 */
 
 :root {
   /* ---- Brand colour tokens (sampled from the official logo) ---- */
-  --color-gold-100: #FBF4E0;
-  --color-gold-300: #F3D368;
-  --color-gold-500: #EDBF25; /* primary gold accent — sampled from logo */
-  --color-gold-600: #84680B; /* gold text-safe on light backgrounds */
-  --color-gold-700: #5E4A08;
+  --color-gold-100: #FCF7E3;
+  --color-gold-300: #FBDE6A;
+  --color-gold-500: #F7C707; /* primary brand yellow — sampled from logo */
+  --color-gold-600: #8B7004; /* yellow text-safe on light backgrounds */
+  --color-gold-700: #635003;
 
-  --color-charcoal-900: #0C171E; /* deep navy-charcoal — sampled from logo background */
-  --color-charcoal-800: #162631;
-  --color-charcoal-700: #223B4A;
+  --color-charcoal-900: #09161D; /* deep navy-charcoal — sampled from logo background */
+  --color-charcoal-800: #112631;
+  --color-charcoal-700: #1D3B4B;
 
   --color-slate-900: #202A33; /* dark blue-grey */
   --color-slate-800: #2B3944;
@@ -111,6 +113,13 @@
 html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; }
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within { scroll-behavior: smooth; }
+}
+/* Any in-page anchor target (e.g. #callback-form, #how-it-works) needs
+   enough top margin to clear the sticky header, or the header would
+   otherwise cover the first part of the section when jumped to. */
+[id] { scroll-margin-top: 110px; }
+@media (min-width: 62rem) {
+  [id] { scroll-margin-top: 165px; }
 }
 body {
   min-height: 100svh;
@@ -261,7 +270,7 @@ p + p { margin-top: var(--space-sm); }
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(27, 26, 24, 0.94);
+  background: rgba(9, 22, 29, 0.94);
   backdrop-filter: saturate(140%) blur(6px);
   color: var(--color-on-dark);
   border-bottom: 1px solid var(--border-on-dark);
@@ -280,9 +289,14 @@ p + p { margin-top: var(--space-sm); }
   text-decoration: none;
   color: var(--color-on-dark);
 }
-.brand__mark { height: 52px; width: 52px; flex-shrink: 0; border-radius: var(--radius-sm); }
+/* Logo's native crop is 1031x785 (a stacked mark+wordmark+tagline lockup,
+   not a horizontal wordmark) — sized by height so the aspect ratio is
+   never distorted; width follows naturally (~1.31:1). The PNG/WebP carries
+   a baked-in alpha fade on its own background margins so it blends into
+   the header/footer without a visible rectangle. */
+.brand__mark { height: 80px; width: auto; flex-shrink: 0; }
 @media (min-width: 62rem) {
-  .brand__mark { height: 76px; width: 76px; }
+  .brand__mark { height: 128px; width: auto; }
 }
 .brand__name {
   font-family: var(--font-display);
@@ -346,7 +360,7 @@ p + p { margin-top: var(--space-sm); }
 /* ============ Hero ============ */
 .hero {
   background:
-    radial-gradient(60% 90% at 82% 0%, rgba(214,168,58,0.14), transparent 60%),
+    radial-gradient(60% 90% at 82% 0%, rgba(247,199,7,0.14), transparent 60%),
     linear-gradient(180deg, var(--color-charcoal-900) 0%, var(--color-slate-900) 100%);
   color: var(--color-on-dark);
   position: relative;
@@ -376,31 +390,22 @@ p + p { margin-top: var(--space-sm); }
 .hero__logo-img {
   position: relative;
   z-index: 1;
-  width: min(62%, 300px);
+  width: min(70%, 320px);
+  height: auto;
   margin-inline: auto;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  /* The PNG/WebP itself carries a real alpha channel that fades the logo's
+     own flat/vignette background to transparent at all four edges (baked in
+     from the source asset), leaving the hero's own background to show
+     through with no hard rectangle boundary. The lettering, map outline and
+     shadows stay fully opaque — only background-only margins are faded. */
 }
 @media (min-width: 62rem) {
-  .hero__logo-img { width: min(80%, 380px); }
-}
-.hero__logo-glow {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 75%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(237,191,37,0.35), transparent 70%);
-  filter: blur(36px);
-  z-index: 0;
+  .hero__logo-img { width: min(85%, 380px); }
 }
 @media (prefers-reduced-motion: no-preference) {
   .hero__logo-img { animation: hero-logo-in 900ms var(--ease-standard) both; }
-  .hero__logo-glow { animation: hero-glow-in 1400ms var(--ease-standard) both; }
 }
 @keyframes hero-logo-in { from { opacity: 0; transform: scale(0.92) translateY(14px); } to { opacity: 1; transform: none; } }
-@keyframes hero-glow-in { from { opacity: 0; } to { opacity: 1; } }
 
 /* ============ Cards / pathways ============ */
 .card {
@@ -514,6 +519,9 @@ p + p { margin-top: var(--space-sm); }
 .field[data-invalid="true"] select {
   border-color: var(--color-danger-ink);
 }
+.field[data-invalid="true"] .currency-input {
+  border-color: var(--color-danger-ink);
+}
 .field .error {
   color: var(--color-danger-ink);
   font-size: var(--fs-sm);
@@ -532,12 +540,45 @@ p + p { margin-top: var(--space-sm); }
   margin-top: var(--space-3xs);
 }
 .field[data-warning="true"] .warning { display: block; }
-.currency-input { position: relative; }
-.currency-input .prefix {
-  position: absolute; left: 0.9em; top: 50%; transform: translateY(-50%);
-  color: var(--color-neutral-600); font-weight: 600; pointer-events: none;
+/* Prefix lives in normal flow as a flex sibling of the input, not
+   absolutely positioned over it — this is what guarantees the "R" can
+   never overlap entered digits, regardless of any other input padding
+   rule's specificity. The wrapper (not the bare <input>) owns the
+   border/background/radius so focus and error states can be applied
+   consistently to the whole R + number group. */
+.currency-input {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  min-height: 48px;
+  transition: border-color var(--duration-fast) var(--ease-standard);
 }
-.currency-input input { padding-left: 2.2em; }
+.currency-input .prefix {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 0.9em;
+  color: var(--color-neutral-600);
+  font-weight: 600;
+  pointer-events: none;
+}
+.currency-input input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none !important;
+  background: transparent;
+  padding: 0.75em 0.9em 0.75em 0.35em !important;
+  min-height: 0;
+}
+.currency-input input:focus-visible {
+  outline: none;
+  border: none !important;
+}
+.currency-input:focus-within {
+  border-color: var(--color-gold-600);
+}
 
 fieldset { border: none; padding: 0; margin: 0 0 var(--space-lg); }
 fieldset legend { font-family: var(--font-display); font-size: var(--fs-md); font-weight: 600; margin-bottom: var(--space-sm); color: var(--color-ink); }
@@ -625,6 +666,12 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
 .site-footer { background: var(--color-charcoal-900); color: var(--color-on-dark-soft); }
 .site-footer a { color: var(--color-on-dark); text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
+/* The footer isn't space-constrained like the sticky header, so its logo
+   is a clear visual anchor rather than matching the header's size. */
+.site-footer .brand__mark { height: 108px; }
+@media (min-width: 62rem) {
+  .site-footer .brand__mark { height: 168px; }
+}
 .footer-grid { display: grid; gap: var(--space-lg); padding-block: var(--space-xl); }
 @media (min-width: 56rem) { .footer-grid { grid-template-columns: 1.3fr 1fr 1fr 1fr; } }
 .footer-grid h2 { font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-on-dark); margin-bottom: var(--space-sm); }
@@ -641,6 +688,42 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
   max-width: 62ch;
 }
 
+/* ============ Footer: NCR block + creditor row ============ */
+.footer-ncr {
+  margin-top: var(--space-md);
+  padding: var(--space-sm);
+  border: 1px solid var(--border-on-dark);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+}
+.footer-ncr strong { color: var(--color-on-dark); }
+.footer-contact { margin-top: var(--space-sm); font-size: var(--fs-sm); }
+.footer-contact a { display: block; }
+.footer-contact a + a { margin-top: var(--space-3xs); }
+
+.footer-creditors {
+  border-top: 1px solid var(--border-on-dark);
+  padding-block: var(--space-lg);
+}
+.footer-creditors h2 { font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-on-dark); margin-bottom: var(--space-2xs); }
+.footer-creditors__note { font-size: var(--fs-sm); color: var(--color-on-dark-soft); max-width: 62ch; margin-bottom: var(--space-sm); }
+.footer-creditors__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+.creditor-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2xs) var(--space-sm);
+  border: 1px solid var(--border-on-dark);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-on-dark-soft);
+  background: rgba(244, 241, 233, 0.04);
+}
+
 /* ============ Utility ============ */
 .text-center { text-align: center; }
 .mt-0 { margin-top: 0 !important; }
@@ -653,74 +736,3 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
 }
 .divider { border: none; border-top: 1px solid var(--border-subtle); margin-block: var(--space-lg); }
 
-/* ============ Month-End Challenge (game) ============ */
-.game-intro { margin-top: var(--space-lg); }
-.game-assumptions { margin-block: var(--space-md); }
-.game-assumptions li { padding: var(--space-2xs) 0; border-bottom: 1px solid var(--border-subtle); }
-.game-flexible-note { background: var(--color-gold-100); color: var(--color-gold-700); padding: var(--space-sm); border-radius: var(--radius-sm); margin-bottom: var(--space-lg); }
-
-.game-round { margin-top: var(--space-lg); }
-.game-progress { margin-bottom: var(--space-md); }
-.game-progress__track { height: 8px; border-radius: var(--radius-pill); background: var(--color-neutral-200); overflow: hidden; }
-.game-progress__fill { height: 100%; background: var(--color-gold-500); border-radius: inherit; }
-@media (prefers-reduced-motion: no-preference) {
-  .game-progress__fill { transition: width var(--duration-base) var(--ease-standard); }
-}
-
-.game-dashboard { margin-bottom: var(--space-lg); }
-.game-stat { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: var(--space-sm) var(--space-md); display: flex; flex-direction: column; gap: var(--space-3xs); }
-.game-stat__label { font-size: var(--fs-sm); color: var(--color-ink-soft); }
-.game-stat__value { font-size: var(--fs-lg); font-weight: 700; font-variant-numeric: tabular-nums; }
-.game-stat__value.is-negative { color: var(--color-danger-ink); }
-
-.game-scenario h2 { margin-bottom: var(--space-2xs); }
-.game-choice-list { margin-top: var(--space-md); }
-.game-choice {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-3xs);
-  width: 100%;
-  text-align: left;
-  background: var(--surface-card);
-  border: 2px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: var(--space-sm) var(--space-md);
-  font: inherit;
-}
-.game-choice:hover { border-color: var(--color-gold-300); }
-.game-choice.is-selected { border-color: var(--color-gold-500); background: var(--color-gold-100); }
-.game-choice__label { font-weight: 600; }
-.game-choice__preview { font-size: var(--fs-sm); color: var(--color-ink-soft); font-variant-numeric: tabular-nums; }
-
-.game-confirm-area:empty { display: none; }
-.game-confirm-panel, .game-outcome {
-  margin-top: var(--space-md);
-  padding: var(--space-md);
-  background: var(--color-neutral-100);
-  border-radius: var(--radius-md);
-}
-.game-outcome__delta { font-weight: 600; font-variant-numeric: tabular-nums; }
-.game-outcome__balances { font-size: var(--fs-sm); color: var(--color-ink-soft); font-variant-numeric: tabular-nums; }
-
-.game-results { margin-top: var(--space-lg); }
-.game-result-banner { margin-block: var(--space-md); font-weight: 600; }
-.game-result-banner--ok { background: var(--color-success-bg); color: var(--color-success-ink); border-color: transparent; }
-.game-result-banner--shortfall { background: var(--color-warning-bg); color: var(--color-warning-ink); border-color: transparent; }
-.game-results__actions { margin-top: var(--space-lg); }
-
-/* ============ Game preview card (homepage) ============ */
-.game-preview {
-  display: grid;
-  gap: var(--space-lg);
-  align-items: center;
-}
-@media (min-width: 56rem) {
-  .game-preview { grid-template-columns: 1fr 1fr; }
-}
-.game-preview__visual {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-}
-.game-preview__visual img { width: 100%; height: auto; }
