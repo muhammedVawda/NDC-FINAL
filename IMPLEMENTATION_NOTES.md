@@ -246,19 +246,18 @@ server-side by the function's own rate limiter).
 - Palette, type scale, spacing, radii, shadows and motion are all defined
   as CSS custom properties in `assets/css/styles.css` — a single file to
   edit for brand updates.
-- Typography: "Fraunces" (display/headings) paired with "Inter" (body/UI),
-  loaded from Google Fonts with `font-display: swap`; falls back to system
-  serif/sans-serif if the font request fails or is blocked, so the page
-  never blocks on it.
-- The "tangled line becoming structured" motif is implemented as inline
-  SVG paths (see the homepage hero) using CSS `stroke-dasharray`/
-  `stroke-dashoffset` to animate the resolved portion drawing in, gated
-  behind `@media (prefers-reduced-motion: no-preference)` — with reduced
-  motion, the full line simply renders immediately, no animation. The same
-  visual language (a gold fill that "resolves" left to right) is echoed in
-  the calculator's four-stage progress indicator.
+- Typography: a single family, "Manrope", used throughout for headings and
+  body/UI text (differentiated by size/weight, not a separate display
+  face), loaded from Google Fonts with `font-display: swap`; falls back to
+  the system sans-serif stack if the font request fails or is blocked, so
+  the page never blocks on it.
+- The homepage hero's visual is the official NDC logo itself (with a
+  restrained entrance animation and soft glow, gated behind
+  `@media (prefers-reduced-motion: no-preference)`) rather than a
+  decorative graphic. The calculator's four-stage progress indicator still
+  uses the same gold-fill-resolves-left-to-right language.
 - No stock photography is used anywhere, by design — all visual interest
-  comes from typography, colour, spacing and the line motif.
+  comes from typography, colour, spacing and the logo itself.
 
 ## 9. Redirects
 
