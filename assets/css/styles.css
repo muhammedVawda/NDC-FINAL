@@ -280,9 +280,12 @@ p + p { margin-top: var(--space-sm); }
   text-decoration: none;
   color: var(--color-on-dark);
 }
-.brand__mark { height: 52px; width: 52px; flex-shrink: 0; border-radius: var(--radius-sm); }
+/* Logo's native crop is ~352x309 (a stacked mark+wordmark+tagline lockup,
+   not a horizontal wordmark) — sized by height so the aspect ratio is
+   never distorted; width follows naturally (~1.14:1). */
+.brand__mark { height: 80px; width: auto; flex-shrink: 0; }
 @media (min-width: 62rem) {
-  .brand__mark { height: 76px; width: 76px; }
+  .brand__mark { height: 128px; width: auto; }
 }
 .brand__name {
   font-family: var(--font-display);
@@ -376,31 +379,16 @@ p + p { margin-top: var(--space-sm); }
 .hero__logo-img {
   position: relative;
   z-index: 1;
-  width: min(62%, 300px);
+  width: min(70%, 320px);
   margin-inline: auto;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
 }
 @media (min-width: 62rem) {
-  .hero__logo-img { width: min(80%, 380px); }
-}
-.hero__logo-glow {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 75%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(237,191,37,0.35), transparent 70%);
-  filter: blur(36px);
-  z-index: 0;
+  .hero__logo-img { width: min(85%, 380px); }
 }
 @media (prefers-reduced-motion: no-preference) {
   .hero__logo-img { animation: hero-logo-in 900ms var(--ease-standard) both; }
-  .hero__logo-glow { animation: hero-glow-in 1400ms var(--ease-standard) both; }
 }
 @keyframes hero-logo-in { from { opacity: 0; transform: scale(0.92) translateY(14px); } to { opacity: 1; transform: none; } }
-@keyframes hero-glow-in { from { opacity: 0; } to { opacity: 1; } }
 
 /* ============ Cards / pathways ============ */
 .card {
@@ -625,6 +613,12 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
 .site-footer { background: var(--color-charcoal-900); color: var(--color-on-dark-soft); }
 .site-footer a { color: var(--color-on-dark); text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
+/* The footer isn't space-constrained like the sticky header, so its logo
+   is a clear visual anchor rather than matching the header's size. */
+.site-footer .brand__mark { height: 108px; }
+@media (min-width: 62rem) {
+  .site-footer .brand__mark { height: 168px; }
+}
 .footer-grid { display: grid; gap: var(--space-lg); padding-block: var(--space-xl); }
 @media (min-width: 56rem) { .footer-grid { grid-template-columns: 1.3fr 1fr 1fr 1fr; } }
 .footer-grid h2 { font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-on-dark); margin-bottom: var(--space-sm); }
@@ -653,74 +647,3 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
 }
 .divider { border: none; border-top: 1px solid var(--border-subtle); margin-block: var(--space-lg); }
 
-/* ============ Month-End Challenge (game) ============ */
-.game-intro { margin-top: var(--space-lg); }
-.game-assumptions { margin-block: var(--space-md); }
-.game-assumptions li { padding: var(--space-2xs) 0; border-bottom: 1px solid var(--border-subtle); }
-.game-flexible-note { background: var(--color-gold-100); color: var(--color-gold-700); padding: var(--space-sm); border-radius: var(--radius-sm); margin-bottom: var(--space-lg); }
-
-.game-round { margin-top: var(--space-lg); }
-.game-progress { margin-bottom: var(--space-md); }
-.game-progress__track { height: 8px; border-radius: var(--radius-pill); background: var(--color-neutral-200); overflow: hidden; }
-.game-progress__fill { height: 100%; background: var(--color-gold-500); border-radius: inherit; }
-@media (prefers-reduced-motion: no-preference) {
-  .game-progress__fill { transition: width var(--duration-base) var(--ease-standard); }
-}
-
-.game-dashboard { margin-bottom: var(--space-lg); }
-.game-stat { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: var(--space-sm) var(--space-md); display: flex; flex-direction: column; gap: var(--space-3xs); }
-.game-stat__label { font-size: var(--fs-sm); color: var(--color-ink-soft); }
-.game-stat__value { font-size: var(--fs-lg); font-weight: 700; font-variant-numeric: tabular-nums; }
-.game-stat__value.is-negative { color: var(--color-danger-ink); }
-
-.game-scenario h2 { margin-bottom: var(--space-2xs); }
-.game-choice-list { margin-top: var(--space-md); }
-.game-choice {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-3xs);
-  width: 100%;
-  text-align: left;
-  background: var(--surface-card);
-  border: 2px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: var(--space-sm) var(--space-md);
-  font: inherit;
-}
-.game-choice:hover { border-color: var(--color-gold-300); }
-.game-choice.is-selected { border-color: var(--color-gold-500); background: var(--color-gold-100); }
-.game-choice__label { font-weight: 600; }
-.game-choice__preview { font-size: var(--fs-sm); color: var(--color-ink-soft); font-variant-numeric: tabular-nums; }
-
-.game-confirm-area:empty { display: none; }
-.game-confirm-panel, .game-outcome {
-  margin-top: var(--space-md);
-  padding: var(--space-md);
-  background: var(--color-neutral-100);
-  border-radius: var(--radius-md);
-}
-.game-outcome__delta { font-weight: 600; font-variant-numeric: tabular-nums; }
-.game-outcome__balances { font-size: var(--fs-sm); color: var(--color-ink-soft); font-variant-numeric: tabular-nums; }
-
-.game-results { margin-top: var(--space-lg); }
-.game-result-banner { margin-block: var(--space-md); font-weight: 600; }
-.game-result-banner--ok { background: var(--color-success-bg); color: var(--color-success-ink); border-color: transparent; }
-.game-result-banner--shortfall { background: var(--color-warning-bg); color: var(--color-warning-ink); border-color: transparent; }
-.game-results__actions { margin-top: var(--space-lg); }
-
-/* ============ Game preview card (homepage) ============ */
-.game-preview {
-  display: grid;
-  gap: var(--space-lg);
-  align-items: center;
-}
-@media (min-width: 56rem) {
-  .game-preview { grid-template-columns: 1fr 1fr; }
-}
-.game-preview__visual {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-}
-.game-preview__visual img { width: 100%; height: auto; }

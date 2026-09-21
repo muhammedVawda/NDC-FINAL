@@ -41,6 +41,15 @@
   to = "/contact.html"
   status = 301
 
+# "The Month-End Challenge" game was removed with no equivalent
+# replacement page — served as Gone rather than silently redirected
+# somewhere unrelated.
+[[redirects]]
+  from = "/month-end-challenge.html"
+  to = "/404.html"
+  status = 410
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]
