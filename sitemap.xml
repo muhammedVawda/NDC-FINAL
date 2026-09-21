@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ndcsa.co.za/</loc><priority>1.0</priority></url>
-  <url><loc>https://ndcsa.co.za/debt-review.html</loc><priority>0.9</priority></url>
-  <url><loc>https://ndcsa.co.za/debt-mediation.html</loc><priority>0.9</priority></url>
-  <url><loc>https://ndcsa.co.za/debt-review-removal.html</loc><priority>0.9</priority></url>
-  <url><loc>https://ndcsa.co.za/calculator.html</loc><priority>0.9</priority></url>
-  <url><loc>https://ndcsa.co.za/about.html</loc><priority>0.6</priority></url>
-  <url><loc>https://ndcsa.co.za/faqs.html</loc><priority>0.7</priority></url>
-  <url><loc>https://ndcsa.co.za/contact.html</loc><priority>0.8</priority></url>
-  <url><loc>https://ndcsa.co.za/privacy-policy.html</loc><priority>0.3</priority></url>
-  <url><loc>https://ndcsa.co.za/terms.html</loc><priority>0.3</priority></url>
+  <url><loc>https://ndcsa.co.za/</loc><lastmod>2026-09-21</lastmod><priority>1.0</priority></url>
+  <url><loc>https://ndcsa.co.za/debt-review.html</loc><lastmod>2026-09-21</lastmod><priority>0.9</priority></url>
+  <url><loc>https://ndcsa.co.za/debt-mediation.html</loc><lastmod>2026-09-21</lastmod><priority>0.9</priority></url>
+  <url><loc>https://ndcsa.co.za/debt-review-removal.html</loc><lastmod>2026-09-21</lastmod><priority>0.9</priority></url>
+  <url><loc>https://ndcsa.co.za/calculator.html</loc><lastmod>2026-09-21</lastmod><priority>0.9</priority></url>
+  <url><loc>https://ndcsa.co.za/about.html</loc><lastmod>2026-09-21</lastmod><priority>0.6</priority></url>
+  <url><loc>https://ndcsa.co.za/faqs.html</loc><lastmod>2026-09-21</lastmod><priority>0.7</priority></url>
+  <url><loc>https://ndcsa.co.za/contact.html</loc><lastmod>2026-09-21</lastmod><priority>0.8</priority></url>
+  <url><loc>https://ndcsa.co.za/privacy-policy.html</loc><lastmod>2026-09-21</lastmod><priority>0.3</priority></url>
+  <url><loc>https://ndcsa.co.za/terms.html</loc><lastmod>2026-09-21</lastmod><priority>0.3</priority></url>
 </urlset>

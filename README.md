@@ -68,11 +68,18 @@ validation logic) and update the `/api/contact` route accordingly.
 ## Maintenance notes
 
 - **Brand colours & type**: all defined as CSS custom properties at the
-  top of `assets/css/styles.css`. Update the documented `--color-*` tokens
-  once real logo colours are confirmed — nothing else needs to change.
-- **Logo**: replace `assets/svg/logo-placeholder.svg` with the approved
-  logo file (keep the filename, or update the `<img src>` references
-  across all pages).
+  top of `assets/css/styles.css`. The `--color-gold-*` and
+  `--color-charcoal-*` tokens are sampled from the real logo
+  (`assets/img/ndc-logo-master.png`) — if the business supplies an updated
+  or vector logo, re-sample from that file and update the tokens the same
+  way.
+- **Logo**: `assets/img/ndc-logo-master.png` is the real NDC logo. The
+  header/footer, favicon, `apple-touch-icon.png`, `site.webmanifest` and
+  `og-image.png`/`twitter:image` are all generated from it (see
+  `assets/img/`). To replace it with a newer or vector version, drop the
+  new file in as `ndc-logo-master.png` and regenerate the derivative sizes
+  (192px WebP+PNG, 32px, 180px, 512px, and `favicon.ico`) the same way —
+  no other markup needs to change unless the aspect ratio changes.
 - **Calculator categories/copy**: edit the fields directly in
   `calculator.html`; the calculation logic in `assets/js/budget-engine.js`
   reads field values by `name` attribute, so keep `name="..."` in sync
