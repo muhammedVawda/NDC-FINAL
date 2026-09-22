@@ -15,6 +15,30 @@
   separate tone in the logo, so it hasn't been changed.
 */
 
+/* Metric-matched fallback for Manrope.
+   Manrope loads from Google Fonts with display=swap, so the first paint
+   uses a local sans and the page re-wraps when Manrope arrives. Measured
+   on the homepage as a layout shift of 0.078 with the hero on screen.
+   These faces give the local fallback Manrope's measured metrics, per
+   weight (canvas measurement in Chromium against the loaded font, width
+   of a long mixed sentence vs Arial / Arial Bold; ascent 107% and
+   descent 30% of the em), so text wraps and sits in the same place
+   before and after the swap. Widths that were declared in ch have been
+   converted to em (see .hero h1, .hero__note, --measure): ch is the
+   width of the zero glyph, which no size-adjust can match across fonts.
+   local() names cover Windows/macOS (Arial) and Linux (Liberation Sans,
+   metrically identical); elsewhere the stack falls through unadjusted. */
+@font-face { font-family: "Manrope Fallback"; src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("LiberationSans"), local("Helvetica Neue"), local("Helvetica");
+  font-weight: 100 450; size-adjust: 102.39%; ascent-override: 107%; descent-override: 30%; line-gap-override: 0%; }
+@font-face { font-family: "Manrope Fallback"; src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("LiberationSans"), local("Helvetica Neue"), local("Helvetica");
+  font-weight: 451 550; size-adjust: 104.18%; ascent-override: 107%; descent-override: 30%; line-gap-override: 0%; }
+@font-face { font-family: "Manrope Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Helvetica Neue Bold"), local("Helvetica Bold");
+  font-weight: 551 650; size-adjust: 98.64%; ascent-override: 107%; descent-override: 30%; line-gap-override: 0%; }
+@font-face { font-family: "Manrope Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Helvetica Neue Bold"), local("Helvetica Bold");
+  font-weight: 651 750; size-adjust: 100.28%; ascent-override: 107%; descent-override: 30%; line-gap-override: 0%; }
+@font-face { font-family: "Manrope Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Helvetica Neue Bold"), local("Helvetica Bold");
+  font-weight: 751 900; size-adjust: 101.94%; ascent-override: 107%; descent-override: 30%; line-gap-override: 0%; }
+
 :root {
   /* ---- Brand colour tokens (sampled from the official logo) ---- */
   --color-gold-100: #FCF7E3;
@@ -76,8 +100,8 @@
   /* ---- Typography ----
      Single family (Manrope) throughout — headings and body are
      differentiated by size/weight, not by a separate display face. */
-  --font-display: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Manrope", "Manrope Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Manrope", "Manrope Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   --fs-sm: clamp(0.83rem, 0.8rem + 0.14vw, 0.92rem);
   --fs-base: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
@@ -116,7 +140,7 @@
   --duration-slow: 900ms;
 
   --content-max: 74rem;
-  --measure: 62ch;
+  --measure: 37.8em; /* was 62ch; em so the fallback font gets the same box — see @font-face note */
 }
 
 /* ============ Reset ============ */
@@ -141,9 +165,13 @@ html {
    64px logo + 2 * 0.75rem padding + 1px border ~= 89px mobile,
    96px logo + the same ~= 121px from 62rem up. A little slack on top so
    a heading never lands flush against the header edge. */
-[id] { scroll-margin-top: 100px; }
+[id], .calc-step h2 { scroll-margin-top: 100px; }
+/* .calc-step h2 is included because calculator.js focuses it on every
+   step change, and a focus scroll honours scroll-margin the same way an
+   anchor jump does — without it each step's heading landed under the
+   sticky header. */
 @media (min-width: 62rem) {
-  [id] { scroll-margin-top: 132px; }
+  [id], .calc-step h2 { scroll-margin-top: 132px; }
 }
 body {
   min-height: 100svh;
@@ -456,10 +484,10 @@ p + p { margin-top: var(--space-sm); }
 @media (min-width: 62rem) {
   .hero__grid { grid-template-columns: 1.1fr 0.9fr; padding-block: 6rem var(--space-2xl); }
 }
-.hero h1 { margin-top: var(--space-sm); max-width: 16ch; }
+.hero h1 { margin-top: var(--space-sm); max-width: 10.8em; /* was 16ch at weight 800 */ }
 .hero .lede { margin-top: var(--space-sm); font-size: var(--fs-md); color: var(--color-on-dark-soft); }
 .hero__actions { margin-top: var(--space-lg); display: flex; flex-wrap: wrap; gap: var(--space-sm); }
-.hero__note { margin-top: var(--space-md); font-size: var(--fs-sm); color: var(--color-on-dark-soft); max-width: 42ch; }
+.hero__note { margin-top: var(--space-md); font-size: var(--fs-sm); color: var(--color-on-dark-soft); max-width: 25.6em; /* was 42ch */ }
 
 .hero__brand-visual {
   position: relative;
@@ -770,7 +798,7 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
 .disclosure-note {
   font-size: var(--fs-sm);
   color: var(--color-on-dark-soft);
-  max-width: 62ch;
+  max-width: 37.8em; /* was 62ch */
 }
 
 /* ============ Footer: NCR block + creditor row ============ */
@@ -791,7 +819,7 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
   padding-block: var(--space-lg);
 }
 .footer-creditors h2 { font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-on-dark); margin-bottom: var(--space-2xs); }
-.footer-creditors__note { font-size: var(--fs-sm); color: var(--color-on-dark-soft); max-width: 62ch; margin-bottom: var(--space-sm); }
+.footer-creditors__note { font-size: var(--fs-sm); color: var(--color-on-dark-soft); max-width: 37.8em; margin-bottom: var(--space-sm); }
 .footer-creditors__list {
   display: flex;
   flex-wrap: wrap;
@@ -1408,6 +1436,200 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
   background: rgba(247, 199, 7, 0.06);
 }
 
+/* ============================================================
+   Finishing layer. Same easing, same 14px rise, same 70ms stagger
+   as everything above — these are more places the one system
+   shows up, not a second system.
+   ============================================================ */
+
+/* Word-stagger headings. Spans are inline-block (so they can move)
+   with NO overflow clipping, so descenders, wrapping and selection
+   behave exactly like plain text. */
+.w { display: inline-block; }
+.js-motion .is-split .w__i {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 0.38em, 0);
+  transition:
+    opacity 560ms var(--ease-out-soft),
+    transform 560ms var(--ease-out-soft);
+  transition-delay: calc(var(--wi, 0) * 42ms);
+}
+.js-motion [data-reveal].is-split { opacity: 1; transform: none; transition: none; }
+.js-motion [data-reveal].is-split.is-revealed .w__i { opacity: 1; transform: none; }
+/* Hero h1: block entrance is replaced by the words; delays start
+   where the block's did so the eyebrow -> h1 -> lede rhythm holds. */
+.js-motion .hero h1.is-split { animation: none; opacity: 1; transform: none; }
+.js-motion .hero h1.is-split .w__i {
+  animation: hero-enter 640ms var(--ease-out-soft) forwards;
+  animation-delay: calc(140ms + var(--wi, 0) * 46ms);
+  transition: none;
+}
+
+/* The signature: a short rule that draws in beside every eyebrow.
+   Fixed width + scaleX so it reserves its space and shifts nothing. */
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transform-origin: left center;
+  flex-shrink: 0;
+}
+.js-motion [data-reveal].eyebrow::before {
+  transform: scaleX(0);
+  transition: transform 520ms var(--ease-out-soft) 120ms;
+}
+.js-motion [data-reveal].eyebrow.is-revealed::before { transform: scaleX(1); }
+.js-motion .hero .eyebrow::before {
+  transform: scaleX(0);
+  animation: rule-draw 520ms var(--ease-out-soft) 260ms forwards;
+}
+@keyframes rule-draw { to { transform: scaleX(1); } }
+
+/* How it works: a line draws through the four numbered steps as the
+   row arrives, and each badge settles in a beat before its text. */
+.steps { position: relative; }
+.steps::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  background: linear-gradient(90deg, var(--color-gold-500), rgba(247, 199, 7, 0.25));
+  border-radius: 1px;
+  /* mobile: vertical, down the badge column */
+  top: 1.125rem; bottom: 1.125rem;
+  left: calc(1.125rem - 1px);
+  width: 2px;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1100ms var(--ease-out-soft) 120ms;
+}
+@media (min-width: 56rem) {
+  .steps::before {
+    top: calc(1.125rem - 1px); bottom: auto; height: 2px;
+    left: 1.125rem; right: 1.125rem; width: auto;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+}
+.js-motion .steps.is-inview::before { transform: none; }
+.step::before { z-index: 1; transition: transform 460ms var(--ease-out-soft) 200ms, opacity 460ms var(--ease-out-soft) 200ms; }
+.js-motion .step[data-reveal]:not(.is-revealed)::before { transform: scale(0.6); opacity: 0; }
+
+/* Card depth: desktop only. Perspective + a capped tilt driven by
+   custom properties, and a sheen that follows the cursor UNDER the
+   content (z-index 0) so text contrast is never touched. */
+@media (hover: hover) and (pointer: fine) {
+  .js-motion .card-depth {
+    --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%;
+    position: relative;
+    transition:
+      transform 420ms var(--ease-out-soft),
+      box-shadow 420ms var(--ease-out-soft),
+      border-color var(--duration-fast) var(--ease-out-soft);
+  }
+  .js-motion .card-depth.is-revealed {
+    transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  }
+  .js-motion .card-depth.is-revealed:hover {
+    transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  .js-motion .card-depth > * { position: relative; z-index: 1; }
+  .js-motion .card-depth::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(420px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.11), transparent 62%);
+    opacity: 0;
+    transition: opacity 320ms var(--ease-out-soft);
+  }
+  .surface-dark .js-motion .card-depth::after,
+  .surface-dark-alt .js-motion .card-depth::after,
+  .js-motion .surface-dark .card-depth::after,
+  .js-motion .surface-dark-alt .card-depth::after {
+    background: radial-gradient(420px circle at var(--mx) var(--my), rgba(247, 199, 7, 0.09), transparent 62%);
+  }
+  .js-motion .card-depth:hover::after { opacity: 1; }
+}
+
+/* Scroll progress: on the header's bottom edge, transform-only. */
+.scroll-progress {
+  position: absolute;
+  left: 0; bottom: -1px;
+  width: 100%; height: 2px;
+  background: var(--color-gold-500);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Navigation: the underline draws in on desktop instead of a box. */
+@media (min-width: 64rem) {
+  .primary-nav__list a { position: relative; }
+  .primary-nav__list a::after {
+    content: "";
+    position: absolute;
+    left: var(--space-xs); right: var(--space-xs); bottom: 0.35em;
+    height: 2px;
+    background: var(--color-gold-500);
+    border-radius: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 260ms var(--ease-out-soft);
+  }
+  .primary-nav__list a:hover { background: transparent; }
+  .primary-nav__list a:hover::after,
+  .primary-nav__list a:focus-visible::after,
+  .primary-nav__list a[aria-current="page"]::after { transform: scaleX(1); }
+}
+
+/* Calculator: each step slides in; the progress track fills rather
+   than flips; results are handled in motion.js. */
+.js-motion .calc-step[data-active="true"] { animation: calc-step-in 380ms var(--ease-out-soft); }
+@keyframes calc-step-in { from { opacity: 0; transform: translate3d(0, 10px, 0); } }
+.calc-progress .track span {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition:
+    transform 520ms var(--ease-out-soft),
+    background var(--duration-base) var(--ease-out-soft);
+}
+.calc-progress li[data-state] .track span { transform: scaleX(1); }
+.currency-input { transition: border-color var(--duration-fast) var(--ease-out-soft), box-shadow var(--duration-fast) var(--ease-out-soft); }
+.currency-input:focus-within { box-shadow: 0 0 0 3px rgba(247, 199, 7, 0.22); }
+
+/* Forms: the alert eases in; a success tick draws itself. */
+.js-motion .form-alert { animation: alert-in 360ms var(--ease-out-soft); }
+@keyframes alert-in { from { opacity: 0; transform: translate3d(0, 6px, 0); } }
+.form-alert--success { display: flex; align-items: center; gap: var(--space-xs); }
+.form-alert__check { width: 22px; height: 22px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.form-alert__check circle, .form-alert__check path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: tick-draw 520ms var(--ease-out-soft) forwards; }
+.form-alert__check path { animation-delay: 300ms; }
+@keyframes tick-draw { to { stroke-dashoffset: 0; } }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+  box-shadow: 0 0 0 3px rgba(247, 199, 7, 0.22);
+  transition: box-shadow var(--duration-fast) var(--ease-out-soft);
+}
+
+/* FAQ: animated open/close where the browser can interpolate to
+   auto height (Chromium). Elsewhere it simply opens, as before. */
+@supports (interpolate-size: allow-keywords) {
+  .faq-item { interpolate-size: allow-keywords; }
+  .faq-item::details-content {
+    height: 0;
+    overflow: clip;
+    transition: height 320ms var(--ease-out-soft), content-visibility 320ms allow-discrete;
+  }
+  .faq-item[open]::details-content { height: auto; }
+}
+
 /* ---- The escape hatch. Motion off means motion off. ---- */
 @media (prefers-reduced-motion: reduce) {
   .js-motion [data-reveal],
@@ -1424,6 +1646,18 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
   .js-motion .hero__logo-img { transform: none !important; }
   .card.pathway-card:hover, .card.service-card:hover { transform: none; }
   .btn-gold:hover, .btn:active { transform: none; }
+  .js-motion .is-split .w__i, .js-motion .hero h1.is-split .w__i { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+  .eyebrow::before, .js-motion .hero .eyebrow::before { transform: none !important; animation: none !important; transition: none !important; }
+  .steps::before { transform: none !important; transition: none !important; }
+  .js-motion .step[data-reveal]:not(.is-revealed)::before { transform: none; opacity: 1; }
+  .js-motion .card-depth, .js-motion .card-depth.is-revealed, .js-motion .card-depth.is-revealed:hover { transform: none !important; }
+  .js-motion .card-depth::after { display: none; }
+  .scroll-progress { display: none; }
+  .primary-nav__list a::after { transition: none; }
+  .js-motion .calc-step[data-active="true"], .js-motion .form-alert { animation: none; }
+  .calc-progress .track span { transition: none; }
+  .form-alert__check circle, .form-alert__check path { animation: none; stroke-dashoffset: 0; }
+  .faq-item::details-content { transition: none; }
 }
 
 /* Chat document checklist */

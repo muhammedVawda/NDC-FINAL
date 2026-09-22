@@ -282,6 +282,21 @@
         countUp(el);
       });
 
+      // Summary rows follow the headline in, one after another.
+      var rows = mount.querySelectorAll(".summary-table tr");
+      Array.prototype.forEach.call(rows, function (tr, i) {
+        if (tr.dataset.revealed === "1") return;
+        tr.dataset.revealed = "1";
+        tr.style.opacity = "0";
+        tr.style.transform = "translate3d(0,8px,0)";
+        window.requestAnimationFrame(function () {
+          tr.style.transition =
+            "opacity 420ms var(--ease-out-soft) " + (160 + i * 70) + "ms, transform 420ms var(--ease-out-soft) " + (160 + i * 70) + "ms";
+          tr.style.opacity = "1";
+          tr.style.transform = "none";
+        });
+      });
+
       // Result block itself rises in once, so the answer feels
       // delivered rather than simply appearing.
       var block = mount.querySelector(".result-figure");
@@ -300,12 +315,172 @@
     mo.observe(mount, { childList: true, subtree: true });
   }
 
+  /* ---------------------------------------------------------------
+     5. Word-stagger headings
+     Section headings (and the hero h1) rise in a word at a time.
+     Done at runtime so the HTML stays plain text for crawlers and
+     screen readers; the spans are inline-block with no clipping, so
+     the words wrap and read exactly as before. A heading with child
+     elements (a <br>, an <em>) is left alone rather than risk
+     mangling it.
+     --------------------------------------------------------------- */
+  function splitWords(el) {
+    if (el.children.length) return false;
+    var text = el.textContent;
+    if (!text.trim()) return false;
+    var frag = document.createDocumentFragment();
+    var parts = text.split(/(\s+)/);
+    var i = 0;
+    parts.forEach(function (part) {
+      if (!part) return;
+      if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+      var w = document.createElement("span");
+      w.className = "w";
+      var inner = document.createElement("span");
+      inner.className = "w__i";
+      inner.textContent = part;
+      inner.style.setProperty("--wi", String(i++));
+      w.appendChild(inner);
+      frag.appendChild(w);
+    });
+    el.textContent = "";
+    el.appendChild(frag);
+    el.classList.add("is-split");
+    return true;
+  }
+
+  function splitHeadings() {
+    // Hero h1: pre-hidden by CSS, so splitting it cannot flash — unless
+    // the script arrived late enough that its block entrance has already
+    // begun, in which case leave the block animation alone.
+    var h1 = document.querySelector(".hero h1");
+    if (h1 && parseFloat(getComputedStyle(h1).opacity) < 0.05) splitWords(h1);
+
+    // Section h2s below the fold. Those already on screen keep their
+    // plain reveal; re-hiding painted text is exactly the flash to avoid.
+    var vh = window.innerHeight;
+    var h2s = document.querySelectorAll("main section > .wrap > h2[data-reveal]");
+    Array.prototype.forEach.call(h2s, function (h2) {
+      if (h2.classList.contains("is-revealed")) return;
+      if (h2.getBoundingClientRect().top < vh * 0.9) return;
+      splitWords(h2);
+    });
+  }
+
+  /* ---------------------------------------------------------------
+     6. In-view flags (no opacity/transform of their own)
+     For containers whose CSS draws something when they arrive — the
+     line through the steps, the calculator progress — without moving
+     the container itself.
+     --------------------------------------------------------------- */
+  function inViewFlags() {
+    var targets = document.querySelectorAll(".steps, .calc-progress");
+    if (!targets.length || !("IntersectionObserver" in window)) {
+      Array.prototype.forEach.call(targets, function (el) { el.classList.add("is-inview"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("is-inview");
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.05 });
+    Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+  }
+
+  /* ---------------------------------------------------------------
+     7. Card depth — desktop pointers only
+     A card tilts a few degrees toward the cursor and a soft sheen
+     follows it. Capped at 3deg so text never smears; on touch or
+     coarse pointers nothing is armed at all.
+     --------------------------------------------------------------- */
+  function cardDepth() {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    var cards = document.querySelectorAll(".card.service-card, .card.pathway-card, .card.trust-card, .card.blog-card");
+    var MAX = 3;
+    Array.prototype.forEach.call(cards, function (card) {
+      card.classList.add("card-depth");
+      var raf = null;
+      card.addEventListener("pointermove", function (e) {
+        if (raf) return;
+        raf = window.requestAnimationFrame(function () {
+          var r = card.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width;   // 0..1
+          var py = (e.clientY - r.top) / r.height;
+          card.style.setProperty("--ry", ((px - 0.5) * 2 * MAX).toFixed(2) + "deg");
+          card.style.setProperty("--rx", ((0.5 - py) * 2 * MAX).toFixed(2) + "deg");
+          card.style.setProperty("--mx", (px * 100).toFixed(1) + "%");
+          card.style.setProperty("--my", (py * 100).toFixed(1) + "%");
+          raf = null;
+        });
+      }, { passive: true });
+      card.addEventListener("pointerleave", function () {
+        card.style.setProperty("--rx", "0deg");
+        card.style.setProperty("--ry", "0deg");
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------------
+     8. Scroll progress
+     A 2px line along the header's bottom edge. Absolutely positioned
+     and transform-only, so it cannot change the header's height — the
+     header must never resize on scroll (see header() above).
+     --------------------------------------------------------------- */
+  function scrollProgress() {
+    var head = document.querySelector("[data-site-header]");
+    if (!head) return;
+    var bar = document.createElement("span");
+    bar.className = "scroll-progress";
+    bar.setAttribute("aria-hidden", "true");
+    head.appendChild(bar);
+    var ticking = false;
+    function update() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var f = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      bar.style.transform = "scaleX(" + f.toFixed(4) + ")";
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  /* ---------------------------------------------------------------
+     9. Form success — a tick that draws
+     The alert markup is owned by contact-form.js; this only decorates
+     a success alert once it exists, so a failed request never gets
+     a tick.
+     --------------------------------------------------------------- */
+  function formSuccess() {
+    var mounts = document.querySelectorAll("[data-form-alert-mount]");
+    if (!mounts.length) return;
+    var SVG = '<svg class="form-alert__check" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+      '<circle cx="12" cy="12" r="10" pathLength="1"/><path d="M7 12.5l3.2 3.2L17 9" pathLength="1"/></svg>';
+    Array.prototype.forEach.call(mounts, function (mount) {
+      new MutationObserver(function () {
+        var ok = mount.querySelector(".form-alert--success");
+        if (ok && !ok.querySelector(".form-alert__check")) ok.insertAdjacentHTML("afterbegin", SVG);
+      }).observe(mount, { childList: true });
+    });
+  }
+
   function init() {
     armReveals();
+    splitHeadings();
     observeReveals();
+    inViewFlags();
     header();
+    scrollProgress();
     heroTilt();
+    cardDepth();
     watchCalculatorResults();
+    formSuccess();
   }
 
   if (document.readyState === "loading") {
