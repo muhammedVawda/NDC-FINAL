@@ -17,7 +17,7 @@ import path from "node:path";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const SITE = "https://ndcsa.co.za";
-const CSS_V = "v=17";
+const CSS_V = "v=18";
 const LOGO_V = "v=3";
 
 const articles = JSON.parse(readFileSync(path.join(ROOT, "assets/data/articles.json"), "utf-8"));
@@ -55,11 +55,11 @@ function head({ title, description, canonical, ogImage, extraSchema }) {
 <meta property="og:url" content="${canonical}">
 <meta property="og:site_name" content="National Debt Consultants">
 <meta property="og:image" content="${ogImage}">
-<meta property="og:image:width" content="512">
-<meta property="og:image:height" content="512">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="National Debt Consultants logo">
 <meta property="og:locale" content="en_ZA">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(description)}">
 <meta name="twitter:image" content="${ogImage}">
@@ -81,7 +81,6 @@ function header(activePage) {
     ["/debt-review.html", "debt-review", "Debt Review"],
     ["/debt-mediation.html", "debt-mediation", "Debt Mediation"],
     ["/debt-review-removal.html", "debt-review-removal", "Debt Review Removal"],
-    ["/debt-advice/", "debt-advice", "Debt Advice"],
     ["/calculator.html", "calculator", "Calculator"],
     ["/about.html", "about", "About"],
     ["/faqs.html", "faqs", "FAQs"],
@@ -169,6 +168,7 @@ const FOOTER = `<footer class="site-footer">
       <li class="creditor-badge">Capitec</li>
       <li class="creditor-badge">African Bank</li>
       <li class="creditor-badge">WesBank</li>
+      <li class="creditor-badge">MFC</li>
     </ul>
   </div>
 
@@ -176,6 +176,7 @@ const FOOTER = `<footer class="site-footer">
 
   <div class="wrap footer-bottom">
     <p>&copy; <span data-year>2026</span> National Debt Consultants. All rights reserved.</p>
+    <p class="footer-credit">Powered By Telepride (Pty) Ltd</p>
   </div>
 </footer>`;
 

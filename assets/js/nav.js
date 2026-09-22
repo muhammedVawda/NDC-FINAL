@@ -60,7 +60,7 @@
   });
 
   // Must match the CSS breakpoint where the desktop nav takes over.
-  var mq = window.matchMedia("(min-width: 70rem)");
+  var mq = window.matchMedia("(min-width: 64rem)");
   mq.addEventListener("change", function () {
     setOpen(false);
   });

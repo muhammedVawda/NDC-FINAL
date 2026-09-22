@@ -32,4 +32,20 @@
   }
 
   window.ndcTrack = send;
+
+  /*
+    Contact-link events. A tap on the phone number or the email address
+    is a real enquiry signal, so it is counted as one — with no personal
+    data: the event carries the channel name only, never the href, never
+    anything the visitor typed. Delegated once at document level so the
+    footer, contact page, chat fallback and any future placement all
+    count without wiring each one.
+  */
+  document.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    if (href.indexOf("tel:") === 0) send("phone_link_selected", {});
+    else if (href.indexOf("mailto:") === 0) send("email_link_selected", {});
+  }, { passive: true });
 })();

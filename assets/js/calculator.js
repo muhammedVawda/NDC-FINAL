@@ -4,6 +4,14 @@
   if (!engine) return;
 
   var form = document.querySelector("[data-calculator]");
+  // "Started" means the visitor typed something, not merely that the page
+  // loaded. Fired once per page view; carries no values.
+  if (form) {
+    form.addEventListener("input", function onFirstInput() {
+      form.removeEventListener("input", onFirstInput);
+      if (window.ndcTrack) window.ndcTrack("calculator_started", {});
+    });
+  }
   if (!form) return;
 
   var STEP_NAMES = ["income", "expenses", "debts", "results"];

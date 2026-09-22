@@ -86,6 +86,7 @@ async function forwardToEmail(payload) {
         "Email: " + (payload.email || "(not provided)") + "\n" +
         "Service interest: " + (payload.service || "(not specified)") + "\n" +
         "Preferred callback time: " + (payload.callbackTime || "(no preference)") + "\n" +
+        "Preferred language: " + (payload.language || "(no preference)") + "\n" +
         "Message: " + (payload.message || "(none)") + "\n" +
         "Marketing opt-in: " + (payload.marketing ? "yes" : "no") + "\n" +
         "Page reference: " + (payload.pageRef || "(none)") + "\n" +

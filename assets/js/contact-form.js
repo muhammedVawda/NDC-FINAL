@@ -92,6 +92,7 @@
         email: (formData.get("email") || "").toString(),
         service: (formData.get("service") || "").toString(),
         callbackTime: (formData.get("callbackTime") || "").toString(),
+        language: (formData.get("language") || "").toString(),
         message: (formData.get("message") || "").toString(),
         consent: formData.get("consent") === "on",
         marketing: formData.get("marketing") === "on",
