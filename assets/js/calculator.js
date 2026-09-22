@@ -156,7 +156,12 @@
       heading.setAttribute("tabindex", "-1");
       heading.focus();
     }
-    window.scrollTo({ top: form.offsetTop - 90, behavior: "auto" });
+    // Clear the sticky header by its measured height, not a guessed
+    // constant: the old 90px left each step's heading 31px under the
+    // 121px desktop header.
+    var siteHeader = document.querySelector("[data-site-header]");
+    var headerH = siteHeader ? siteHeader.getBoundingClientRect().height : 0;
+    window.scrollTo({ top: Math.max(0, form.offsetTop - headerH - 24), behavior: "auto" });
     if (window.ndcTrack) {
       if (n === 4) window.ndcTrack("calculator_completed", {});
       else window.ndcTrack("calculator_step_viewed", { step: n });
