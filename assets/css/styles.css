@@ -391,13 +391,12 @@ p + p { margin-top: var(--space-sm); }
   overscroll-behavior: contain;
 }
 
-/* 70rem (1120px), not 64rem (1024px). Measured: the eight nav items plus
-   the CTA first fit on one row at 1104px — below that they wrapped to two
-   rows and sat 24px from the logo. The burger now takes over before the
-   nav can wrap, which is the point of having one. .mobile-actions and the
-   chat launcher below use the same width so "mobile layout" means one
-   thing everywhere. */
-@media (min-width: 70rem) {
+/* 64rem (1024px). With the primary nav trimmed to seven items it fits on
+   one row at 1024px with 74px clear of the logo (measured; eight items
+   needed 1104px and wrapped below that). The burger still takes over
+   before the nav can wrap. .mobile-actions and the chat launcher below
+   use the same width so "mobile layout" means one thing everywhere. */
+@media (min-width: 64rem) {
   .nav-toggle { display: none; }
   .primary-nav { display: block; }
   .primary-nav__list { flex-direction: row; align-items: center; gap: var(--space-2xs); flex-wrap: wrap; row-gap: var(--space-3xs); }
@@ -408,6 +407,34 @@ p + p { margin-top: var(--space-sm); }
 }
 
 /* ============ Hero ============ */
+/* A single line, drawn once, that starts agitated and settles: the one
+   piece of hero motion. It is stroke-dashoffset only (no layout), it runs
+   once and stops, it sits under the copy rather than behind it, and with
+   reduced motion it is simply already drawn. */
+.hero__line {
+  display: block;
+  width: min(220px, 60%);
+  height: 26px;
+  margin-top: var(--space-sm);
+  overflow: visible;
+}
+.hero__line path {
+  fill: none;
+  stroke: var(--color-gold-500);
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.js-motion .hero__line path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: hero-line-draw 1.5s var(--ease-out-soft) 0.4s forwards;
+}
+@keyframes hero-line-draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero__line path { animation: none; stroke-dashoffset: 0; }
+}
+
 .hero {
   /* Flat and matched exactly to the logo asset's own flattened background
      colour. The hero logo image has a large opaque interior baked to
@@ -714,7 +741,7 @@ fieldset legend { font-family: var(--font-display); font-size: var(--fs-md); fon
 }
 .mobile-actions a.is-primary { background: var(--color-gold-500); color: var(--color-charcoal-900); }
 body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
-@media (min-width: 70rem) {
+@media (min-width: 64rem) {
   .mobile-actions { display: none; }
   body[data-has-mobile-bar="true"] { padding-bottom: 0; }
 }
@@ -739,6 +766,7 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
   font-size: var(--fs-sm);
   display: flex; flex-wrap: wrap; gap: var(--space-sm); justify-content: space-between;
 }
+.footer-credit { font-size: 0.72rem; color: var(--color-on-dark-soft); opacity: 0.8; }
 .disclosure-note {
   font-size: var(--fs-sm);
   color: var(--color-on-dark-soft);
@@ -910,9 +938,9 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
 .chat-launcher svg { width: 20px; height: 20px; color: var(--color-gold-500); }
 /* Clear of the mobile action bar so it never covers those buttons. */
 [data-has-mobile-bar="true"] .chat-launcher { bottom: calc(var(--space-sm) + 4.25rem); }
-/* Must match the breakpoint where .mobile-actions itself hides (70rem),
+/* Must match the breakpoint where .mobile-actions itself hides (64rem),
    or the launcher drops back down onto a still-visible action bar. */
-@media (min-width: 70rem) {
+@media (min-width: 64rem) {
   [data-has-mobile-bar="true"] .chat-launcher { bottom: var(--space-sm); }
 }
 
