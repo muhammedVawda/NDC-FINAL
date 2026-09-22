@@ -59,6 +59,45 @@
     }
   });
 
+  /*
+    Services dropdown (desktop). Hover opens it via CSS; this adds click
+    and keyboard control, closes on outside click and Escape, and keeps
+    aria-expanded truthful. On mobile the same list is rendered flat and
+    the button is hidden, so none of this fires.
+  */
+  var menus = header.querySelectorAll("[data-menu]");
+  function closeMenus(except) {
+    menus.forEach(function (m) {
+      if (m === except) return;
+      m.removeAttribute("data-open");
+      var b = m.querySelector("[data-menu-btn]");
+      if (b) b.setAttribute("aria-expanded", "false");
+    });
+  }
+  menus.forEach(function (m) {
+    var btn = m.querySelector("[data-menu-btn]");
+    if (!btn) return;
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = m.getAttribute("data-open") === "true";
+      closeMenus(m);
+      m.setAttribute("data-open", open ? "false" : "true");
+      btn.setAttribute("aria-expanded", open ? "false" : "true");
+      if (!open) {
+        var first = m.querySelector("[data-menu-panel] a");
+        if (first) first.focus();
+      }
+    });
+    m.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { closeMenus(); btn.focus(); }
+    });
+    // Leaving the group by keyboard closes it so it cannot linger open.
+    m.addEventListener("focusout", function (e) {
+      if (!m.contains(e.relatedTarget)) closeMenus();
+    });
+  });
+  document.addEventListener("click", function () { closeMenus(); });
+
   // Must match the CSS breakpoint where the desktop nav takes over.
   var mq = window.matchMedia("(min-width: 64rem)");
   mq.addEventListener("change", function () {

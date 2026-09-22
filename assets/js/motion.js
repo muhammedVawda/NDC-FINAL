@@ -192,7 +192,7 @@
      --------------------------------------------------------------- */
   function heroTilt() {
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-    var visual = document.querySelector(".hero__brand-visual");
+    var visual = document.querySelector(".hero__visual, .hero__brand-visual");
     var hero = document.querySelector(".hero");
     if (!visual || !hero) return;
 
@@ -356,15 +356,8 @@
     var h1 = document.querySelector(".hero h1");
     if (h1 && parseFloat(getComputedStyle(h1).opacity) < 0.05) splitWords(h1);
 
-    // Section h2s below the fold. Those already on screen keep their
-    // plain reveal; re-hiding painted text is exactly the flash to avoid.
-    var vh = window.innerHeight;
-    var h2s = document.querySelectorAll("main section > .wrap > h2[data-reveal]");
-    Array.prototype.forEach.call(h2s, function (h2) {
-      if (h2.classList.contains("is-revealed")) return;
-      if (h2.getBoundingClientRect().top < vh * 0.9) return;
-      splitWords(h2);
-    });
+    // Section headings keep the plain block reveal: one word-staggered
+    // heading is a signature, every heading is noise.
   }
 
   /* ---------------------------------------------------------------

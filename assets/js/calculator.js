@@ -234,25 +234,43 @@
       body = "No current debt repayments were entered. Based on the income and essential expenses entered, this is what's left over each month before any debt repayments.";
     }
 
+    // Bars are relative to income; a repayment bar can exceed income, so
+    // it is capped at the track while the exact figure stays as text.
+    var pct = function (cents) {
+      if (!result.incomeCents || result.incomeCents <= 0) return 0;
+      return Math.max(0, Math.min(100, Math.round((cents / result.incomeCents) * 100)));
+    };
+    var fmt = engine.formatRands;
+    var isShort = result.surplusCents < 0;
     mount.innerHTML =
-      '<div class="result-figure ' + figureClass + '">' +
+      '<div class="result-figure ' + figureClass + (isShort ? " is-shortfall" : "") + '">' +
         '<p class="eyebrow" style="color:inherit;">' + headline + "</p>" +
         '<p class="result-figure__amount">' + figureText + "</p>" +
         "<p>" + body + "</p>" +
       "</div>" +
+      '<div class="result-breakdown" role="img" aria-label="Income ' + fmt(result.incomeCents) +
+        ', essential expenses ' + fmt(result.expenseCents) + ', debt repayments ' + fmt(result.debtCents) + '">' +
+        '<div class="rb-row"><span class="rb-label">Income</span><div class="rb-track"><div class="rb-fill rb-fill--income" style="--w:' + pct(result.incomeCents) + '%"></div></div><span class="rb-value">' + fmt(result.incomeCents) + "</span></div>" +
+        '<div class="rb-row"><span class="rb-label">Living expenses</span><div class="rb-track"><div class="rb-fill rb-fill--expenses" style="--w:' + pct(result.expenseCents) + '%"></div></div><span class="rb-value">' + fmt(result.expenseCents) + "</span></div>" +
+        '<div class="rb-row"><span class="rb-label">Debt repayments</span><div class="rb-track"><div class="rb-fill rb-fill--debt" style="--w:' + pct(result.debtCents) + '%"></div></div><span class="rb-value">' + fmt(result.debtCents) + "</span></div>" +
+      "</div>" +
       '<table class="summary-table" aria-label="Budget summary">' +
         "<tbody>" +
-        "<tr><th scope=\"row\">Total monthly income</th><td>" + engine.formatRands(result.incomeCents) + "</td></tr>" +
-        "<tr><th scope=\"row\">Essential living expenses</th><td>" + engine.formatRands(result.expenseCents) + "</td></tr>" +
-        "<tr><th scope=\"row\">Available before debt repayments</th><td>" + engine.formatRands(result.availableCents) + "</td></tr>" +
-        "<tr><th scope=\"row\">Current monthly debt repayments</th><td>" + engine.formatRands(result.debtCents) + "</td></tr>" +
-        "<tr><th scope=\"row\">Remaining balance</th><td>" + engine.formatRands(result.surplusCents) + "</td></tr>" +
+        "<tr><th scope=\"row\">Total monthly income</th><td>" + fmt(result.incomeCents) + "</td></tr>" +
+        "<tr><th scope=\"row\">Essential living expenses</th><td>" + fmt(result.expenseCents) + "</td></tr>" +
+        "<tr><th scope=\"row\">Available before debt repayments</th><td>" + fmt(result.availableCents) + "</td></tr>" +
+        "<tr><th scope=\"row\">Current monthly debt repayments</th><td>" + fmt(result.debtCents) + "</td></tr>" +
+        "<tr><th scope=\"row\">" + (isShort ? "Monthly shortfall" : "Monthly surplus") + "</th><td>" + fmt(result.surplusCents) + "</td></tr>" +
         "</tbody>" +
       "</table>" +
-      '<div class="card" style="background:var(--color-neutral-100); border-color:var(--border-subtle);">' +
-        "<h3>What about a restructured repayment plan?</h3>" +
-        "<p>A personalised repayment estimate requires an assessment. It depends on details this calculator doesn't collect, and a smaller monthly payment does not necessarily mean a lower total cost over time.</p>" +
-      "</div>";
+      '<div class="result-actions">' +
+        '<a class="btn btn-gold" href="/contact.html?ref=calculator">Discuss my results</a>' +
+        '<button type="button" class="btn btn-outline" data-step-edit>Edit my answers</button>' +
+      "</div>" +
+      '<p class="result-note">This is a budget summary based on what you entered &mdash; not a repayment offer, a restructured-plan estimate or an eligibility decision. Your figures stay in your browser and are not sent with an enquiry unless you choose to share them.</p>';
+
+    var editBtn = mount.querySelector("[data-step-edit]");
+    if (editBtn) editBtn.addEventListener("click", function () { showStep(1); });
   }
 
   // Prevent-default on mousedown for step-navigation buttons so clicking

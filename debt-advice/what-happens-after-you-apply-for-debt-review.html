@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>(function(){try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("js-motion");}}catch(e){}})();</script>
-<link rel="stylesheet" href="/assets/css/styles.css?v=19">
+<link rel="stylesheet" href="/assets/css/styles.css?v=20">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -84,16 +84,23 @@
     </button>
     <nav class="primary-nav" id="primary-nav" data-primary-nav aria-label="Primary">
       <ul class="primary-nav__list">
-        <li><a href="/debt-review.html" data-page="debt-review">Debt Review</a></li>
-        <li><a href="/debt-mediation.html" data-page="debt-mediation">Debt Mediation</a></li>
-        <li><a href="/debt-review-removal.html" data-page="debt-review-removal">Debt Review Removal</a></li>
+        <li class="nav-item nav-item--menu" data-menu>
+          <button class="nav-menu__btn" type="button" aria-expanded="false" aria-controls="nav-services" data-menu-btn>Services<svg class="nav-menu__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <span class="nav-menu__label" aria-hidden="true">Services</span>
+          <ul class="nav-menu" id="nav-services" data-menu-panel>
+            <li><a href="/debt-review.html" data-page="debt-review">Debt Review</a></li>
+            <li><a href="/debt-mediation.html" data-page="debt-mediation">Debt Mediation</a></li>
+            <li><a href="/debt-review-removal.html" data-page="debt-review-removal">Debt Review Removal</a></li>
+          </ul>
+        </li>
         <li><a href="/calculator.html" data-page="calculator">Calculator</a></li>
         <li><a href="/about.html" data-page="about">About</a></li>
-        <li><a href="/faqs.html" data-page="faqs">FAQs</a></li>
         <li><a href="/contact.html" data-page="contact">Contact</a></li>
+        <li class="nav-item--mobile-only"><a href="/faqs.html" data-page="faqs">FAQs</a></li>
+        <li class="nav-item--mobile-only"><a href="/debt-advice/" aria-current="page" data-page="debt-advice">Debt Advice</a></li>
       </ul>
       <div class="primary-nav__actions">
-        <a class="btn btn-gold" href="/calculator.html">Check my budget</a>
+        <a class="btn btn-gold" href="/#callback-form">Request a callback</a>
       </div>
     </nav>
   </div>
@@ -265,11 +272,11 @@
   <a href="/contact.html">Request a callback</a>
 </nav>
 
-<script src="/assets/js/nav.js?v=19" defer></script>
-<script src="/assets/js/analytics.js?v=19" defer></script>
-<script src="/assets/js/motion.js?v=19" defer></script>
-<script src="/assets/js/lang.js?v=19" defer></script>
-<script src="/assets/js/chat.js?v=19" defer></script>
+<script src="/assets/js/nav.js?v=20" defer></script>
+<script src="/assets/js/analytics.js?v=20" defer></script>
+<script src="/assets/js/motion.js?v=20" defer></script>
+<script src="/assets/js/lang.js?v=20" defer></script>
+<script src="/assets/js/chat.js?v=20" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function(el){ el.textContent = new Date().getFullYear(); });</script>
 </body>
 </html>

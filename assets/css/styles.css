@@ -395,7 +395,13 @@ p + p { margin-top: var(--space-sm); }
   text-decoration: none;
   font-weight: 500;
   border-radius: var(--radius-sm);
+  min-height: 44px; display: flex; align-items: center;
 }
+/* Mobile: the Services group is a labelled list, not a dropdown. */
+.nav-menu__btn { display: none; }
+.nav-menu__label { display: block; padding: var(--space-xs) var(--space-2xs) var(--space-3xs); font-size: var(--fs-sm); letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-on-dark-soft); }
+.nav-menu { display: flex; flex-direction: column; gap: var(--space-3xs); padding-left: var(--space-xs); border-left: 2px solid rgba(247, 199, 7, 0.35); margin-left: var(--space-2xs); }
+.nav-item--mobile-only a { color: var(--color-on-dark-soft); }
 .primary-nav a:hover { background: rgba(244,241,233,0.08); }
 .primary-nav a[aria-current="page"] { color: var(--color-gold-300); }
 .primary-nav__actions { display: flex; flex-direction: column; gap: var(--space-2xs); margin-top: var(--space-sm); }
@@ -426,42 +432,96 @@ p + p { margin-top: var(--space-sm); }
    use the same width so "mobile layout" means one thing everywhere. */
 @media (min-width: 64rem) {
   .nav-toggle { display: none; }
-  .primary-nav { display: block; }
-  .primary-nav__list { flex-direction: row; align-items: center; gap: var(--space-2xs); flex-wrap: wrap; row-gap: var(--space-3xs); }
-  .primary-nav__list a { font-size: 0.92rem; }
+  /* flex, not block: with block the actions div stacked under the list
+     and the yellow button wrapped onto a second row, making the header
+     needlessly tall. */
+  .primary-nav { display: flex; align-items: center; gap: var(--space-sm); }
+  .primary-nav__list { flex-direction: row; align-items: center; gap: var(--space-3xs); flex-wrap: nowrap; }
+  .primary-nav__list a, .nav-menu__btn { font-size: 0.95rem; }
   .primary-nav a { padding: var(--space-2xs) var(--space-xs); }
-  .primary-nav__actions { flex-direction: row; margin-top: 0; margin-left: var(--space-sm); }
+  .primary-nav__actions { flex-direction: row; margin-top: 0; margin-left: var(--space-2xs); }
+  .primary-nav__actions .btn { padding-block: 0.6em; }
+  .nav-item--mobile-only { display: none; }
   [data-nav-open] .primary-nav { position: static; inset: auto; top: auto; padding: 0; background: transparent; overflow: visible; }
+
+  /* Services dropdown */
+  .nav-item--menu { position: relative; }
+  .nav-menu__label { display: none; }
+  .nav-menu__btn {
+    display: inline-flex; align-items: center; gap: 0.3em;
+    font: inherit; font-weight: 500; color: inherit;
+    background: transparent; border: 0; border-radius: var(--radius-sm);
+    padding: var(--space-2xs) var(--space-xs); cursor: pointer;
+    position: relative;
+  }
+  .nav-menu__btn::after {
+    content: ""; position: absolute; left: var(--space-xs); right: var(--space-xs); bottom: 0.35em; height: 2px;
+    background: var(--color-gold-500); border-radius: 1px; transform: scaleX(0); transform-origin: left;
+    transition: transform 260ms var(--ease-out-soft);
+  }
+  .nav-item--menu:hover .nav-menu__btn::after,
+  .nav-menu__btn:focus-visible::after,
+  .nav-item--menu[data-current="true"] .nav-menu__btn::after { transform: scaleX(1); }
+  .nav-item--menu[data-current="true"] .nav-menu__btn { color: var(--color-gold-300); }
+  .nav-menu__chev { width: 16px; height: 16px; transition: transform var(--duration-fast) var(--ease-out-soft); }
+  .nav-item--menu[data-open="true"] .nav-menu__chev, .nav-item--menu:hover .nav-menu__chev { transform: rotate(180deg); }
+  .nav-menu {
+    position: absolute; top: calc(100% + 6px); left: 0;
+    min-width: 15rem; padding: var(--space-3xs);
+    background: var(--surface-card); color: var(--color-ink);
+    border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    display: flex; flex-direction: column; gap: 2px;
+    opacity: 0; transform: translateY(-6px); pointer-events: none;
+    transition: opacity var(--duration-fast) var(--ease-out-soft), transform var(--duration-fast) var(--ease-out-soft);
+    z-index: 5;
+  }
+  /* a hover bridge so the pointer can travel from the button to the panel */
+  .nav-menu::before { content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 8px; }
+  .nav-item--menu:hover .nav-menu, .nav-item--menu[data-open="true"] .nav-menu, .nav-item--menu:focus-within .nav-menu {
+    opacity: 1; transform: none; pointer-events: auto;
+  }
+  .nav-menu a { display: block; padding: var(--space-2xs) var(--space-xs); border-radius: var(--radius-sm); font-weight: 500; color: var(--color-ink); }
+  .nav-menu a:hover, .nav-menu a:focus-visible { background: var(--color-neutral-100); color: var(--color-ink); }
+  .nav-menu a[aria-current="page"] { color: var(--color-gold-700); font-weight: 600; }
+  .nav-menu a::after { display: none; }
 }
 
 /* ============ Hero ============ */
-/* A single line, drawn once, that starts agitated and settles: the one
-   piece of hero motion. It is stroke-dashoffset only (no layout), it runs
-   once and stops, it sits under the copy rather than behind it, and with
-   reduced motion it is simply already drawn. */
-.hero__line {
-  display: block;
-  width: min(220px, 60%);
-  height: 26px;
-  margin-top: var(--space-sm);
-  overflow: visible;
+/* Hero visual: a small, honest budget card — the thing the calculator
+   produces — instead of a second logo. Bars grow once on load; the card
+   carries the same pointer depth the logo plate had. */
+.hero__visual { position: relative; display: flex; align-items: center; justify-content: center; --tilt-x: 0px; --tilt-y: 0px; }
+.budget-card {
+  width: min(100%, 26rem);
+  background: linear-gradient(160deg, rgba(244,241,233,0.07), rgba(244,241,233,0.03));
+  border: 1px solid rgba(244, 241, 233, 0.16);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  box-shadow: 0 30px 60px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(247,199,7,0.08) inset;
+  color: var(--color-on-dark);
+  transform: translate3d(var(--tilt-x), var(--tilt-y), 0);
+  transition: transform 500ms var(--ease-out-soft);
 }
-.hero__line path {
-  fill: none;
-  stroke: var(--color-gold-500);
-  stroke-width: 2.25;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.js-motion .hero__line path {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: hero-line-draw 1.5s var(--ease-out-soft) 0.4s forwards;
-}
-@keyframes hero-line-draw { to { stroke-dashoffset: 0; } }
-@media (prefers-reduced-motion: reduce) {
-  .hero__line path { animation: none; stroke-dashoffset: 0; }
-}
+.budget-card__title { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-md); margin-bottom: var(--space-sm); }
+.budget-card__rows { display: grid; gap: var(--space-xs); }
+.budget-card__rows li { display: grid; grid-template-columns: 6.2rem 1fr auto; align-items: center; gap: var(--space-xs); font-size: var(--fs-sm); }
+.budget-card__k { color: var(--color-on-dark-soft); }
+.budget-card__v { font-variant-numeric: tabular-nums; font-weight: 600; }
+.budget-card__bar { display: block; height: 10px; border-radius: 999px; background: rgba(244,241,233,0.1); overflow: hidden; }
+.budget-card__bar i { display: block; height: 100%; width: var(--w, 50%); border-radius: inherit; background: var(--color-gold-500); transform-origin: left; }
+.budget-card__bar--alert i { background: #E5533D; }
+.budget-card__foot { display: flex; justify-content: space-between; align-items: baseline; margin-top: var(--space-sm); padding-top: var(--space-sm); border-top: 1px solid rgba(244,241,233,0.14); font-size: var(--fs-sm); color: var(--color-on-dark-soft); }
+.budget-card__foot strong { font-family: var(--font-display); font-size: var(--fs-lg); color: #FF8A73; }
+.budget-card__hint { margin-top: var(--space-2xs); font-size: 0.72rem; color: var(--color-on-dark-soft); opacity: 0.8; }
+.js-motion .budget-card__bar i { transform: scaleX(0); animation: budget-grow 900ms var(--ease-out-soft) forwards; }
+.js-motion .budget-card__rows li:nth-child(1) i { animation-delay: 420ms; }
+.js-motion .budget-card__rows li:nth-child(2) i { animation-delay: 560ms; }
+.js-motion .budget-card__rows li:nth-child(3) i { animation-delay: 700ms; }
+@keyframes budget-grow { to { transform: scaleX(1); } }
+.js-motion .hero__visual { opacity: 0; transform: translate3d(0, 14px, 0); animation: hero-enter 760ms var(--ease-out-soft) 260ms forwards; }
+@media (min-width: 62rem) { .hero__grid { grid-template-columns: 1.15fr 0.85fr; } }
+@media (max-width: 61.99rem) { .hero__visual { display: none; } }
 
 .hero {
   /* Flat and matched exactly to the logo asset's own flattened background
@@ -484,40 +544,10 @@ p + p { margin-top: var(--space-sm); }
 @media (min-width: 62rem) {
   .hero__grid { grid-template-columns: 1.1fr 0.9fr; padding-block: 6rem var(--space-2xl); }
 }
-.hero h1 { margin-top: var(--space-sm); max-width: 10.8em; /* was 16ch at weight 800 */ }
+.hero h1 { margin-top: var(--space-sm); font-size: clamp(2.3rem, 4.4vw, 3.5rem); text-wrap: balance; }
 .hero .lede { margin-top: var(--space-sm); font-size: var(--fs-md); color: var(--color-on-dark-soft); }
 .hero__actions { margin-top: var(--space-lg); display: flex; flex-wrap: wrap; gap: var(--space-sm); }
 .hero__note { margin-top: var(--space-md); font-size: var(--fs-sm); color: var(--color-on-dark-soft); max-width: 25.6em; /* was 42ch */ }
-
-.hero__brand-visual {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 220px;
-}
-.hero__logo-img {
-  position: relative;
-  z-index: 1;
-  width: min(78%, 360px);
-  height: auto;
-  margin-inline: auto;
-  /* Source crop is trimmed tight around the artwork bounds (not the old
-     full-square canvas with large flat margins), so the visible artwork
-     fills almost the whole displayed width instead of a fraction of it.
-     The PNG/WebP itself carries a real alpha channel that fades the
-     logo's own flattened background to transparent at the (now much
-     narrower) outer margin, leaving the hero's own flat background to
-     show through with no rectangle boundary. Lettering, map outline and
-     shadows stay fully opaque. */
-}
-@media (min-width: 62rem) {
-  .hero__logo-img { width: min(85%, 480px); }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .hero__logo-img { animation: hero-logo-in 900ms var(--ease-standard) both; }
-}
-@keyframes hero-logo-in { from { opacity: 0; transform: scale(0.92) translateY(14px); } to { opacity: 1; transform: none; } }
 
 /* ============ Cards / pathways ============ */
 .card {
@@ -1362,15 +1392,9 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
 
    Pointer-driven depth, desktop only, capped at a few pixels.
    Applied to a wrapper so the logo's own blending is untouched. */
-.hero__brand-visual {
+.hero__visual {
   --tilt-x: 0px;
   --tilt-y: 0px;
-}
-@media (hover: hover) and (pointer: fine) {
-  .js-motion .hero__logo-img {
-    transform: translate3d(var(--tilt-x), var(--tilt-y), 0);
-    transition: transform 500ms var(--ease-out-soft);
-  }
 }
 
 /* Card depth on hover — restrained, consistent across card types. */
@@ -1643,7 +1667,6 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
     animation: none !important;
     transition: none !important;
   }
-  .js-motion .hero__logo-img { transform: none !important; }
   .card.pathway-card:hover, .card.service-card:hover { transform: none; }
   .btn-gold:hover, .btn:active { transform: none; }
   .js-motion .is-split .w__i, .js-motion .hero h1.is-split .w__i { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
@@ -1771,3 +1794,46 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
   color: var(--color-gold-700); text-decoration: none;
 }
 .article-parent__links a:hover { background: var(--color-gold-100); border-color: var(--color-gold-500); }
+
+/* Callback form: two fields, consent, button. Everything else folds
+   away behind one disclosure. */
+.form-prefs { margin: var(--space-sm) 0; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: var(--surface-page); }
+.form-prefs summary { cursor: pointer; padding: var(--space-xs) var(--space-sm); font-weight: 600; list-style: none; display: flex; align-items: center; gap: var(--space-2xs); min-height: 44px; }
+.form-prefs summary::-webkit-details-marker { display: none; }
+.form-prefs summary::before { content: "+"; font-weight: 700; color: var(--color-gold-700); width: 1.1em; }
+.form-prefs[open] summary::before { content: "\2212"; }
+.form-prefs__hint { font-weight: 400; color: var(--color-neutral-600); font-size: var(--fs-sm); }
+.form-prefs__body { padding: 0 var(--space-sm) var(--space-sm); display: grid; gap: var(--space-sm); }
+.form-prefs__body .field { margin: 0; }
+.check-list li { padding-left: 1.6em; position: relative; }
+.check-list li::before { content: "\2713"; position: absolute; left: 0; color: var(--color-gold-500); font-weight: 700; }
+.calc-preview { background: rgba(244,241,233,0.06) !important; border-color: var(--border-on-dark) !important; color: var(--color-on-dark); }
+.summary-table--preview th, .summary-table--preview td { color: inherit; border-color: rgba(244,241,233,0.14); }
+.summary-table--preview td { color: var(--color-on-dark-soft); }
+
+/* Calculator results: compact summary, a visual breakdown, two actions. */
+.result-figure__amount { font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.15; }
+.result-breakdown { display: grid; gap: var(--space-xs); margin: var(--space-md) 0; }
+.rb-row { display: grid; grid-template-columns: 9rem 1fr auto; align-items: center; gap: var(--space-xs); font-size: var(--fs-sm); }
+@media (max-width: 30rem) { .rb-row { grid-template-columns: 6.5rem 1fr auto; } }
+.rb-label { color: var(--color-ink-soft); }
+.rb-track { height: 12px; border-radius: 999px; background: var(--color-neutral-200); overflow: hidden; }
+.rb-fill { display: block; height: 100%; width: var(--w, 0%); border-radius: inherit; background: var(--color-charcoal-800); transform-origin: left; }
+.rb-fill--expenses { background: var(--color-gold-500); }
+.rb-fill--debt { background: var(--color-gold-700); }
+.result-figure.is-shortfall ~ .result-breakdown .rb-fill--debt { background: #C9432F; }
+.rb-value { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.js-motion .rb-fill { transform: scaleX(0); animation: budget-grow 800ms var(--ease-out-soft) forwards; }
+.js-motion .rb-row:nth-child(2) .rb-fill { animation-delay: 120ms; }
+.js-motion .rb-row:nth-child(3) .rb-fill { animation-delay: 240ms; }
+.result-actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-md); }
+.result-note { margin-top: var(--space-sm); font-size: var(--fs-sm); color: var(--color-ink-soft); }
+@media (prefers-reduced-motion: reduce) {
+  .js-motion .budget-card__bar i, .js-motion .rb-fill, .js-motion .hero__visual { animation: none; transform: none; opacity: 1; }
+  .budget-card { transform: none !important; }
+}
+
+/* Step headings are focused programmatically on each calculator step so
+   screen readers announce the change. A ring there after a mouse click
+   reads as a stray outline; keyboard users still get it via focus-visible. */
+.calc-step h2:focus:not(:focus-visible) { outline: none; box-shadow: none; }

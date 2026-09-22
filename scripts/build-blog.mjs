@@ -17,7 +17,7 @@ import path from "node:path";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const SITE = "https://ndcsa.co.za";
-const CSS_V = "v=19";
+const CSS_V = "v=20";
 const LOGO_V = "v=3";
 
 const articles = JSON.parse(readFileSync(path.join(ROOT, "assets/data/articles.json"), "utf-8"));
@@ -77,18 +77,7 @@ ${extraSchema || ""}</head>`;
 }
 
 function header(activePage) {
-  const navItems = [
-    ["/debt-review.html", "debt-review", "Debt Review"],
-    ["/debt-mediation.html", "debt-mediation", "Debt Mediation"],
-    ["/debt-review-removal.html", "debt-review-removal", "Debt Review Removal"],
-    ["/calculator.html", "calculator", "Calculator"],
-    ["/about.html", "about", "About"],
-    ["/faqs.html", "faqs", "FAQs"],
-    ["/contact.html", "contact", "Contact"],
-  ];
-  const links = navItems
-    .map(([href, key, label]) => `<li><a href="${href}"${key === activePage ? ' aria-current="page"' : ""} data-page="${key}">${label}</a></li>`)
-    .join("\n        ");
+  const a = (href, key, label) => `<a href="${href}"${key === activePage ? ' aria-current="page"' : ""} data-page="${key}">${label}</a>`;
   return `<header class="site-header" data-site-header data-nav-open="false">
   <div class="wrap site-header__bar">
     <a class="brand" href="/">
@@ -103,10 +92,23 @@ function header(activePage) {
     </button>
     <nav class="primary-nav" id="primary-nav" data-primary-nav aria-label="Primary">
       <ul class="primary-nav__list">
-        ${links}
+        <li class="nav-item nav-item--menu" data-menu>
+          <button class="nav-menu__btn" type="button" aria-expanded="false" aria-controls="nav-services" data-menu-btn>Services<svg class="nav-menu__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <span class="nav-menu__label" aria-hidden="true">Services</span>
+          <ul class="nav-menu" id="nav-services" data-menu-panel>
+            <li>${a("/debt-review.html", "debt-review", "Debt Review")}</li>
+            <li>${a("/debt-mediation.html", "debt-mediation", "Debt Mediation")}</li>
+            <li>${a("/debt-review-removal.html", "debt-review-removal", "Debt Review Removal")}</li>
+          </ul>
+        </li>
+        <li>${a("/calculator.html", "calculator", "Calculator")}</li>
+        <li>${a("/about.html", "about", "About")}</li>
+        <li>${a("/contact.html", "contact", "Contact")}</li>
+        <li class="nav-item--mobile-only">${a("/faqs.html", "faqs", "FAQs")}</li>
+        <li class="nav-item--mobile-only">${a("/debt-advice/", "debt-advice", "Debt Advice")}</li>
       </ul>
       <div class="primary-nav__actions">
-        <a class="btn btn-gold" href="/calculator.html">Check my budget</a>
+        <a class="btn btn-gold" href="/#callback-form">Request a callback</a>
       </div>
     </nav>
   </div>
