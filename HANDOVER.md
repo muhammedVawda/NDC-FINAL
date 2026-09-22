@@ -84,6 +84,15 @@ returns a quiet 200 and discards it.
 
 ## 4. Assets: sources and omissions
 
+**Photograph needed for the hero.** The hero now uses a branded budget
+visual (the same summary the calculator produces) in place of the second
+logo. The intended final treatment is one excellent photograph of the
+actual NDC team or office — landscape, natural light, no stock people.
+Drop it in as `assets/img/hero-team.webp` (+ `.jpg` fallback, ~1600px
+wide, explicit width/height) and replace the `.hero__visual` block in
+`index.html`. Do not use stock or generated people as NDC staff.
+
+
 | Asset | Source | Status |
 |---|---|---|
 | NDC logo | Supplied by NDC (`ndc-logo-master.png`, 1254×1254) | Approved. Background flattened by morphological processing; artwork untouched. |
@@ -94,6 +103,15 @@ returns a quiet 200 and discards it.
 | Photography | None used. | If team/office photos are supplied, add with explicit `width`/`height`, WebP + fallback, `loading="lazy"` below the fold. Never present stock people as staff. |
 
 ## 5. SEO — done, and owner steps
+
+**Preview deployments and search.** `vercel.json` now sends
+`X-Robots-Tag: noindex, nofollow` for any request whose host ends in
+`.vercel.app`, so `ndc-final-jvz3.vercel.app` (and every preview) stays
+out of Google while `ndcsa.co.za` — once attached — is served without
+that header and remains indexable. Canonicals already point at
+`https://ndcsa.co.za/`. Verify after attaching the domain:
+`curl -I https://ndcsa.co.za/ | grep -i robots` must print nothing.
+
 
 Done in the repo: unique titles/descriptions/canonicals on all 27 pages,
 sitemap of 26 canonical URLs, `robots.txt`, Organization + WebSite +

@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>(function(){try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("js-motion");}}catch(e){}})();</script>
-<link rel="stylesheet" href="/assets/css/styles.css?v=19">
+<link rel="stylesheet" href="/assets/css/styles.css?v=20">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -82,16 +82,23 @@
     </button>
     <nav class="primary-nav" id="primary-nav" data-primary-nav aria-label="Primary">
       <ul class="primary-nav__list">
-        <li><a href="/debt-review.html" data-page="debt-review">Debt Review</a></li>
-        <li><a href="/debt-mediation.html" data-page="debt-mediation">Debt Mediation</a></li>
-        <li><a href="/debt-review-removal.html" data-page="debt-review-removal">Debt Review Removal</a></li>
+        <li class="nav-item nav-item--menu" data-menu>
+          <button class="nav-menu__btn" type="button" aria-expanded="false" aria-controls="nav-services" data-menu-btn>Services<svg class="nav-menu__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+          <span class="nav-menu__label" aria-hidden="true">Services</span>
+          <ul class="nav-menu" id="nav-services" data-menu-panel>
+            <li><a href="/debt-review.html" data-page="debt-review">Debt Review</a></li>
+            <li><a href="/debt-mediation.html" data-page="debt-mediation">Debt Mediation</a></li>
+            <li><a href="/debt-review-removal.html" data-page="debt-review-removal">Debt Review Removal</a></li>
+          </ul>
+        </li>
         <li><a href="/calculator.html" data-page="calculator">Calculator</a></li>
         <li><a href="/about.html" data-page="about">About</a></li>
-        <li><a href="/faqs.html" data-page="faqs">FAQs</a></li>
         <li><a href="/contact.html" data-page="contact">Contact</a></li>
+        <li class="nav-item--mobile-only"><a href="/faqs.html" data-page="faqs">FAQs</a></li>
+        <li class="nav-item--mobile-only"><a href="/debt-advice/" data-page="debt-advice">Debt Advice</a></li>
       </ul>
       <div class="primary-nav__actions">
-        <a class="btn btn-gold" href="/calculator.html">Check my budget</a>
+        <a class="btn btn-gold" href="/#callback-form">Request a callback</a>
       </div>
     </nav>
   </div>
@@ -101,33 +108,36 @@
 
   <section class="hero">
     <div class="wrap hero__grid">
-      <div>
-        <p class="eyebrow">Clarity starts here</p>
-        <h1>Debt feels heavy. Let&rsquo;s find your next step.</h1>
-        <p class="lede">Understand your budget, explore your options and get guidance on a way forward — at your own pace, with no pressure and no jargon.</p>
-        <svg class="hero__line" viewBox="0 0 220 26" aria-hidden="true" focusable="false">
-          <path pathLength="1" d="M2 15 L14 6 L26 20 L38 5 L50 19 L62 9 L74 15 C96 13 120 12 146 10 C170 8 194 6 218 5"/>
-        </svg>
+      <div class="hero__copy">
+        <p class="eyebrow">National Debt Consultants</p>
+        <h1>Struggling with debt? Let&rsquo;s find your next step.</h1>
+        <p class="lede">Clear guidance on debt review, debt mediation and debt review removal &mdash; so you can understand your options and choose what&rsquo;s right for you.</p>
         <div class="hero__actions">
-          <a class="btn btn-gold" href="/calculator.html">Check my budget</a>
-          <a class="btn btn-outline" href="#callback-form">Request a callback</a>
+          <a class="btn btn-gold" href="#callback-form">Speak to a consultant</a>
+          <a class="btn btn-outline" href="/calculator.html">Check my budget</a>
         </div>
-        <p class="hero__note">The calculator gives you a clear picture of your budget in a few minutes. You don&rsquo;t need to share any contact details to see your results.</p>
+        <p class="hero__note">No obligation to proceed. Use the calculator without sharing any contact details.</p>
       </div>
-      <div class="hero__brand-visual">
-        <picture>
-          <source srcset="/assets/img/ndc-logo-hero.webp?v=5" type="image/webp">
-          <img class="hero__logo-img" src="/assets/img/ndc-logo-hero.png?v=5" alt="National Debt Consultants" width="1013" height="771" loading="eager">
-        </picture>
+      <div class="hero__visual" aria-hidden="true">
+        <div class="budget-card">
+          <p class="budget-card__title">A month, made clear</p>
+          <ul class="budget-card__rows">
+            <li><span class="budget-card__k">Income</span><span class="budget-card__bar"><i style="--w:100%"></i></span><span class="budget-card__v">R18 500</span></li>
+            <li><span class="budget-card__k">Living costs</span><span class="budget-card__bar"><i style="--w:59%"></i></span><span class="budget-card__v">R10 900</span></li>
+            <li><span class="budget-card__k">Repayments</span><span class="budget-card__bar budget-card__bar--alert"><i style="--w:49%"></i></span><span class="budget-card__v">R9 100</span></li>
+          </ul>
+          <p class="budget-card__foot"><span>Left each month</span><strong>&minus;R1 500</strong></p>
+          <p class="budget-card__hint">Example only &mdash; the calculator uses your numbers.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section" id="callback-form">
     <div class="wrap" style="max-width: 40rem;">
-      <p class="eyebrow">Request a callback</p>
+      <p class="eyebrow">Speak to a consultant</p>
       <h2>Prefer to talk it through?</h2>
-      <p class="lede">Leave your details and a consultant will get back to you. This isn&rsquo;t a commitment to anything.</p>
+      <p class="lede">Leave your name and number and a consultant will call you back. No obligation.</p>
       <div class="card" style="margin-top: var(--space-md);">
         <div data-form-alert-mount></div>
         <form data-callback-form novalidate>
@@ -149,6 +159,15 @@
             <p class="error" id="home-phone-error" role="alert">Please enter a valid South African contact number.</p>
           </div>
 
+          <div class="field" data-field="consent">
+            <div class="consent">
+              <input type="checkbox" id="home-consent" name="consent" required aria-describedby="home-consent-error">
+              <label for="home-consent">I consent to National Debt Consultants contacting me about this request.</label>
+            </div>
+
+          <details class="form-prefs">
+            <summary>Add preferences <span class="form-prefs__hint">(optional: topic, time, language)</span></summary>
+            <div class="form-prefs__body">
           <div class="field" data-field="service">
             <label for="home-service">What&rsquo;s this about? (optional)</label>
             <select id="home-service" name="service">
@@ -159,7 +178,6 @@
               <option value="general">General question</option>
             </select>
           </div>
-
           <div class="field" data-field="callbackTime">
             <label for="home-time">Preferred callback time (optional)</label>
             <select id="home-time" name="callbackTime">
@@ -169,7 +187,6 @@
               <option value="evening">Evening (5pm–7pm)</option>
             </select>
           </div>
-
           <div class="field" data-field="language">
             <label for="home-language">Preferred language for the call (optional)</label>
             <select id="home-language" name="language">
@@ -184,23 +201,15 @@
             </select>
             <p class="hint">We&rsquo;ll do our best to match this.</p>
           </div>
-
-          <div class="field" data-field="consent">
-            <div class="consent">
-              <input type="checkbox" id="home-consent" name="consent" required aria-describedby="home-consent-error">
-              <label for="home-consent">I consent to National Debt Consultants contacting me about this request.</label>
-            </div>
-            <p class="error" id="home-consent-error" role="alert">Please provide consent so we can contact you.</p>
-          </div>
-
           <div class="field" data-field="marketing">
             <div class="consent">
               <input type="checkbox" id="home-marketing" name="marketing">
-              <label for="home-marketing">I&rsquo;d also like to receive occasional helpful updates by email or SMS (optional, separate from the consent above).</label>
+              <label for="home-marketing">Send me occasional helpful updates by SMS (optional).</label>
             </div>
-          </div>
+            </div>
+          </details>
 
-          <button class="btn btn-gold btn-block" type="submit" data-submit-btn>Request a callback</button>
+          <button class="btn btn-gold btn-block" type="submit" data-submit-btn>Request my callback</button>
         </form>
       </div>
     </div>
@@ -208,18 +217,17 @@
 
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow">Where do you fit?</p>
-      <h2>Three ways people usually start</h2>
-      <p class="lede">These are starting points to help you find relevant information — they&rsquo;re not a test and they don&rsquo;t decide whether you qualify for anything. A proper assessment only happens once we&rsquo;ve spoken with you.</p>
+      <p class="eyebrow">Where are you right now?</p>
+      <h2>Three common starting points</h2>
 
       <div class="grid grid--3" style="margin-top: var(--space-lg);">
         <article class="card pathway-card">
           <span class="pathway-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 17l5-5 4 4 8-8"/><path d="M14 8h6v6"/></svg>
           </span>
           <h3>I&rsquo;m struggling with repayments</h3>
-          <p>If your monthly debt repayments are becoming difficult to manage, it helps to see the full picture first — what you earn, what you spend, and what you owe.</p>
-          <a class="btn btn-outline" href="/calculator.html">Start with the calculator</a>
+          <p>See your full picture &mdash; income, living costs and repayments &mdash; in a few minutes, without sharing contact details.</p>
+          <a class="btn btn-outline" href="/calculator.html">Check my budget</a>
         </article>
 
         <article class="card pathway-card">
@@ -227,17 +235,17 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>
           </span>
           <h3>I&rsquo;m already under debt review</h3>
-          <p>If you&rsquo;re currently under debt review and want to understand your position — including what debt review removal involves and when it may apply — start here.</p>
-          <a class="btn btn-outline" href="/debt-review-removal.html">Learn about removal</a>
+          <p>Understand how your current arrangement works and what leaving debt review actually requires &mdash; it depends on an assessment, not on income alone.</p>
+          <a class="btn btn-outline" href="/debt-review-removal.html">My options under debt review</a>
         </article>
 
         <article class="card pathway-card">
           <span class="pathway-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2 2-2 4"/><path d="M12 17h.01"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.6a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.7a2 2 0 0 1 1.7 2z"/></svg>
           </span>
           <h3>I&rsquo;m unsure where to start</h3>
-          <p>That&rsquo;s completely normal. Read through our frequently asked questions, or reach out and describe your situation in your own words.</p>
-          <a class="btn btn-outline" href="/faqs.html">Read the FAQs</a>
+          <p>Tell us what&rsquo;s happening in a quick call. A consultant will explain what may apply to you and what happens next.</p>
+          <a class="btn btn-outline" href="#callback-form">Request a callback</a>
         </article>
       </div>
     </div>
@@ -246,8 +254,8 @@
   <section class="section surface-dark-alt">
     <div class="wrap">
       <p class="eyebrow">Our services</p>
-      <h2>Three different services — clearly explained</h2>
-      <p class="lede">Debt review, debt mediation and debt review removal solve different problems. Here&rsquo;s the short version of each.</p>
+      <h2>Three services for three different situations</h2>
+      <p class="lede">Each one solves a different problem. Here&rsquo;s the short version.</p>
 
       <div class="grid grid--3" style="margin-top: var(--space-lg);">
         <article class="card service-card">
@@ -290,20 +298,28 @@
       <div class="grid grid--2" style="align-items:center;">
         <div>
           <p class="eyebrow">Budget &amp; Debt Calculator</p>
-          <h2>See where your money is really going</h2>
-          <p class="lede">Enter your income, essential expenses and current debt repayments. In a few minutes you&rsquo;ll see whether your budget balances — and by how much — without entering any contact details.</p>
-          <ul class="stack" style="margin-top: var(--space-md);">
-            <li>✓ Four short steps: income, expenses, debts, results</li>
-            <li>✓ South African Rand formatting, with amounts you can edit at any time</li>
-            <li>✓ Honest results — including when the numbers don&rsquo;t balance</li>
+          <h2>See where your money goes each month</h2>
+          <p class="lede">Enter your income, living costs and current repayments. In four short steps you&rsquo;ll see whether your budget balances &mdash; and by how much.</p>
+          <ul class="stack check-list" style="margin-top: var(--space-md);">
+            <li>No contact details needed to see your results</li>
+            <li>Amounts in Rand, editable at any time</li>
+            <li>A budget summary &mdash; not a repayment offer or an eligibility decision</li>
           </ul>
           <div class="hero__actions">
             <a class="btn btn-gold" href="/calculator.html">Start the calculator</a>
           </div>
         </div>
-        <div class="card" style="background:rgba(244,241,233,0.06); border-color:var(--border-on-dark);">
-          <p class="eyebrow">What it is not</p>
-          <p>The calculator gives you a budget summary, not a formal debt review proposal. A personalised repayment estimate can only be given after a full assessment with a consultant.</p>
+        <div class="card calc-preview" aria-hidden="true">
+          <p class="eyebrow">What you&rsquo;ll see</p>
+          <table class="summary-table summary-table--preview">
+            <tbody>
+              <tr><th scope="row">Total monthly income</th><td>R</td></tr>
+              <tr><th scope="row">Essential living expenses</th><td>R</td></tr>
+              <tr><th scope="row">Available before repayments</th><td>R</td></tr>
+              <tr><th scope="row">Current debt repayments</th><td>R</td></tr>
+              <tr><th scope="row">Surplus or shortfall</th><td>R</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -311,36 +327,27 @@
 
   <section class="section surface-dark" id="why-us">
     <div class="wrap">
-      <p class="eyebrow">Why people choose NDC</p>
-      <h2>Straight answers, and nothing we can&rsquo;t back up</h2>
-      <p class="lede">Every claim below is something you can check on this website or against a public register &mdash; not a badge we gave ourselves.</p>
-      <div class="grid grid--3" style="margin-top: var(--space-lg);">
+      <p class="eyebrow">Why NDC</p>
+      <h2>Why choose National Debt Consultants?</h2>
+      <p class="lede">Registered, transparent, and clear about what we can and can&rsquo;t promise.</p>
+      <div class="grid grid--2" style="margin-top: var(--space-lg);">
         <div class="card trust-card">
-          <h3>Registered with the NCR</h3>
-          <p>Our debt counsellor registration number is <strong>NCR DC 4382</strong>. The National Credit Regulator maintains a public register you can check this against.</p>
+          <h3>Registered with the National Credit Regulator</h3>
+          <p>Debt counsellor registration number <strong>NCR DC 4382</strong>. You can check it against the NCR&rsquo;s public register of debt counsellors.</p>
         </div>
         <div class="card trust-card">
           <h3>See your numbers before you speak to anyone</h3>
-          <p>The budget calculator needs no contact details, and the figures you type stay in your browser for that session &mdash; they aren&rsquo;t saved on our servers unless you separately request a callback.</p>
+          <p>The calculator needs no contact details, and nothing you type is saved unless you choose to send it to us.</p>
         </div>
         <div class="card trust-card">
-          <h3>We explain what we won&rsquo;t promise</h3>
-          <p>We don&rsquo;t claim everyone qualifies, that your interest rate is guaranteed to drop, or that debt review can simply be removed on request. Our service pages say so plainly.</p>
+          <h3>Plain answers, including the limits</h3>
+          <p>We explain each service and what it can&rsquo;t do. No guaranteed savings, no guaranteed removal, no guaranteed approval &mdash; every case starts with an assessment.</p>
         </div>
         <div class="card trust-card">
-          <h3>Sources you can follow</h3>
-          <p>Legal and regulatory points in our <a href="/debt-advice/">debt advice articles</a> cite the National Credit Act, NCR guidance and other public sources, so you can verify them yourself.</p>
-        </div>
-        <div class="card trust-card">
-          <h3>An enquiry is not a commitment</h3>
-          <p>Requesting a callback means a consultant reviews your request and contacts you. It doesn&rsquo;t sign you up to anything.</p>
-        </div>
-        <div class="card trust-card">
-          <h3>Plain language, on purpose</h3>
-          <p>Debt processes are already stressful. We explain them in ordinary English, including the parts that are commonly misunderstood.</p>
+          <h3>A real office in Cape Town</h3>
+          <p>Buchanan Square Building, 160 Sir Lowry Road, Woodstock. Call <a href="tel:+27210541141">021 054 1141</a> or email <a href="mailto:Marketing@ndcsa.co.za">Marketing@ndcsa.co.za</a>.</p>
         </div>
       </div>
-      <p class="trust-note">We don&rsquo;t publish awards, ratings or testimonials here. If we display one in future, it will name the source so you can check it.</p>
     </div>
   </section>
 
@@ -348,7 +355,7 @@
     <div class="wrap">
       <p class="eyebrow">Debt advice &amp; resources</p>
       <h2>Understand your options, in plain language</h2>
-      <p class="lede">Short, practical guides on debt review, budgeting and credit in South Africa.</p>
+      <p class="lede">Short, practical guides written for South Africa.</p>
       <div class="grid grid--3" style="margin-top: var(--space-lg);">
         <a class="card blog-card" href="/debt-advice/how-debt-counselling-works-in-south-africa.html">
           <p class="eyebrow">Debt Counselling</p>
@@ -368,23 +375,6 @@
       </div>
       <div class="hero__actions" style="margin-top: var(--space-lg);">
         <a class="btn btn-outline" href="/debt-advice/">View all advice</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <p class="eyebrow">How this is regulated</p>
-      <h2>Trust &amp; verification information</h2>
-      <div class="grid grid--2" style="margin-top: var(--space-md);">
-        <div class="card">
-          <h3>The legal framework</h3>
-          <p>Debt review in South Africa is governed by the National Credit Act 34 of 2005 and regulated by the National Credit Regulator (NCR). Only a debt counsellor registered with the NCR may place a consumer under formal debt review or issue a clearance certificate.</p>
-        </div>
-        <div class="card">
-          <h3>National Debt Consultants</h3>
-          <p>NCR debt counsellor registration number: <strong>NCR DC 4382</strong>. Full company registration and further accreditation details will be published here once confirmed.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -482,16 +472,16 @@
 </footer>
 
 <nav class="mobile-actions" aria-label="Quick actions">
-  <a href="/calculator.html" class="is-primary">Check my budget</a>
-  <a href="/contact.html">Request a callback</a>
-</nav>
+    <a class="is-primary" href="#callback-form">Request a callback</a>
+    <a href="/calculator.html">Check my budget</a>
+  </nav>
 
-<script src="/assets/js/nav.js?v=19" defer></script>
-<script src="/assets/js/contact-form.js?v=19" defer></script>
-<script src="/assets/js/analytics.js?v=19" defer></script>
-<script src="/assets/js/motion.js?v=19" defer></script>
-<script src="/assets/js/lang.js?v=19" defer></script>
-<script src="/assets/js/chat.js?v=19" defer></script>
+<script src="/assets/js/nav.js?v=20" defer></script>
+<script src="/assets/js/contact-form.js?v=20" defer></script>
+<script src="/assets/js/analytics.js?v=20" defer></script>
+<script src="/assets/js/motion.js?v=20" defer></script>
+<script src="/assets/js/lang.js?v=20" defer></script>
+<script src="/assets/js/chat.js?v=20" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function(el){ el.textContent = new Date().getFullYear(); });</script>
 </body>
 </html>
