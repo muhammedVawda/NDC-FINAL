@@ -145,12 +145,32 @@
   /* ---------------------------------------------------------------
      2. Header scroll state
      --------------------------------------------------------------- */
+  /*
+     The header's scrolled state now only adds a shadow — no height, no
+     padding, no position change — so it can no longer resize the page
+     and drive its own threshold. That was the jitter: the header shrank,
+     the browser's scroll anchoring compensated by moving scrollY, and
+     scrollY crossed back over the trigger, 100 times in 2.5 seconds with
+     the user perfectly still.
+
+     Separate on/off thresholds are kept as a second line of defence. A
+     single threshold flips on every 1px tremor of a trackpad or a
+     precision mouse wheel while parked near the trigger; with a 40px
+     dead band the state cannot chatter, whatever a future change to the
+     scrolled styles might reintroduce.
+  */
   function header() {
     var el = document.querySelector("[data-site-header]");
     if (!el) return;
+    var ON_AT = 80;   // must scroll past here to turn the shadow on
+    var OFF_AT = 40;  // and back above here to turn it off
+    var scrolled = false;
     var ticking = false;
     function update() {
-      el.setAttribute("data-scrolled", window.scrollY > 24 ? "true" : "false");
+      var y = window.scrollY;
+      if (!scrolled && y > ON_AT) scrolled = true;
+      else if (scrolled && y < OFF_AT) scrolled = false;
+      el.setAttribute("data-scrolled", scrolled ? "true" : "false");
       ticking = false;
     }
     window.addEventListener(

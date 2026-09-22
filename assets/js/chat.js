@@ -1,43 +1,52 @@
 /*
-  NDC virtual assistant — guided, short-path version.
+  NDC Virtual Assistant.
 
   WHAT THIS IS
-  A four-option opening menu with a free-text box, and a callback form
-  that asks for two things. Every path can reach a callback in one tap.
+  Three options at the top, three at each branch, nothing nested below
+  that, and a callback form that asks for a name and a number. A free
+  text box sits alongside, because free-text answering genuinely works
+  here — see GROUNDING below.
 
-  WHAT CHANGED AND WHY
-  The previous version opened with a three-sentence disclaimer, six
-  suggestion chips and a bare text box, which asked the visitor to
-  compose a question before anything useful happened. Most people
-  arriving on a debt site want one of a very small number of things, so
-  those are now buttons. The disclaimer still exists, but as a short
-  header line and a footer note rather than as the first thing said.
+  SHAPE OF THE FLOW
+    welcome ─┬─ I need help with debt ──┬─ Request a callback
+             │                          ├─ Check my budget   -> /calculator.html
+             │                          └─ View debt services -> 3 page links
+             ├─ I'm already under debt review ─┬─ My current debt review
+             │                                 ├─ Debt review removal
+             │                                 └─ Request a callback
+             └─ Request a callback
 
-  WHAT WAS DELIBERATELY KEPT
-  - Retrieval, scoring, coverage gating and the NEVER_ANSWER list. These
-    are the safety layer, not decoration. Free text still works, still
-    refuses the categories it must refuse, and still cannot invent prose.
-  - The document checklists, which are a genuine top task.
-  - The existing /api/contact integration, unchanged. This widget adds no
-    new backend and no new required field.
+  Every branch ends in published information or a callback. "Request a
+  callback" is also pinned in the action bar at all times, so reaching a
+  person never requires finishing a branch — nobody is made to answer
+  questions about their finances first.
 
-  GROUNDING RULE (unchanged)
+  GROUNDING RULE
   Factual content comes from knowledge.json, generated from the real
-  site. Node copy in this file is navigational only — it describes what
-  the visitor can do next, and makes no claim about rates, eligibility,
-  timeframes or outcomes. The assistant never decides eligibility and
-  never says a debt review can be removed.
+  site. Node copy in this file is navigational only: it says what the
+  visitor can do next and makes no claim about rates, eligibility,
+  timeframes or outcomes. The assistant never decides eligibility, never
+  says a debt review can be removed, and never promises a saving.
+
+  Free text is retrieval over that same knowledge base with a coverage
+  gate and a NEVER_ANSWER list. It can only echo approved text or refuse,
+  so the input box is not pretending to understand arbitrary questions —
+  when it is not confident it says so and offers a callback, carrying the
+  question along so the visitor does not repeat it.
 
   HONESTY RULE
-  It identifies as a virtual assistant on open and in the header. There
-  is no live-agent backend, so nothing here implies a person is waiting.
-  It promises no response time, because none is confirmed.
-*/
-(function () {
+  Identifies as "NDC Virtual Assistant / Automated help — not a live
+  consultant". There is no live-agent backend, so anything vaguer would
+  imply someone is waiting. No response time is promised, because none is
+  confirmed.
+
+  INTEGRATION
+  The existing /api/contact endpoint, unchanged: same payload, same
+  validation, same consent. No second lead destination exists.
+*/(function () {
   "use strict";
 
   var KB_URL = "/assets/data/knowledge.json";
-  var LANG_URL = "/assets/data/languages.json";
   var API_URL = "/api/chat";
   var CONTACT_URL = "/api/contact";
 
@@ -76,7 +85,7 @@
     please: 1, get: 1, got: 1, know: 1, help: 1, any: 1, some: 1, more: 1, when: 1, who: 1
   };
 
-  var kb = null, kbLoading = null, langs = null;
+  var kb = null, kbLoading = null;
   var panel, log, form, input, launcher, sendBtn, actionBar, backBtn, restartBtn;
 
   // Node the visitor is on, and the trail behind it for "Back".
@@ -87,7 +96,7 @@
   // having to repeat it.
   var pendingQuestion = null;
   // Retained across a failed submit so nobody retypes their details.
-  var draft = { name: "", phone: "", time: "", lang: "" };
+  var draft = { name: "", phone: "", time: "" };
 
   // ---- retrieval (unchanged safety layer) ------------------------------
 
@@ -203,6 +212,19 @@
     wrap.setAttribute("role", "group");
     wrap.setAttribute("aria-label", "Choose an option");
     options.forEach(function (opt) {
+      /*
+        A link option navigates to a page that already exists — the
+        calculator, a service page. The brief is explicit that those
+        tools are not to be rebuilt inside the chat, so these are plain
+        anchors, crawlable and middle-clickable like any other link.
+      */
+      if (opt.href) {
+        var a = el("a", "chat-option", opt.label);
+        a.href = opt.href;
+        a.addEventListener("click", function () { track("chat_link", { to: opt.href }); });
+        wrap.appendChild(a);
+        return;
+      }
       var b = el("button", "chat-option" + (opt.primary ? " chat-option--primary" : ""), opt.label);
       b.type = "button";
       b.addEventListener("click", function () {
@@ -233,92 +255,75 @@
   var TOPIC_LABELS = {
     welcome: "General enquiry",
     helpDebt: "Help with debt",
-    services: "Exploring services",
-    infoDebtReview: "Debt review",
-    infoMediation: "Debt mediation",
+    services: "Debt services",
     underReview: "Already under debt review",
-    currentArrangement: "Their current arrangement",
-    leavingReview: "Leaving debt review",
-    checklists: "Document checklist",
-    somethingElse: "Typed question"
+    currentArrangement: "Their current debt review",
+    leavingReview: "Debt review removal"
   };
 
+  /*
+    Three options at the top, three at each branch, and nothing nested
+    below that. Every branch ends in either published information or a
+    callback — there is no third level to get lost in.
+  */
   var NODES = {
     welcome: {
-      text: "Hi 👋 How can we help you today?",
+      text: "Hi, welcome to NDC. How can we help?",
       options: [
-        { label: "Help with debt", go: "helpDebt" },
-        { label: "Already under debt review", go: "underReview" },
-        { label: "Request a callback", go: "callback" },
-        { label: "Something else", go: "somethingElse" }
+        { label: "I need help with debt", go: "helpDebt" },
+        { label: "I'm already under debt review", go: "underReview" },
+        CALLBACK_OPT
       ]
     },
 
     helpDebt: {
-      text: "We help people who are falling behind on credit repayments. Depending on your situation that can mean debt review, debt mediation, or getting a realistic budget in place.",
+      text: "We help you understand your options when credit repayments are becoming unmanageable — and what each one actually involves.",
       options: [
-        { label: "Explore services", go: "services" },
-        CALLBACK_OPT
+        CALLBACK_OPT,
+        { label: "Check my budget", href: "/calculator.html" },
+        { label: "View debt services", go: "services" }
       ]
     },
 
+    /*
+      Three links rather than three more buttons. Each service already
+      has a full page that is indexed and readable without the chat;
+      sending people there beats paraphrasing it in a bubble.
+    */
     services: {
-      text: "Which would you like to know about?",
-      options: [
-        { label: "Debt review", go: "infoDebtReview" },
-        { label: "Debt mediation", go: "infoMediation" },
-        { label: "What documents do I need?", go: "checklists" },
-        CALLBACK_OPT
-      ]
+      text: "There are three, each with a full page:",
+      sourceIds: ["svc-debt-review", "svc-debt-mediation", "svc-debt-review-removal"],
+      options: [CALLBACK_OPT]
     },
-
-    infoDebtReview: { kbId: "svc-debt-review", options: [
-      { label: "How is mediation different?", go: "infoMediation" },
-      CALLBACK_OPT
-    ] },
-
-    infoMediation: { kbId: "svc-debt-mediation", options: [
-      { label: "Tell me about debt review", go: "infoDebtReview" },
-      CALLBACK_OPT
-    ] },
 
     underReview: {
       text: "What would you like help with?",
       options: [
-        { label: "My current arrangement", go: "currentArrangement" },
-        { label: "Understanding my options for leaving debt review", go: "leavingReview" },
-        { label: "Speak to someone", go: "callback" }
+        { label: "My current debt review", go: "currentArrangement" },
+        { label: "Understanding debt review removal", go: "leavingReview" },
+        CALLBACK_OPT
       ]
     },
 
     currentArrangement: {
       kbId: "article-what-happens-after-you-apply-for-debt-review",
-      options: [
-        { label: "What documents do I need?", go: "checklists" },
-        CALLBACK_OPT
-      ]
+      extraSource: "article-what-documents-do-i-need-for-debt-review",
+      options: [CALLBACK_OPT]
     },
 
     /*
       This branch exists because people ask about it, not because an
       outcome can be offered. The source text states that removal follows
       specific legal routes and requires an assessment. The NCR circular
-      is attached as a second source because consumers searching this
-      phrase are precisely the ones being targeted by upfront-fee
-      operators. Nothing here decides eligibility or implies removal.
+      is attached because consumers searching this phrase are exactly the
+      ones being targeted by upfront-fee operators. Nothing here decides
+      eligibility, promises removal, or implies a saving.
     */
     leavingReview: {
       kbId: "svc-debt-review-removal",
       extraSource: "ncr-circular-2-2025",
-      note: "Whether that is possible in your case is an assessment a registered debt counsellor has to make — I can't decide it here.",
-      options: [
-        { label: "Speak to someone about this", go: "callback" }
-      ]
-    },
-
-    somethingElse: {
-      text: "Type your question below and I'll answer from what's published on this site. If I'm not confident, I'll offer you a callback rather than guess.",
-      focusInput: true
+      note: "Whether that's possible in your case is an assessment a registered debt counsellor has to make — I can't decide it here.",
+      options: [CALLBACK_OPT]
     }
   };
 
@@ -342,6 +347,18 @@
       return;
     }
 
+    if (node.sourceIds) {
+      loadKB().then(function () {
+        var sources = node.sourceIds.map(function (id) {
+          var e = entry(id);
+          return e ? { title: e.title, url: e.url } : null;
+        }).filter(Boolean);
+        addMessage("assistant", node.text, sources);
+        if (node.options) addOptions(node.options);
+      });
+      return;
+    }
+
     if (node.text) addMessage("assistant", node.text);
     if (node.options) addOptions(node.options);
     if (node.focusInput) input.focus();
@@ -349,7 +366,6 @@
 
   function go(id, skipTrail) {
     if (id === "callback") { showCallbackForm(); syncActions(); return; }
-    if (id === "checklists") { showChecklistMenu(); syncActions(); return; }
     if (!NODES[id]) return;
     if (currentNode && !skipTrail) trail.push(currentNode);
     currentNode = id;
@@ -390,80 +406,7 @@
     restartBtn.hidden = !currentNode && !log.firstChild;
   }
 
-  // ---- checklists (kept) -----------------------------------------------
-
-  function showChecklistMenu() {
-    loadKB().then(function () {
-      if (!kb || !kb.checklists) return;
-      if (currentNode) trail.push(currentNode);
-      currentNode = "checklists";
-      addMessage("assistant", "Which list would you like?");
-      var keys = Object.keys(kb.checklists);
-      addOptions(keys.map(function (key) {
-        return {
-          label: kb.checklists[key].label,
-          run: function () {
-            track("chat_checklist_opened", { checklist: key });
-            showChecklist(key);
-          }
-        };
-      }));
-      syncActions();
-    });
-  }
-
-  function showChecklist(key) {
-    var c = kb.checklists[key];
-    if (!c) return;
-    var wrap = el("div", "chat-msg chat-msg--assistant");
-    var bubble = el("div", "chat-bubble");
-    bubble.appendChild(el("p", "chat-checklist__intro", c.intro));
-    var list = el("ul", "chat-checklist");
-    c.items.forEach(function (it) {
-      var li = el("li");
-      var row = el("div", "chat-checklist__row");
-      row.appendChild(el("span", "chat-checklist__tick", "✓"));
-      row.appendChild(el("span", "chat-checklist__item", it.item));
-      li.appendChild(row);
-      var why = el("button", "chat-checklist__why", "Why do I need this?");
-      why.type = "button";
-      why.setAttribute("aria-expanded", "false");
-      var reason = el("p", "chat-checklist__reason", it.why);
-      reason.hidden = true;
-      why.addEventListener("click", function () {
-        var open = reason.hidden;
-        reason.hidden = !open;
-        why.setAttribute("aria-expanded", open ? "true" : "false");
-        why.textContent = open ? "Hide" : "Why do I need this?";
-      });
-      li.appendChild(why);
-      li.appendChild(reason);
-      list.appendChild(li);
-    });
-    bubble.appendChild(list);
-    wrap.appendChild(bubble);
-    if (c.learnMore) {
-      var srcWrap = el("div", "chat-sources");
-      srcWrap.appendChild(el("span", "chat-sources__label", "Read more:"));
-      var a = el("a", "chat-source", "Read the full guide");
-      a.href = c.learnMore;
-      srcWrap.appendChild(a);
-      wrap.appendChild(srcWrap);
-    }
-    log.appendChild(wrap);
-    scrollLog();
-    addOptions([CALLBACK_OPT]);
-  }
-
   // ---- callback --------------------------------------------------------
-
-  function loadLangs() {
-    if (langs) return Promise.resolve(langs);
-    return fetch(LANG_URL)
-      .then(function (r) { return r.json(); })
-      .then(function (d) { langs = d; return d; })
-      .catch(function () { langs = null; return null; });
-  }
 
   // Mirrors netlify/functions/contact.js exactly. Client-side validation
   // is a courtesy; the server remains the authority and is not bypassed.
@@ -516,7 +459,7 @@
     var f = el("form", "chat-callback");
     f.noValidate = true;
 
-    var name = field("ndc-cb-name", "Your name", "text", true);
+    var name = field("ndc-cb-name", "Full name", "text", true);
     var phone = field("ndc-cb-phone", "Contact number", "tel", true, "A South African number, e.g. 082 123 4567");
     name.input.value = draft.name;
     phone.input.value = draft.phone;
@@ -525,7 +468,7 @@
 
     // Optional extras, folded away so the form reads as two fields.
     var more = el("details", "chat-more");
-    more.appendChild(el("summary", null, "Add a preferred time or language (optional)"));
+    more.appendChild(el("summary", null, "Add a preferred callback time (optional)"));
 
     var timeWrap = el("div", "chat-field");
     var timeLab = el("label", null, "Preferred callback time (optional)");
@@ -542,31 +485,6 @@
     timeWrap.appendChild(time);
     more.appendChild(timeWrap);
 
-    var langWrap = el("div", "chat-field");
-    var langLab = el("label", null, "Preferred language for the call (optional)");
-    langLab.setAttribute("for", "ndc-cb-lang");
-    var lang = el("select", "chat-field__input");
-    lang.id = "ndc-cb-lang";
-    lang.appendChild(el("option", null, "No preference"));
-    lang.firstChild.value = "";
-    langWrap.appendChild(langLab);
-    langWrap.appendChild(lang);
-    more.appendChild(langWrap);
-    /*
-      This asks which language the visitor would like to be SPOKEN to in.
-      It is not a UI translation switch and must not be read as one: only
-      English is published on this site, and offering a language here
-      does not claim the website exists in it.
-    */
-    loadLangs().then(function (d) {
-      if (!d) return;
-      d.languages.forEach(function (l) {
-        var o = el("option", null, l.endonym);
-        o.value = l.name;
-        lang.appendChild(o);
-      });
-      if (draft.lang) lang.value = draft.lang;
-    });
     f.appendChild(more);
 
     var consentWrap = el("div", "chat-field chat-consent");
@@ -639,7 +557,6 @@
       draft.name = name.input.value;
       draft.phone = phone.input.value;
       draft.time = time.value;
-      draft.lang = lang.value;
 
       var bad = null;
       if (!cb.checked) {
@@ -671,7 +588,6 @@
       var msgParts = ["Requested through the website assistant."];
       var fromNode = trail.length ? trail[trail.length - 1] : "welcome";
       var topic = TOPIC_LABELS[fromNode] || "General enquiry";
-      if (lang.value) msgParts.push("Preferred language for the call: " + lang.value + ".");
       if (pendingQuestion) msgParts.push("Their question: " + pendingQuestion);
 
       submit.disabled = true;
@@ -705,15 +621,12 @@
           card.remove();
           track("chat_callback_submitted", {});
           pendingQuestion = null;
-          draft = { name: "", phone: "", time: "", lang: "" };
+          draft = { name: "", phone: "", time: "" };
           // Verbatim from the published FAQ: it states what happens
           // without promising a timeframe, which is not ours to invent.
           addMessage("assistant",
-            "Thanks \u2014 that's sent. A consultant reviews your request and contacts you, ideally during your preferred time. Submitting this is an enquiry, not a commitment to anything.");
-          addOptions([
-            { label: "Ask something else", go: "somethingElse" },
-            { label: "Start again", run: restart }
-          ]);
+            "Thanks, your callback request has been received.");
+          addOptions([{ label: "Start again", run: restart }]);
         })
         .catch(function (err) {
           submit.disabled = false;
@@ -896,14 +809,14 @@
     panel.id = "ndc-chat-panel";
     panel.hidden = true;
     panel.setAttribute("role", "dialog");
-    panel.setAttribute("aria-label", "NDC virtual assistant");
+    panel.setAttribute("aria-label", "NDC Virtual Assistant");
 
     var head = el("div", "chat-head");
     var titleWrap = el("div");
-    titleWrap.appendChild(el("p", "chat-head__title", "NDC Assistant"));
+    titleWrap.appendChild(el("p", "chat-head__title", "NDC Virtual Assistant"));
     // Says plainly that this is not a person. There is no live-agent
     // backend, so anything vaguer would be a lie by omission.
-    titleWrap.appendChild(el("p", "chat-head__sub", "Virtual assistant — not a live agent"));
+    titleWrap.appendChild(el("p", "chat-head__sub", "Automated help — not a live consultant"));
     head.appendChild(titleWrap);
 
     var actions = el("div", "chat-head__actions");

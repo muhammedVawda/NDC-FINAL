@@ -17,7 +17,7 @@ import path from "node:path";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const SITE = "https://ndcsa.co.za";
-const CSS_V = "v=15";
+const CSS_V = "v=17";
 const LOGO_V = "v=3";
 
 const articles = JSON.parse(readFileSync(path.join(ROOT, "assets/data/articles.json"), "utf-8"));
