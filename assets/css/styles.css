@@ -122,16 +122,28 @@
 /* ============ Reset ============ */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: auto;
+  /* Reserve the scrollbar gutter permanently. The mobile menu sets
+     overflow:hidden on <html>, which removes the scrollbar and would
+     otherwise widen the viewport and jog the header and all centred
+     content sideways at the moment the menu opens. */
+  scrollbar-gutter: stable;
+}
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within { scroll-behavior: smooth; }
 }
 /* Any in-page anchor target (e.g. #callback-form, #how-it-works) needs
    enough top margin to clear the sticky header, or the header would
    otherwise cover the first part of the section when jumped to. */
-[id] { scroll-margin-top: 110px; }
+/* Must clear the sticky header, which is now a known constant height:
+   64px logo + 2 * 0.75rem padding + 1px border ~= 89px mobile,
+   96px logo + the same ~= 121px from 62rem up. A little slack on top so
+   a heading never lands flush against the header edge. */
+[id] { scroll-margin-top: 100px; }
 @media (min-width: 62rem) {
-  [id] { scroll-margin-top: 165px; }
+  [id] { scroll-margin-top: 132px; }
 }
 body {
   min-height: 100svh;
@@ -309,9 +321,17 @@ p + p { margin-top: var(--space-sm); }
    never distorted; width follows naturally (~1.31:1). The PNG/WebP carries
    a baked-in alpha fade on its own background margins so it blends into
    the header/footer without a visible rectangle. */
-.brand__mark { height: 80px; width: auto; flex-shrink: 0; }
+/* ONE size per breakpoint, and it never changes on scroll. The header is
+   position: sticky, so it sits in normal flow — resizing it resized the
+   content above the viewport, the browser's scroll anchoring compensated
+   by moving scrollY, and that moved scrollY back across the 24px
+   threshold. Measured: 100 state flips in 2.5s with the user's scroll
+   completely stationary. Height here is the cause, so height is fixed.
+   Width stays auto: the artwork is a 1031x785 stacked lockup and must
+   never be squeezed to a fixed width. */
+.brand__mark { height: 64px; width: auto; flex-shrink: 0; }
 @media (min-width: 62rem) {
-  .brand__mark { height: 128px; width: auto; }
+  .brand__mark { height: 96px; width: auto; }
 }
 .brand__name {
   font-family: var(--font-display);
@@ -352,24 +372,39 @@ p + p { margin-top: var(--space-sm); }
 .primary-nav a[aria-current="page"] { color: var(--color-gold-300); }
 .primary-nav__actions { display: flex; flex-direction: column; gap: var(--space-2xs); margin-top: var(--space-sm); }
 
+/* top was hardcoded to 64px while the header is 89px tall, so the overlay
+   started 25px too high and covered part of the header. --header-h is
+   measured once by nav.js and on resize; the header no longer changes
+   height on scroll, so that value is stable. The literal is a fallback
+   for the first paint before the script runs.
+
+   overscroll-behavior stops a scroll gesture that reaches the end of this
+   panel from chaining through to the page behind it. */
 [data-nav-open="true"] .primary-nav {
   display: block;
   position: fixed;
   inset: 0;
-  top: 64px;
+  top: var(--header-h, 89px);
   background: var(--color-charcoal-900);
   padding: var(--space-md);
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
-@media (min-width: 64rem) {
+/* 70rem (1120px), not 64rem (1024px). Measured: the eight nav items plus
+   the CTA first fit on one row at 1104px — below that they wrapped to two
+   rows and sat 24px from the logo. The burger now takes over before the
+   nav can wrap, which is the point of having one. .mobile-actions and the
+   chat launcher below use the same width so "mobile layout" means one
+   thing everywhere. */
+@media (min-width: 70rem) {
   .nav-toggle { display: none; }
   .primary-nav { display: block; }
   .primary-nav__list { flex-direction: row; align-items: center; gap: var(--space-2xs); flex-wrap: wrap; row-gap: var(--space-3xs); }
   .primary-nav__list a { font-size: 0.92rem; }
   .primary-nav a { padding: var(--space-2xs) var(--space-xs); }
   .primary-nav__actions { flex-direction: row; margin-top: 0; margin-left: var(--space-sm); }
-  [data-nav-open] .primary-nav { position: static; inset: auto; padding: 0; background: transparent; overflow: visible; }
+  [data-nav-open] .primary-nav { position: static; inset: auto; top: auto; padding: 0; background: transparent; overflow: visible; }
 }
 
 /* ============ Hero ============ */
@@ -679,7 +714,7 @@ fieldset legend { font-family: var(--font-display); font-size: var(--fs-md); fon
 }
 .mobile-actions a.is-primary { background: var(--color-gold-500); color: var(--color-charcoal-900); }
 body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
-@media (min-width: 64rem) {
+@media (min-width: 70rem) {
   .mobile-actions { display: none; }
   body[data-has-mobile-bar="true"] { padding-bottom: 0; }
 }
@@ -875,9 +910,9 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
 .chat-launcher svg { width: 20px; height: 20px; color: var(--color-gold-500); }
 /* Clear of the mobile action bar so it never covers those buttons. */
 [data-has-mobile-bar="true"] .chat-launcher { bottom: calc(var(--space-sm) + 4.25rem); }
-/* Must match the breakpoint where .mobile-actions itself hides (64rem),
+/* Must match the breakpoint where .mobile-actions itself hides (70rem),
    or the launcher drops back down onto a still-visible action bar. */
-@media (min-width: 64rem) {
+@media (min-width: 70rem) {
   [data-has-mobile-bar="true"] .chat-launcher { bottom: var(--space-sm); }
 }
 
@@ -1229,27 +1264,19 @@ body[data-has-mobile-bar="true"] { padding-bottom: 64px; }
 /* Header: condenses once the page has moved. Gives back vertical
    space on scroll and makes the sticky bar feel deliberate rather
    than simply stuck. */
+/* The ONLY thing that changes on scroll is a shadow. box-shadow does not
+   participate in layout, so it cannot resize the header, cannot move the
+   content below it, and cannot feed back into scrollY. Nothing here may
+   ever animate padding, height, font-size or position — that is precisely
+   the bug this replaced. `transition: all` is banned on the header for
+   the same reason: it would silently pick up any layout property added
+   later. */
 .site-header {
-  transition:
-    padding-block var(--duration-base) var(--ease-out-soft),
-    box-shadow var(--duration-base) var(--ease-out-soft);
-}
-.site-header__bar {
-  transition: padding-block var(--duration-base) var(--ease-out-soft);
+  transition: box-shadow var(--duration-base) var(--ease-out-soft);
 }
 .site-header[data-scrolled="true"] {
   box-shadow: 0 6px 24px -12px rgba(0, 0, 0, 0.6);
 }
-.site-header[data-scrolled="true"] .site-header__bar {
-  padding-block: calc(var(--space-xs) * 0.4);
-}
-.site-header[data-scrolled="true"] .brand__mark {
-  height: 62px;
-}
-@media (min-width: 62rem) {
-  .site-header[data-scrolled="true"] .brand__mark { height: 92px; }
-}
-.brand__mark { transition: height var(--duration-base) var(--ease-out-soft); }
 
 /* Hero: a short entrance sequence, then it stops. The logo keeps
    its existing animation; these are the text/CTA layers. */
