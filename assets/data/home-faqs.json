@@ -1,0 +1,53 @@
+{
+  "_note": "Single source for the homepage FAQ accordion AND its FAQPage JSON-LD (scripts/build-site.mjs generates both from this file, so they always match word for word). Plain text only: no HTML, no links. Edit here, then run `npm run site:build`. Do not add timeframes, fee amounts, savings figures or success rates unless the business has confirmed them.",
+  "faqs": [
+    {
+      "q": "What is debt counselling?",
+      "a": "Debt counselling, also called debt review, is a formal process under the National Credit Act for people who can no longer comfortably keep up with their credit repayments. A debt counsellor registered with the National Credit Regulator, such as NDC (NCRDC4382), assesses your income, living costs and debts and, if you are over-indebted, works with your creditors on a repayment arrangement you can manage."
+    },
+    {
+      "q": "How does debt review work?",
+      "a": "There are three stages. Assessment: we review your income, living costs and debts to see whether debt review suits you. Negotiation: if it does, we negotiate with your creditors on a restructured repayment plan. Implementation: the agreed plan starts and your debts are repaid through one consolidated monthly payment. Whether it goes ahead, and on what terms, depends on your circumstances and your creditors’ responses."
+    },
+    {
+      "q": "Benefits of debt review?",
+      "a": "Debt review aims to negotiate lower interest rates and to give you one consolidated monthly payment instead of many. While you keep to the plan, creditors are generally restricted from taking further legal action against you. Lower interest and smaller instalments are not guaranteed: they depend on what each creditor agrees."
+    },
+    {
+      "q": "What is debt mediation?",
+      "a": "Debt mediation is an informal route for debt that is still manageable. We talk to your creditors directly to agree arrangements you can keep up with, aiming to protect your credit profile and avoid legal action. Unlike debt review, it does not carry formal legal protection, and a creditor can decline a proposal."
+    },
+    {
+      "q": "How long does debt review take?",
+      "a": "It depends on how much you owe, what you can afford each month and what your creditors agree to, so we cannot give a single figure. At your assessment, a consultant will explain what to expect in your situation."
+    },
+    {
+      "q": "Will it affect my credit score?",
+      "a": "Your credit score may dip at first, because being under debt review is recorded on your credit profile. As your debts reduce and you keep to the plan, your score can improve. Once you receive a clearance certificate, the debt review flag is removed."
+    },
+    {
+      "q": "How much does it cost?",
+      "a": "Costs depend on your situation, so we do not publish fixed amounts. Your assessment is free, and a full breakdown of the costs is given at your first consultation, before you commit to anything."
+    },
+    {
+      "q": "What if I miss a payment?",
+      "a": "Missing a payment can extend the length of the process or add fees, so please contact us as early as you can. If something has changed in your finances, tell us before a payment is missed and we will explain your options."
+    },
+    {
+      "q": "Can I apply for new credit during debt review?",
+      "a": "No. New credit is generally not available to you while you are under debt review. If you have an urgent need, speak to your consultant before you apply for anything."
+    },
+    {
+      "q": "Can debt review status be removed?",
+      "a": "Yes, but only through the proper route. Debt review can be cleared once your debts are settled and a registered debt counsellor issues a clearance certificate, or in some cases when your circumstances improve significantly and the legal requirements are met. An improved income alone does not remove it automatically, and approval is not guaranteed. Our Debt Review Removal service explains the options and what applies to you."
+    },
+    {
+      "q": "Not sure debt review is right for me?",
+      "a": "That is what the free assessment is for. A consultant looks at your numbers and explains which option, if any, suits you: debt review, debt mediation or neither. You can also try our budget calculator first, with no contact details needed."
+    },
+    {
+      "q": "How do I contact NDC?",
+      "a": "Call (021) 054 1141, email marketing@ndcsa.co.za, or request a callback using the form on this page. Our office is at Buchanan Square, 160 Sir Lowry Rd, Woodstock, Cape Town, 7915."
+    }
+  ]
+}

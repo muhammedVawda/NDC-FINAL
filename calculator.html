@@ -2,7 +2,7 @@
 <html lang="en-ZA">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Budget &amp; Debt Calculator | National Debt Consultants</title>
 <meta name="description" content="A free budget and debt calculator. See whether your income covers your essential expenses and debt repayments — no contact details needed.">
 <link rel="canonical" href="https://ndcsa.co.za/calculator.html">
@@ -29,7 +29,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>(function(){try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("js-motion");}}catch(e){}})();</script>
-<link rel="stylesheet" href="/assets/css/styles.css?v=20">
+<link rel="preload" as="image" type="image/webp" href="/assets/img/ndc-logo-h96.webp?v=4" imagesrcset="/assets/img/ndc-logo-h96.webp?v=4 1x, /assets/img/ndc-logo-h192.webp?v=4 2x, /assets/img/ndc-logo-h288.webp?v=4 3x" media="(min-width: 62rem)" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" href="/assets/img/ndc-logo-h64.webp?v=4" imagesrcset="/assets/img/ndc-logo-h64.webp?v=4 1x, /assets/img/ndc-logo-h128.webp?v=4 2x, /assets/img/ndc-logo-h192.webp?v=4 3x" media="(max-width: 61.99rem)" fetchpriority="high">
+<link rel="stylesheet" href="/assets/css/styles.css?v=23">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -51,15 +53,16 @@
 }
 </script>
 </head>
-<body data-page="calculator">
+<body data-page="calculator" data-has-mobile-bar="true">
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <header class="site-header" data-site-header data-nav-open="false">
   <div class="wrap site-header__bar">
     <a class="brand" href="/">
       <picture>
-        <source srcset="/assets/img/ndc-logo-header.webp?v=3" type="image/webp">
-        <img class="brand__mark" src="/assets/img/ndc-logo-header.png?v=3" alt="National Debt Consultants" width="1031" height="785" loading="eager">
+        <source media="(min-width: 62rem)" type="image/webp" srcset="/assets/img/ndc-logo-h96.webp?v=4 1x, /assets/img/ndc-logo-h192.webp?v=4 2x, /assets/img/ndc-logo-h288.webp?v=4 3x">
+        <source type="image/webp" srcset="/assets/img/ndc-logo-h64.webp?v=4 1x, /assets/img/ndc-logo-h128.webp?v=4 2x, /assets/img/ndc-logo-h192.webp?v=4 3x">
+        <img class="brand__mark" src="/assets/img/ndc-logo-h192.png?v=4" width="205" height="192" alt="National Debt Consultants logo" loading="eager" decoding="async" fetchpriority="high">
       </picture>
     </a>
     <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
@@ -94,169 +97,96 @@
   <section class="section--tight surface-dark-alt">
     <div class="wrap">
       <p class="eyebrow">Budget &amp; Debt Calculator</p>
-      <h1>See where your money is really going</h1>
-      <p class="lede">Answer four short sets of questions. Your results appear straight away — no contact details needed. This gives you a budget summary, not a formal debt review proposal.</p>
+      <h1>See where your money goes each month</h1>
+      <p class="lede">Enter three amounts and your estimate appears straight away. Nothing you type is sent anywhere unless you submit a form, and a consultant confirms your numbers with you.</p>
     </div>
   </section>
 
   <section class="section--tight">
-    <div class="wrap" style="max-width: 42rem;">
-      <p class="visually-hidden" aria-live="polite" data-calc-live></p>
-
-      <ol class="calc-progress" data-calc-progress>
-        <li data-state="current"><div class="track"><span></span></div>Income</li>
-        <li><div class="track"><span></span></div>Expenses</li>
-        <li><div class="track"><span></span></div>Debts</li>
-        <li><div class="track"><span></span></div>Results</li>
-      </ol>
-
-      <form data-calculator novalidate>
+    <div class="wrap calc-layout">
+      <form class="card calc-form" data-calc novalidate>
         <span id="currency-hint" class="visually-hidden">Amount in South African Rand</span>
+        <p class="hint">Use monthly amounts in Rand. Leave a box blank if it does not apply.</p>
 
-        <section class="calc-step" data-step="1" data-active="true">
-          <h2>Your income</h2>
-          <p class="hint">Use amounts after tax — what actually lands in your account.</p>
+        <div class="field" data-field="income">
+          <label for="calc-income">Monthly take-home pay</label>
+          <div class="currency-input">
+            <span class="prefix" aria-hidden="true">R</span>
+            <input type="text" inputmode="decimal" id="calc-income" name="income" autocomplete="off" aria-describedby="calc-income-hint calc-income-error currency-hint">
+          </div>
+          <p class="hint" id="calc-income-hint">What lands in your account after tax.</p>
+          <p class="warning" id="calc-income-warning" role="status"></p>
+          <p class="error" id="calc-income-error" role="alert"></p>
+        </div>
 
-          <div class="field" data-field="takeHome">
-            <label for="calc-takeHome">Monthly take-home pay</label>
-            <div class="currency-input">
-              <span class="prefix" aria-hidden="true">R</span>
-              <input type="text" inputmode="decimal" id="calc-takeHome" name="takeHome" autocomplete="off" aria-describedby="calc-takeHome-error currency-hint" required>
+        <div class="field" data-field="living">
+          <label for="calc-living">Monthly living costs</label>
+          <div class="currency-input">
+            <span class="prefix" aria-hidden="true">R</span>
+            <input type="text" inputmode="decimal" id="calc-living" name="living" autocomplete="off" aria-describedby="calc-living-hint calc-living-error currency-hint">
+          </div>
+          <p class="hint" id="calc-living-hint">Everyday costs only, not loan or credit repayments.</p>
+          <p class="warning" id="calc-living-warning" role="status"></p>
+          <p class="error" id="calc-living-error" role="alert"></p>
+        </div>
+
+        <div class="field" data-field="debt">
+          <label for="calc-debt">Monthly debt repayments</label>
+          <div class="currency-input">
+            <span class="prefix" aria-hidden="true">R</span>
+            <input type="text" inputmode="decimal" id="calc-debt" name="debt" autocomplete="off" aria-describedby="calc-debt-hint calc-debt-error currency-hint">
+          </div>
+          <p class="hint" id="calc-debt-hint">What you pay each month, not the total you owe.</p>
+          <p class="warning" id="calc-debt-warning" role="status"></p>
+          <p class="error" id="calc-debt-error" role="alert"></p>
+        </div>
+
+        <details class="calc-help">
+          <summary>Not sure what to include?</summary>
+          <div class="calc-help__body">
+            <div>
+              <h2>Living costs</h2>
+              <ul class="stack">
+                <li>Food and clothing</li>
+                <li>Rent or bond</li>
+                <li>Water, electricity and rates</li>
+                <li>Insurance</li>
+                <li>Transport</li>
+                <li>Medical costs</li>
+                <li>Phone and internet</li>
+                <li>Security</li>
+                <li>School fees</li>
+                <li>Maintenance</li>
+              </ul>
             </div>
-            <p class="warning" role="status"></p>
-            <p class="error" id="calc-takeHome-error" role="alert"></p>
-          </div>
-
-          <div class="field" data-field="otherIncome">
-            <label for="calc-otherIncome">Other regular monthly income (optional)</label>
-            <div class="currency-input">
-              <span class="prefix" aria-hidden="true">R</span>
-              <input type="text" inputmode="decimal" id="calc-otherIncome" name="otherIncome" autocomplete="off" aria-describedby="calc-otherIncome-hint currency-hint">
+            <div>
+              <h2>Debt repayments</h2>
+              <ul class="stack">
+                <li>Home loan</li>
+                <li>Vehicle finance</li>
+                <li>Credit cards</li>
+                <li>Store cards</li>
+                <li>Furniture accounts</li>
+                <li>Overdraft</li>
+                <li>Personal loans</li>
+              </ul>
             </div>
-            <p class="hint" id="calc-otherIncome-hint">Maintenance, rental or side income. Leave blank if none.</p>
-            <p class="warning" role="status"></p>
-            <p class="error" role="alert"></p>
+            <p class="hint">Count each amount once. If your bond payment is in debt repayments, leave it out of living costs.</p>
           </div>
+        </details>
 
-          <div class="calc-actions">
-            <span></span>
-            <button type="button" class="btn btn-gold" data-step-next>Next: Expenses</button>
-          </div>
-        </section>
-
-        <section class="calc-step" data-step="2">
-          <h2>Living expenses</h2>
-          <p class="hint">Enter essential monthly costs only. If something is already a loan or credit repayment, don&rsquo;t add it here — you&rsquo;ll enter it under &ldquo;Debts&rdquo; on the next step, so nothing gets counted twice. Categories that don&rsquo;t apply to you can stay blank.</p>
-
-          <div class="field" data-field="housing">
-            <label for="calc-housing">Rent, rates and levies</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-housing" name="housing" autocomplete="off"></div>
-            <p class="hint">Not your bond repayment — that goes under Debts.</p>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-          <div class="field" data-field="utilities">
-            <label for="calc-utilities">Water and electricity</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-utilities" name="utilities" autocomplete="off"></div>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-          <div class="field" data-field="groceries">
-            <label for="calc-groceries">Groceries and household supplies</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-groceries" name="groceries" autocomplete="off"></div>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-          <div class="field" data-field="transport">
-            <label for="calc-transport">Transport</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-transport" name="transport" autocomplete="off"></div>
-            <p class="hint">Fuel, public transport or e-hailing — not a vehicle finance instalment.</p>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-          <div class="field" data-field="insurance">
-            <label for="calc-insurance">Insurance and medical aid</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-insurance" name="insurance" autocomplete="off"></div>
-            <p class="hint">Not credit life cover linked to a specific loan.</p>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-          <div class="field" data-field="communication">
-            <label for="calc-communication">Cellphone and internet</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-communication" name="communication" autocomplete="off"></div>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-          <div class="field" data-field="educationChildcare">
-            <label for="calc-educationChildcare">School fees and childcare</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-educationChildcare" name="educationChildcare" autocomplete="off"></div>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-          <div class="field" data-field="otherExpenses">
-            <label for="calc-otherExpenses">Other essential living expenses (optional)</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-otherExpenses" name="otherExpenses" autocomplete="off"></div>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-
-          <div class="calc-actions">
-            <button type="button" class="btn btn-outline" data-step-back>Back</button>
-            <button type="button" class="btn btn-gold" data-step-next>Next: Debts</button>
-          </div>
-        </section>
-
-        <section class="calc-step" data-step="3">
-          <h2>Debt repayments</h2>
-          <p class="hint">Enter the current MONTHLY repayment for each type of debt — not the total balance you still owe. Leave a category blank if it doesn&rsquo;t apply.</p>
-
-          <div class="field" data-field="homeLoan">
-            <label for="calc-homeLoan">Home loan / bond instalment</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-homeLoan" name="homeLoan" autocomplete="off"></div>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-          <div class="field" data-field="vehicleFinance">
-            <label for="calc-vehicleFinance">Vehicle finance instalment</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-vehicleFinance" name="vehicleFinance" autocomplete="off"></div>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-          <div class="field" data-field="creditCards">
-            <label for="calc-creditCards">Credit card repayments</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-creditCards" name="creditCards" autocomplete="off"></div>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-          <div class="field" data-field="storeCards">
-            <label for="calc-storeCards">Store or retail account repayments</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-storeCards" name="storeCards" autocomplete="off"></div>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-          <div class="field" data-field="personalLoans">
-            <label for="calc-personalLoans">Personal loan repayments</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-personalLoans" name="personalLoans" autocomplete="off"></div>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-          <div class="field" data-field="otherDebt">
-            <label for="calc-otherDebt">Other debt repayments</label>
-            <div class="currency-input"><span class="prefix" aria-hidden="true">R</span><input aria-describedby="currency-hint" type="text" inputmode="decimal" id="calc-otherDebt" name="otherDebt" autocomplete="off"></div>
-            <p class="hint">Student loans, garnishee/emolument orders, or any other credit agreement.</p>
-            <p class="warning" role="status"></p><p class="error" role="alert"></p>
-          </div>
-
-          <div class="calc-actions">
-            <button type="button" class="btn btn-outline" data-step-back>Back</button>
-            <button type="submit" class="btn btn-gold">See my results</button>
-          </div>
-        </section>
-
-        <section class="calc-step" data-step="4">
-          <h2>Your results</h2>
-          <div data-calc-results></div>
-
-          <div class="calc-actions">
-            <button type="button" class="btn btn-outline" data-step-edit>Edit my answers</button>
-            <button type="button" class="btn btn-ghost" data-step-reset>Start over</button>
-          </div>
-
-          <div class="card" style="margin-top: var(--space-lg);">
-            <h3>Want to talk it through?</h3>
-            <p>You can request a callback with no obligation. We won&rsquo;t see the numbers you entered above — only what you choose to share in the form.</p>
-            <a class="btn btn-gold" href="/contact.html?ref=calculator">Request a callback</a>
-          </div>
-        </section>
-
+        <button type="button" class="btn btn-ghost" data-calc-reset hidden>Clear and start again</button>
       </form>
+
+      <div class="calc-output">
+        <div data-calc-results>
+          <div class="card calc-placeholder" data-calc-placeholder>
+            <h2>Your estimate</h2>
+            <p>Enter your take-home pay and your living costs or debt repayments to see what is left each month.</p>
+          </div>
+        </div>
+        <p class="visually-hidden" role="status" data-calc-sr></p>
+      </div>
     </div>
   </section>
 </main>
@@ -265,25 +195,30 @@
   <div class="wrap footer-grid">
     <div>
       <a class="brand" href="/" style="color: var(--color-on-dark);">
-        <picture>
-        <source srcset="/assets/img/ndc-logo-header.webp?v=3" type="image/webp">
-        <img class="brand__mark" src="/assets/img/ndc-logo-header.png?v=3" alt="National Debt Consultants" width="1031" height="785" loading="eager">
+      <picture>
+        <source type="image/webp" srcset="/assets/img/ndc-logo-h108.webp?v=4 1x, /assets/img/ndc-logo-h216.webp?v=4 2x, /assets/img/ndc-logo-h324.webp?v=4 3x">
+        <img class="brand__mark" src="/assets/img/ndc-logo-h192.png?v=4" width="205" height="192" alt="National Debt Consultants logo" loading="lazy" decoding="async">
       </picture>
       </a>
-      <p class="disclosure-note" style="margin-top: var(--space-sm);">This calculator gives a general budget summary based on what you enter. It is not a formal debt review proposal or financial advice.</p>
-      <div class="footer-ncr">
-        <p>NCR debt counsellor registration number: <strong>NCR DC 4382</strong></p>
-      </div>
-      <div class="footer-contact">
-        <a href="tel:+27210541141">021 054 1141</a>
-        <a href="mailto:Marketing@ndcsa.co.za">Marketing@ndcsa.co.za</a>
-      </div>
+      <p class="disclosure-note" style="margin-top: var(--space-sm);">Plain-language guidance on debt review, debt mediation and debt review removal for South African consumers.</p>
+      <address class="footer-contact">
+        <a href="tel:+27210541141">(021) 054 1141</a>
+        <a href="mailto:marketing@ndcsa.co.za">marketing@ndcsa.co.za</a>
+        <a href="https://maps.app.goo.gl/bq5FtkSw6TrXPfzp9" target="_blank" rel="noopener noreferrer">Buchanan Square, 160 Sir Lowry Rd, Woodstock, Cape Town, 7915<span class="visually-hidden"> (opens map in a new tab)</span></a>
+      </address>
+      <ul class="footer-social" aria-label="National Debt Consultants on social media">
+          <li><a href="https://www.facebook.com/nationaldebtconsultants" target="_blank" rel="noopener noreferrer" aria-label="NDC on Facebook (opens in a new tab)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></li>
+          <li><a href="https://www.instagram.com/national.debt.consultants/" target="_blank" rel="noopener noreferrer" aria-label="NDC on Instagram (opens in a new tab)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.4A4 4 0 1 1 12.6 8 4 4 0 0 1 16 11.4z"/><path d="M17.5 6.5h.01"/></svg></a></li>
+          <li><a href="https://www.linkedin.com/company/national-debt-consultants/" target="_blank" rel="noopener noreferrer" aria-label="NDC on LinkedIn (opens in a new tab)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></li>
+      </ul>
     </div>
     <div>
       <h2>Explore</h2>
       <ul>
         <li><a href="/#how-it-works">How it works</a></li>
         <li><a href="/about.html">About NDC</a></li>
+        <li><a href="/debt-advice/">Debt advice</a></li>
+        <li><a href="/calculator.html">Budget calculator</a></li>
         <li><a href="/faqs.html">FAQs</a></li>
         <li><a href="/contact.html">Contact</a></li>
       </ul>
@@ -291,9 +226,9 @@
     <div>
       <h2>Services</h2>
       <ul>
-        <li><a href="/debt-review.html">Debt review</a></li>
-        <li><a href="/debt-mediation.html">Debt mediation</a></li>
-        <li><a href="/debt-review-removal.html">Debt review removal</a></li>
+        <li><a href="/debt-review.html">Debt Review</a></li>
+        <li><a href="/debt-mediation.html">Debt Mediation</a></li>
+        <li><a href="/debt-review-removal.html">Debt Review Removal</a></li>
       </ul>
     </div>
     <div>
@@ -301,6 +236,7 @@
       <ul>
         <li><a href="/privacy-policy.html">Privacy policy</a></li>
         <li><a href="/terms.html">Terms of use</a></li>
+        <li><a href="https://ndcsa.co.za/job-openings/">Careers</a></li>
       </ul>
     </div>
   </div>
@@ -321,20 +257,29 @@
 
   <div class="wrap footer-lang" data-lang-mount></div>
 
+  <div class="wrap footer-legal">
+    <p>National Debt Consultants is a debt counsellor registered with the National Credit Regulator (NCRDC4382) under the National Credit Act 34 of 2005. Outcomes depend on your circumstances and your creditors&rsquo; responses. Fees are explained at your consultation. Personal information is processed in line with POPIA &mdash; see our <a href="/privacy-policy.html">Privacy Policy</a>. This website offers general information, not financial or legal advice.</p>
+  </div>
+
   <div class="wrap footer-bottom">
-    <p>&copy; <span data-year>2026</span> National Debt Consultants. All rights reserved.</p>
-    <p><a href="/contact.html">Get in touch</a></p>
-    <p class="footer-credit">Powered By Telepride (Pty) Ltd</p>
+    <p>&copy; <span data-year>2026</span> National Debt Consultants. <span class="footer-credit">Powered by Telepride (Pty) Ltd.</span></p>
+    <p class="footer-regulated">Regulated by the NCR &middot; <strong>NCRDC4382</strong></p>
   </div>
 </footer>
 
-<script src="/assets/js/nav.js?v=20" defer></script>
-<script src="/assets/js/budget-engine.js?v=20"></script>
-<script src="/assets/js/calculator.js?v=20" defer></script>
-<script src="/assets/js/analytics.js?v=20" defer></script>
-<script src="/assets/js/motion.js?v=20" defer></script>
-<script src="/assets/js/lang.js?v=20" defer></script>
-<script src="/assets/js/chat.js?v=20" defer></script>
+<nav class="mobile-actions" aria-label="Quick contact">
+    <a href="tel:+27210541141">Call us</a>
+    <a class="is-primary" href="/#callback-form">Call me back</a>
+  </nav>
+
+<script src="/assets/js/nav.js?v=23" defer></script>
+<script src="/assets/js/budget-engine.js?v=23"></script>
+<script src="/assets/js/calculator.js?v=23" defer></script>
+<script src="/assets/js/analytics.js?v=23" defer></script>
+<script src="/assets/js/motion.js?v=23" defer></script>
+<script src="/assets/js/lang.js?v=23" defer></script>
+<script src="/assets/js/sa-validate.js?v=23" defer></script>
+<script src="/assets/js/chat.js?v=23" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function(el){ el.textContent = new Date().getFullYear(); });</script>
 </body>
 </html>

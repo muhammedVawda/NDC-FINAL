@@ -2,7 +2,7 @@
 <html lang="en-ZA">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>How Inflation Affects Household Debt</title>
 <meta name="description" content="Inflation quietly changes what your salary covers. Here's the mechanism, in plain language, and what it means if you're already repaying debt.">
 <link rel="canonical" href="https://ndcsa.co.za/debt-advice/how-inflation-affects-household-debt.html">
@@ -22,14 +22,16 @@
 <meta name="twitter:image" content="https://ndcsa.co.za/assets/img/og-image.png">
 <meta name="theme-color" content="#09161D">
 <link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/assets/img/favicon-32.png?v=3" type="image/png" sizes="32x32">
-<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=3">
+<link rel="icon" href="/assets/img/favicon-32.png?v=4" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=4">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>(function(){try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("js-motion");}}catch(e){}})();</script>
-<link rel="stylesheet" href="/assets/css/styles.css?v=20">
+<link rel="preload" as="image" type="image/webp" href="/assets/img/ndc-logo-h96.webp?v=4" imagesrcset="/assets/img/ndc-logo-h96.webp?v=4 1x, /assets/img/ndc-logo-h192.webp?v=4 2x, /assets/img/ndc-logo-h288.webp?v=4 3x" media="(min-width: 62rem)" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" href="/assets/img/ndc-logo-h64.webp?v=4" imagesrcset="/assets/img/ndc-logo-h64.webp?v=4 1x, /assets/img/ndc-logo-h128.webp?v=4 2x, /assets/img/ndc-logo-h192.webp?v=4 3x" media="(max-width: 61.99rem)" fetchpriority="high">
+<link rel="stylesheet" href="/assets/css/styles.css?v=22">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -74,8 +76,9 @@
   <div class="wrap site-header__bar">
     <a class="brand" href="/">
       <picture>
-        <source srcset="/assets/img/ndc-logo-header.webp?v=3" type="image/webp">
-        <img class="brand__mark" src="/assets/img/ndc-logo-header.png?v=3" alt="National Debt Consultants" width="1031" height="785" loading="eager">
+        <source media="(min-width: 62rem)" type="image/webp" srcset="/assets/img/ndc-logo-h96.webp?v=4 1x, /assets/img/ndc-logo-h192.webp?v=4 2x, /assets/img/ndc-logo-h288.webp?v=4 3x">
+        <source type="image/webp" srcset="/assets/img/ndc-logo-h64.webp?v=4 1x, /assets/img/ndc-logo-h128.webp?v=4 2x, /assets/img/ndc-logo-h192.webp?v=4 3x">
+        <img class="brand__mark" src="/assets/img/ndc-logo-h192.png?v=4" width="205" height="192" alt="National Debt Consultants logo" loading="eager" decoding="async" fetchpriority="high">
       </picture>
     </a>
     <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
@@ -202,24 +205,28 @@
   <div class="wrap footer-grid">
     <div>
       <a class="brand" href="/" style="color: var(--color-on-dark);">
-        <picture>
-        <source srcset="/assets/img/ndc-logo-header.webp?v=3" type="image/webp">
-        <img class="brand__mark" src="/assets/img/ndc-logo-header.png?v=3" alt="National Debt Consultants" width="1031" height="785" loading="eager">
+      <picture>
+        <source type="image/webp" srcset="/assets/img/ndc-logo-h108.webp?v=4 1x, /assets/img/ndc-logo-h216.webp?v=4 2x, /assets/img/ndc-logo-h324.webp?v=4 3x">
+        <img class="brand__mark" src="/assets/img/ndc-logo-h192.png?v=4" width="205" height="192" alt="National Debt Consultants logo" loading="lazy" decoding="async">
       </picture>
       </a>
       <p class="disclosure-note" style="margin-top: var(--space-sm);">Plain-language guidance on debt review, debt mediation and debt review removal for South African consumers.</p>
-      <div class="footer-ncr">
-        <p>NCR debt counsellor registration number: <strong>NCR DC 4382</strong></p>
-      </div>
-      <div class="footer-contact">
-        <a href="tel:+27210541141">021 054 1141</a>
-        <a href="mailto:Marketing@ndcsa.co.za">Marketing@ndcsa.co.za</a>
-      </div>
+      <address class="footer-contact">
+        <a href="tel:+27210541141">(021) 054 1141</a>
+        <a href="mailto:marketing@ndcsa.co.za">marketing@ndcsa.co.za</a>
+        <a href="https://maps.app.goo.gl/bq5FtkSw6TrXPfzp9" target="_blank" rel="noopener noreferrer">Buchanan Square, 160 Sir Lowry Rd, Woodstock, Cape Town, 7915<span class="visually-hidden"> (opens map in a new tab)</span></a>
+      </address>
+      <ul class="footer-social" aria-label="National Debt Consultants on social media">
+          <li><a href="https://www.facebook.com/nationaldebtconsultants" target="_blank" rel="noopener noreferrer" aria-label="NDC on Facebook (opens in a new tab)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></li>
+          <li><a href="https://www.instagram.com/national.debt.consultants/" target="_blank" rel="noopener noreferrer" aria-label="NDC on Instagram (opens in a new tab)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.4A4 4 0 1 1 12.6 8 4 4 0 0 1 16 11.4z"/><path d="M17.5 6.5h.01"/></svg></a></li>
+          <li><a href="https://www.linkedin.com/company/national-debt-consultants/" target="_blank" rel="noopener noreferrer" aria-label="NDC on LinkedIn (opens in a new tab)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></li>
+      </ul>
     </div>
     <div>
       <h2>Explore</h2>
       <ul>
         <li><a href="/#how-it-works">How it works</a></li>
+        <li><a href="/about.html">About NDC</a></li>
         <li><a href="/debt-advice/">Debt advice</a></li>
         <li><a href="/calculator.html">Budget calculator</a></li>
         <li><a href="/faqs.html">FAQs</a></li>
@@ -229,9 +236,9 @@
     <div>
       <h2>Services</h2>
       <ul>
-        <li><a href="/debt-review.html">Debt review</a></li>
-        <li><a href="/debt-mediation.html">Debt mediation</a></li>
-        <li><a href="/debt-review-removal.html">Debt review removal</a></li>
+        <li><a href="/debt-review.html">Debt Review</a></li>
+        <li><a href="/debt-mediation.html">Debt Mediation</a></li>
+        <li><a href="/debt-review-removal.html">Debt Review Removal</a></li>
       </ul>
     </div>
     <div>
@@ -239,6 +246,7 @@
       <ul>
         <li><a href="/privacy-policy.html">Privacy policy</a></li>
         <li><a href="/terms.html">Terms of use</a></li>
+        <li><a href="https://ndcsa.co.za/job-openings/">Careers</a></li>
       </ul>
     </div>
   </div>
@@ -259,21 +267,26 @@
 
   <div class="wrap footer-lang" data-lang-mount></div>
 
+  <div class="wrap footer-legal">
+    <p>National Debt Consultants is a debt counsellor registered with the National Credit Regulator (NCRDC4382) under the National Credit Act 34 of 2005. Outcomes depend on your circumstances and your creditors&rsquo; responses. Fees are explained at your consultation. Personal information is processed in line with POPIA &mdash; see our <a href="/privacy-policy.html">Privacy Policy</a>. This website offers general information, not financial or legal advice.</p>
+  </div>
+
   <div class="wrap footer-bottom">
-    <p>&copy; <span data-year>2026</span> National Debt Consultants. All rights reserved.</p>
-    <p class="footer-credit">Powered By Telepride (Pty) Ltd</p>
+    <p>&copy; <span data-year>2026</span> National Debt Consultants. <span class="footer-credit">Powered by Telepride (Pty) Ltd.</span></p>
+    <p class="footer-regulated">Regulated by the NCR &middot; <strong>NCRDC4382</strong></p>
   </div>
 </footer>
-<nav class="mobile-actions" aria-label="Quick actions">
-  <a href="/calculator.html" class="is-primary">Check my budget</a>
-  <a href="/contact.html">Request a callback</a>
-</nav>
+<nav class="mobile-actions" aria-label="Quick contact">
+    <a href="tel:+27210541141">Call us</a>
+    <a class="is-primary" href="/#callback-form">Call me back</a>
+  </nav>
 
-<script src="/assets/js/nav.js?v=20" defer></script>
-<script src="/assets/js/analytics.js?v=20" defer></script>
-<script src="/assets/js/motion.js?v=20" defer></script>
-<script src="/assets/js/lang.js?v=20" defer></script>
-<script src="/assets/js/chat.js?v=20" defer></script>
+<script src="/assets/js/nav.js?v=22" defer></script>
+<script src="/assets/js/analytics.js?v=22" defer></script>
+<script src="/assets/js/motion.js?v=22" defer></script>
+<script src="/assets/js/lang.js?v=22" defer></script>
+<script src="/assets/js/sa-validate.js?v=22" defer></script>
+<script src="/assets/js/chat.js?v=22" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function(el){ el.textContent = new Date().getFullYear(); });</script>
 </body>
 </html>

@@ -3,12 +3,12 @@
     "name": "National Debt Consultants",
     "shortName": "NDC",
     "tagline": "we get your debt",
-    "phone": "021 054 1141",
+    "phone": "(021) 054 1141",
     "phoneHref": "tel:+27210541141",
-    "email": "Marketing@ndcsa.co.za",
-    "emailHref": "mailto:Marketing@ndcsa.co.za",
-    "address": "Buchanan Square Building, 160 Sir Lowry Road, Woodstock, Cape Town, 7915, South Africa",
-    "ncr": "NCR DC 4382",
+    "email": "marketing@ndcsa.co.za",
+    "emailHref": "mailto:marketing@ndcsa.co.za",
+    "address": "Buchanan Square, 160 Sir Lowry Rd, Woodstock, Cape Town, 7915",
+    "ncr": "NCRDC4382",
     "contactUrl": "/contact.html",
     "callbackUrl": "/#callback-form",
     "calculatorUrl": "/calculator.html"
@@ -19,14 +19,14 @@
       "type": "company",
       "title": "How to contact National Debt Consultants",
       "url": "/contact.html",
-      "text": "You can reach National Debt Consultants by phone on 021 054 1141, by email at Marketing@ndcsa.co.za, or by requesting a callback through the contact form on this website. Our address is Buchanan Square Building, 160 Sir Lowry Road, Woodstock, Cape Town, 7915, South Africa. Requesting a callback is an enquiry, not a commitment to anything — a consultant reviews your request and contacts you."
+      "text": "You can reach National Debt Consultants by phone on (021) 054 1141, by email at marketing@ndcsa.co.za, or by requesting a callback through the contact form on this website. Our address is Buchanan Square, 160 Sir Lowry Rd, Woodstock, Cape Town, 7915. Requesting a callback is an enquiry, not a commitment to anything — a consultant reviews your request and contacts you."
     },
     {
       "id": "company-about",
       "type": "company",
       "title": "About National Debt Consultants",
       "url": "/about.html",
-      "text": "National Debt Consultants (NDC) helps South Africans understand their budget and debt options — debt review, debt mediation and debt review removal. Our NCR debt counsellor registration number is NCR DC 4382. We provide general information and guidance; nothing on the site is financial or legal advice for your specific circumstances."
+      "text": "National Debt Consultants (NDC) helps South Africans understand their budget and debt options — debt review, debt mediation and debt review removal. Our NCR debt counsellor registration number is NCRDC4382. We provide general information and guidance; nothing on the site is financial or legal advice for your specific circumstances."
     },
     {
       "id": "svc-debt-review",

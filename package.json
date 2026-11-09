@@ -1,0 +1,13 @@
+{
+  "name": "ndc-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "National Debt Consultants website: static HTML/CSS/JS pages plus small serverless functions. No framework, no runtime dependencies.",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "site:build": "node scripts/build-site.mjs && node scripts/build-blog.mjs",
+    "test": "node scripts/test-calculator.mjs && node scripts/test-validators.mjs && node scripts/test-contact-api.mjs && node scripts/check-site.mjs",
+    "test:browser": "node scripts/test-browser.mjs && node scripts/test-chat.mjs",
+    "lint": "npx --yes eslint@9 ."
+  }
+}

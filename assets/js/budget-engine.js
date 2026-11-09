@@ -118,8 +118,8 @@
 
     var parts = normalized.split(".");
     var wholePart = parts[0] || "0";
-    var fracPart = (parts[1] || "").padEnd(2, "0").slice(0, 2);
-    var cents = parseInt(wholePart, 10) * 100 + parseInt(fracPart || "0", 10);
+    var centsPart = (parts[1] || "").padEnd(2, "0").slice(0, 2);
+    var cents = parseInt(wholePart, 10) * 100 + parseInt(centsPart || "0", 10);
 
     if (!Number.isFinite(cents) || Number.isNaN(cents)) {
       return { valid: false, empty: false, cents: null, large: false, reason: "nonnumeric" };
@@ -216,7 +216,60 @@
     };
   }
 
+  /** Below this share of income left after repayments, the budget is "tight". */
+  var TIGHT_PERCENT = 10;
+
+  /**
+   * The simple three-figure estimate shown on the calculator page.
+   *
+   * Inputs are integer cents (from parseCurrency):
+   *   incomeCents  monthly take-home pay
+   *   livingCents  monthly living costs
+   *   debtCents    monthly debt REPAYMENTS (not balances owed)
+   *
+   * Outputs, all integer cents except debtPercent:
+   *   leftAfterLivingCents = income - living
+   *   surplusCents         = income - living - debt   (negative = shortfall)
+   *   debtPercent          = debt as a whole % of income, or null if income <= 0
+   *   state                "empty" | "shortfall" | "tight" | "ok"
+   *     empty      nothing entered
+   *     shortfall  surplus < 0
+   *     tight      0 <= surplus and surplus < 10% of income
+   *     ok         surplus >= 10% of income
+   *
+   * Pure integer arithmetic until the single rounding for the percentage, so
+   * there are no floating-point display artefacts. No savings, interest or
+   * eligibility is calculated or implied.
+   */
+  function estimateSimple(incomeCents, livingCents, debtCents) {
+    var income = Math.round(Number(incomeCents) || 0);
+    var living = Math.round(Number(livingCents) || 0);
+    var debt = Math.round(Number(debtCents) || 0);
+
+    var left = income - living;
+    var surplus = left - debt;
+    var pct = income > 0 ? Math.round((debt * 100) / income) : null;
+
+    var state;
+    if (income <= 0 && living <= 0 && debt <= 0) state = "empty";
+    else if (surplus < 0) state = "shortfall";
+    else if (income > 0 && surplus * 100 < income * TIGHT_PERCENT) state = "tight";
+    else state = "ok";
+
+    return {
+      incomeCents: income,
+      livingCents: living,
+      debtCents: debt,
+      leftAfterLivingCents: left,
+      surplusCents: surplus,
+      debtPercent: pct,
+      state: state,
+    };
+  }
+
   return {
+    estimateSimple: estimateSimple,
+    TIGHT_PERCENT: TIGHT_PERCENT,
     parseCurrency: parseCurrency,
     formatRands: formatRands,
     computeBudget: computeBudget,

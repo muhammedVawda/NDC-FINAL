@@ -15,10 +15,11 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
+import { SITE, ASSET_V, LOGO_V } from "./site-config.mjs";
+import { header, footer, mobileBar, logoPreloads, coreScripts } from "./partials.mjs";
+
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const SITE = "https://ndcsa.co.za";
-const CSS_V = "v=20";
-const LOGO_V = "v=3";
+const CSS_V = ASSET_V;
 
 const articles = JSON.parse(readFileSync(path.join(ROOT, "assets/data/articles.json"), "utf-8"));
 
@@ -45,7 +46,7 @@ function head({ title, description, canonical, ogImage, extraSchema }) {
 <html lang="en-ZA">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${canonical}">
@@ -72,128 +73,18 @@ function head({ title, description, canonical, ogImage, extraSchema }) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>(function(){try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("js-motion");}}catch(e){}})();</script>
+${logoPreloads()}
 <link rel="stylesheet" href="/assets/css/styles.css?${CSS_V}">
 ${extraSchema || ""}</head>`;
 }
 
-function header(activePage) {
-  const a = (href, key, label) => `<a href="${href}"${key === activePage ? ' aria-current="page"' : ""} data-page="${key}">${label}</a>`;
-  return `<header class="site-header" data-site-header data-nav-open="false">
-  <div class="wrap site-header__bar">
-    <a class="brand" href="/">
-      <picture>
-        <source srcset="/assets/img/ndc-logo-header.webp?${LOGO_V}" type="image/webp">
-        <img class="brand__mark" src="/assets/img/ndc-logo-header.png?${LOGO_V}" alt="National Debt Consultants" width="1031" height="785" loading="eager">
-      </picture>
-    </a>
-    <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      <span class="visually-hidden">Menu</span>
-    </button>
-    <nav class="primary-nav" id="primary-nav" data-primary-nav aria-label="Primary">
-      <ul class="primary-nav__list">
-        <li class="nav-item nav-item--menu" data-menu>
-          <button class="nav-menu__btn" type="button" aria-expanded="false" aria-controls="nav-services" data-menu-btn>Services<svg class="nav-menu__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-          <span class="nav-menu__label" aria-hidden="true">Services</span>
-          <ul class="nav-menu" id="nav-services" data-menu-panel>
-            <li>${a("/debt-review.html", "debt-review", "Debt Review")}</li>
-            <li>${a("/debt-mediation.html", "debt-mediation", "Debt Mediation")}</li>
-            <li>${a("/debt-review-removal.html", "debt-review-removal", "Debt Review Removal")}</li>
-          </ul>
-        </li>
-        <li>${a("/calculator.html", "calculator", "Calculator")}</li>
-        <li>${a("/about.html", "about", "About")}</li>
-        <li>${a("/contact.html", "contact", "Contact")}</li>
-        <li class="nav-item--mobile-only">${a("/faqs.html", "faqs", "FAQs")}</li>
-        <li class="nav-item--mobile-only">${a("/debt-advice/", "debt-advice", "Debt Advice")}</li>
-      </ul>
-      <div class="primary-nav__actions">
-        <a class="btn btn-gold" href="/#callback-form">Request a callback</a>
-      </div>
-    </nav>
-  </div>
-</header>`;
-}
-
-const FOOTER = `<footer class="site-footer">
-  <div class="wrap footer-grid">
-    <div>
-      <a class="brand" href="/" style="color: var(--color-on-dark);">
-        <picture>
-        <source srcset="/assets/img/ndc-logo-header.webp?${LOGO_V}" type="image/webp">
-        <img class="brand__mark" src="/assets/img/ndc-logo-header.png?${LOGO_V}" alt="National Debt Consultants" width="1031" height="785" loading="eager">
-      </picture>
-      </a>
-      <p class="disclosure-note" style="margin-top: var(--space-sm);">Plain-language guidance on debt review, debt mediation and debt review removal for South African consumers.</p>
-      <div class="footer-ncr">
-        <p>NCR debt counsellor registration number: <strong>NCR DC 4382</strong></p>
-      </div>
-      <div class="footer-contact">
-        <a href="tel:+27210541141">021 054 1141</a>
-        <a href="mailto:Marketing@ndcsa.co.za">Marketing@ndcsa.co.za</a>
-      </div>
-    </div>
-    <div>
-      <h2>Explore</h2>
-      <ul>
-        <li><a href="/#how-it-works">How it works</a></li>
-        <li><a href="/debt-advice/">Debt advice</a></li>
-        <li><a href="/calculator.html">Budget calculator</a></li>
-        <li><a href="/faqs.html">FAQs</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div>
-      <h2>Services</h2>
-      <ul>
-        <li><a href="/debt-review.html">Debt review</a></li>
-        <li><a href="/debt-mediation.html">Debt mediation</a></li>
-        <li><a href="/debt-review-removal.html">Debt review removal</a></li>
-      </ul>
-    </div>
-    <div>
-      <h2>Legal</h2>
-      <ul>
-        <li><a href="/privacy-policy.html">Privacy policy</a></li>
-        <li><a href="/terms.html">Terms of use</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="wrap footer-creditors">
-    <h2>Banks and credit providers</h2>
-    <p class="footer-creditors__note">Logos identify the respective credit providers and do not imply partnership, sponsorship or endorsement of NDC.</p>
-    <ul class="footer-creditors__list">
-      <li class="creditor-badge">Absa</li>
-      <li class="creditor-badge">FNB</li>
-      <li class="creditor-badge">Standard Bank</li>
-      <li class="creditor-badge">Nedbank</li>
-      <li class="creditor-badge">Capitec</li>
-      <li class="creditor-badge">African Bank</li>
-      <li class="creditor-badge">WesBank</li>
-      <li class="creditor-badge">MFC</li>
-    </ul>
-  </div>
-
-  <div class="wrap footer-lang" data-lang-mount></div>
-
-  <div class="wrap footer-bottom">
-    <p>&copy; <span data-year>2026</span> National Debt Consultants. All rights reserved.</p>
-    <p class="footer-credit">Powered By Telepride (Pty) Ltd</p>
-  </div>
-</footer>`;
+const FOOTER = footer();
 
 function bodyEnd(extraScripts) {
-  return `<nav class="mobile-actions" aria-label="Quick actions">
-  <a href="/calculator.html" class="is-primary">Check my budget</a>
-  <a href="/contact.html">Request a callback</a>
-</nav>
+  return `${mobileBar()}
 
-<script src="/assets/js/nav.js?${CSS_V}" defer></script>
-<script src="/assets/js/analytics.js?${CSS_V}" defer></script>
-<script src="/assets/js/motion.js?${CSS_V}" defer></script>
-<script src="/assets/js/lang.js?${CSS_V}" defer></script>
-<script src="/assets/js/chat.js?${CSS_V}" defer></script>
-${extraScripts || ""}<script>document.querySelectorAll('[data-year]').forEach(function(el){ el.textContent = new Date().getFullYear(); });</script>
+${coreScripts(extraScripts)}
+<script>document.querySelectorAll('[data-year]').forEach(function(el){ el.textContent = new Date().getFullYear(); });</script>
 </body>
 </html>
 `;

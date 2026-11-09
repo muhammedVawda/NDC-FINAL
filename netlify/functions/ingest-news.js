@@ -161,16 +161,16 @@ exports.handler = async function () {
   });
 
   deduped.sort(function (a, b) { return Date.parse(b.publishedAt) - Date.parse(a.publishedAt); });
-  var items = deduped.slice(0, maxItems);
+  var topItems = deduped.slice(0, maxItems);
 
   return {
     statusCode: 200,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       generatedAt: new Date().toISOString(),
-      itemCount: items.length,
+      itemCount: topItems.length,
       feedFailures: failures, // surfaced, never swallowed
-      items: items
+      items: topItems
     })
   };
 };

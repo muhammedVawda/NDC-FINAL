@@ -73,6 +73,16 @@
       "source": "/contact-us",
       "destination": "/contact.html",
       "permanent": true
+    },
+    {
+      "source": "/privacy-policy/",
+      "destination": "/privacy-policy.html",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy-policy.html",
+      "permanent": true
     }
   ],
   "rewrites": [

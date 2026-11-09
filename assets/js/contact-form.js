@@ -1,13 +1,26 @@
+/*
+  Callback / contact form.
+
+  Behaviour contract (each point is covered by the browser QA in the repo's
+  test notes):
+    - Validation runs on submit; errors appear beside the field, values are kept.
+    - "Success" is shown ONLY after the backend accepts the request (HTTP 200
+      with { success: true }). Anything else is an honest error that offers the
+      phone number, and the visitor's details stay in the form.
+    - The submit button is disabled while sending, so a double-click or a
+      second tap cannot send twice.
+    - Spam: a hidden honeypot field and a minimum-time check (the form records
+      when it was shown; the server enforces the same minimum).
+    - Nothing the visitor typed is ever inserted as HTML.
+*/
 (function () {
   "use strict";
 
-  function isValidSAPhone(raw) {
-    var digits = String(raw || "").replace(/[\s\-()]/g, "");
-    if (/^\+27[1-9][0-9]{8}$/.test(digits)) return true;
-    if (/^27[1-9][0-9]{8}$/.test(digits)) return true;
-    if (/^0[1-9][0-9]{8}$/.test(digits)) return true;
-    return false;
-  }
+  var PHONE_DISPLAY = "(021) 054 1141";
+  var PHONE_HREF = "tel:+27210541141";
+
+  // Resolved lazily: sa-validate.js is a deferred script that may run after this one.
+  function V() { return window.NDCValidate; }
 
   // Best-effort client-side rate limit. Real protection lives server-side
   // (see netlify/functions/contact.js) — this just discourages accidental
@@ -19,19 +32,44 @@
     return submitTimestamps.length >= 3;
   }
 
-  function setAlert(mount, type, message) {
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  /**
+   * Render an alert. `parts` is an array of strings and { tel: true } markers,
+   * assembled with textContent/createElement so no value is parsed as HTML.
+   */
+  function setAlert(mount, type, parts) {
     if (!mount) return;
-    if (!message) {
-      mount.innerHTML = "";
-      return;
-    }
-    mount.innerHTML = '<div class="form-alert form-alert--' + type + '" role="alert">' + message + "</div>";
+    mount.textContent = "";
+    if (!parts) return;
+    var box = el("div", "form-alert form-alert--" + type);
+    box.setAttribute("role", type === "error" ? "alert" : "status");
+    (Array.isArray(parts) ? parts : [parts]).forEach(function (part) {
+      if (part && part.tel) {
+        var a = el("a", null, PHONE_DISPLAY);
+        a.href = PHONE_HREF;
+        box.appendChild(a);
+      } else {
+        box.appendChild(document.createTextNode(part));
+      }
+    });
+    mount.appendChild(box);
+    // Bring the outcome into view: on a phone the alert can sit above the fold.
+    if (box.scrollIntoView) box.scrollIntoView({ block: "nearest" });
   }
 
   function wireForm(form) {
     var mount = form.parentElement ? form.parentElement.querySelector("[data-form-alert-mount]") : null;
     var submitBtn = form.querySelector("[data-submit-btn]");
     var submitting = false;
+    // When the form first existed on screen; the server enforces a minimum
+    // gap between this and the submission.
+    var shownAt = Date.now();
 
     function fieldWrap(name) {
       return form.querySelector('[data-field="' + name + '"]');
@@ -40,45 +78,53 @@
       var wrap = fieldWrap(name);
       if (!wrap) return;
       var errorEl = wrap.querySelector(".error");
+      var input = wrap.querySelector("input, select, textarea");
       if (message) {
         wrap.setAttribute("data-invalid", "true");
         if (errorEl) errorEl.textContent = message;
+        if (input) input.setAttribute("aria-invalid", "true");
       } else {
         wrap.removeAttribute("data-invalid");
+        if (input) input.removeAttribute("aria-invalid");
       }
     }
 
     function validate(data) {
-      var ok = true;
-      if (!data.name || !data.name.trim()) {
-        setFieldError("name", "Please enter your name.");
-        ok = false;
-      } else {
-        setFieldError("name", "");
+      var firstBad = null;
+      function flag(name, message) {
+        setFieldError(name, message);
+        if (message && !firstBad) firstBad = fieldWrap(name);
       }
 
-      if (!isValidSAPhone(data.phone)) {
-        setFieldError("phone", "Please enter a valid South African contact number.");
-        ok = false;
-      } else {
-        setFieldError("phone", "");
-      }
+      flag("name", !data.name || !data.name.trim() ? "Please enter your name." : "");
+      flag("phone", V().isValidSAPhone(data.phone) ? "" : V().PHONE_HELP);
+      flag(
+        "email",
+        data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)
+          ? "Please enter a valid email address, or leave it blank."
+          : ""
+      );
+      flag("consent", data.consent ? "" : "Please tick the box so we are allowed to contact you.");
 
-      if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-        setFieldError("email", "Please enter a valid email address, or leave it blank.");
-        ok = false;
-      } else {
-        setFieldError("email", "");
+      // Put the visitor on the first problem, in page order.
+      var bad = form.querySelector('[data-invalid="true"]');
+      if (bad) {
+        var field = bad.querySelector("input, select, textarea");
+        // An error inside the collapsed "more details" panel must open it.
+        var prefs = bad.closest("details");
+        if (prefs) prefs.open = true;
+        if (field) {
+          // A just-opened <details> is not rendered until styles are recalculated, and
+          // an unrendered field cannot take focus, so flush layout first and retry once
+          // on the next frame if the browser still refused.
+          void form.offsetHeight;
+          field.focus();
+          if (document.activeElement !== field && window.requestAnimationFrame) {
+            window.requestAnimationFrame(function () { field.focus(); });
+          }
+        }
       }
-
-      if (!data.consent) {
-        setFieldError("consent", "Please provide consent so we can contact you.");
-        ok = false;
-      } else {
-        setFieldError("consent", "");
-      }
-
-      return ok;
+      return !bad;
     }
 
     form.addEventListener("submit", function (event) {
@@ -97,14 +143,15 @@
         consent: formData.get("consent") === "on",
         marketing: formData.get("marketing") === "on",
         honeypot: (formData.get("company") || "").toString(),
+        formShownAt: shownAt,
         pageRef: new URLSearchParams(window.location.search).get("ref") || "",
       };
 
-      setAlert(mount, "", "");
+      setAlert(mount, "", null);
 
       if (data.honeypot) {
-        // Silently treat as success for bots, without contacting the backend.
-        setAlert(mount, "success", "Thanks — we've received your request.");
+        // Bots that fill the hidden field get a quiet "success" and nothing is sent.
+        setAlert(mount, "success", "Thanks, we have received your request.");
         form.reset();
         return;
       }
@@ -115,7 +162,7 @@
       }
 
       if (rateLimited()) {
-        setAlert(mount, "error", "You've submitted a few requests in a short time. Please wait a minute before trying again.");
+        setAlert(mount, "error", "You have submitted a few requests in a short time. Please wait a minute and try again.");
         return;
       }
 
@@ -140,24 +187,37 @@
         })
         .then(function (result) {
           if (result.ok && result.body && result.body.success) {
-            setAlert(mount, "success", "Thanks, " + (data.name.split(" ")[0] || "") + " — we've received your request and someone will be in touch.");
+            var first = (data.name.trim().split(/\s+/)[0] || "").slice(0, 40);
+            setAlert(mount, "success", "Thanks" + (first ? ", " + first : "") + ". We have received your request and a consultant will call you back.");
             form.reset();
+            shownAt = Date.now(); // a fresh form for any further request
             form.querySelectorAll(".field").forEach(function (w) { w.removeAttribute("data-invalid"); });
             if (window.ndcTrack) window.ndcTrack("callback_submitted", { service: data.service || "unspecified" });
           } else {
-            var reason = (result.body && result.body.message) || "We couldn't send your request right now. Please try again shortly.";
-            setAlert(mount, "error", reason);
+            // The server's own message when it gave one (it never contains user input),
+            // always followed by a way through.
+            var reason = result.body && result.body.message;
+            setAlert(mount, "error", [
+              (reason ? reason + " " : "We could not send your request just now. ") +
+                "Your details are still in the form, so you can try again, or call us on ",
+              { tel: true },
+              ".",
+            ]);
           }
         })
         .catch(function () {
-          setAlert(mount, "error", "We couldn't reach our server. Please check your connection and try again — your details haven't been lost.");
+          setAlert(mount, "error", [
+            "We could not reach our server. Please check your connection and try again; your details are still in the form. You can also call us on ",
+            { tel: true },
+            ".",
+          ]);
         })
         .finally(function () {
           submitting = false;
           if (submitBtn) {
             submitBtn.removeAttribute("aria-busy");
             submitBtn.removeAttribute("disabled");
-            submitBtn.textContent = submitBtn.dataset.originalText || "Submit";
+            submitBtn.textContent = submitBtn.dataset.originalText || "Request my callback";
           }
         });
     });

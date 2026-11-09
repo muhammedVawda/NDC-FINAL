@@ -2,7 +2,7 @@
 <html lang="en-ZA">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Contact Us | National Debt Consultants</title>
 <meta name="description" content="Request a callback from National Debt Consultants. Tell us a little about your situation and a consultant will get back to you — no pressure, no obligation.">
 <link rel="canonical" href="https://ndcsa.co.za/contact.html">
@@ -29,7 +29,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>(function(){try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("js-motion");}}catch(e){}})();</script>
-<link rel="stylesheet" href="/assets/css/styles.css?v=20">
+<link rel="preload" as="image" type="image/webp" href="/assets/img/ndc-logo-h96.webp?v=4" imagesrcset="/assets/img/ndc-logo-h96.webp?v=4 1x, /assets/img/ndc-logo-h192.webp?v=4 2x, /assets/img/ndc-logo-h288.webp?v=4 3x" media="(min-width: 62rem)" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" href="/assets/img/ndc-logo-h64.webp?v=4" imagesrcset="/assets/img/ndc-logo-h64.webp?v=4 1x, /assets/img/ndc-logo-h128.webp?v=4 2x, /assets/img/ndc-logo-h192.webp?v=4 3x" media="(max-width: 61.99rem)" fetchpriority="high">
+<link rel="stylesheet" href="/assets/css/styles.css?v=23">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -60,10 +62,10 @@
     "@type": "Organization",
     "name": "National Debt Consultants",
     "telephone": "+27210541141",
-    "email": "Marketing@ndcsa.co.za",
+    "email": "marketing@ndcsa.co.za",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Buchanan Square Building, 160 Sir Lowry Road, Woodstock",
+      "streetAddress": "Buchanan Square, 160 Sir Lowry Rd, Woodstock",
       "addressLocality": "Cape Town",
       "postalCode": "7915",
       "addressCountry": "ZA"
@@ -72,15 +74,16 @@
 }
 </script>
 </head>
-<body data-page="contact">
+<body data-page="contact" data-has-mobile-bar="true">
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <header class="site-header" data-site-header data-nav-open="false">
   <div class="wrap site-header__bar">
     <a class="brand" href="/">
       <picture>
-        <source srcset="/assets/img/ndc-logo-header.webp?v=3" type="image/webp">
-        <img class="brand__mark" src="/assets/img/ndc-logo-header.png?v=3" alt="National Debt Consultants" width="1031" height="785" loading="eager">
+        <source media="(min-width: 62rem)" type="image/webp" srcset="/assets/img/ndc-logo-h96.webp?v=4 1x, /assets/img/ndc-logo-h192.webp?v=4 2x, /assets/img/ndc-logo-h288.webp?v=4 3x">
+        <source type="image/webp" srcset="/assets/img/ndc-logo-h64.webp?v=4 1x, /assets/img/ndc-logo-h128.webp?v=4 2x, /assets/img/ndc-logo-h192.webp?v=4 3x">
+        <img class="brand__mark" src="/assets/img/ndc-logo-h192.png?v=4" width="205" height="192" alt="National Debt Consultants logo" loading="eager" decoding="async" fetchpriority="high">
       </picture>
     </a>
     <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">
@@ -138,72 +141,74 @@
 
           <div class="field" data-field="phone">
             <label for="c-phone">Contact number</label>
-            <input type="tel" id="c-phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="082 123 4567 or +27 82 123 4567" required aria-describedby="c-phone-error c-phone-hint">
+            <input type="tel" id="c-phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="082 123 4567 or +27 82 123 4567" required aria-describedby="c-phone-hint c-phone-error">
             <p class="hint" id="c-phone-hint">A South African mobile or landline number.</p>
             <p class="error" id="c-phone-error" role="alert">Please enter a valid South African contact number.</p>
           </div>
 
-          <div class="field" data-field="email">
-            <label for="c-email">Email address (optional)</label>
-            <input type="email" id="c-email" name="email" autocomplete="email" aria-describedby="c-email-hint c-email-error">
-            <p class="hint" id="c-email-hint">Only if you&rsquo;d also like written correspondence.</p>
-            <p class="error" id="c-email-error" role="alert">Please enter a valid email address, or leave it blank.</p>
+          <div class="field" data-field="callbackTime">
+            <label for="c-time">Best time to call</label>
+            <select id="c-time" name="callbackTime">
+              <option value="As soon as possible">As soon as possible</option>
+              <option value="08:00–10:00">08:00–10:00</option>
+              <option value="10:00–12:00">10:00–12:00</option>
+              <option value="12:00–14:00">12:00–14:00</option>
+              <option value="14:00–16:00">14:00–16:00</option>
+              <option value="16:00–18:00">16:00–18:00</option>
+            </select>
           </div>
 
           <div class="field" data-field="consent">
             <div class="consent">
               <input type="checkbox" id="c-consent" name="consent" required aria-describedby="c-consent-error">
-              <label for="c-consent">I consent to National Debt Consultants contacting me about this request.</label>
+              <label for="c-consent">I agree that National Debt Consultants may contact me about this request. I have read the <a href="/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a> (opens in a new tab).</label>
             </div>
-            <p class="error" id="c-consent-error" role="alert">Please provide consent so we can contact you.</p>
+            <p class="error" id="c-consent-error" role="alert">Please tick the box so we are allowed to contact you.</p>
           </div>
 
           <details class="form-prefs">
-            <summary>Add preferences <span class="form-prefs__hint">(optional: topic, time, language, a note)</span></summary>
+            <summary>Add more details <span class="form-prefs__hint">(optional: email, topic, language, a note)</span></summary>
             <div class="form-prefs__body">
-          <div class="field" data-field="service">
-            <label for="c-service">What&rsquo;s this about? (optional)</label>
-            <select id="c-service" name="service">
-              <option value="">Not sure yet</option>
-              <option value="debt-review">Debt review</option>
-              <option value="debt-mediation">Debt mediation</option>
-              <option value="debt-review-removal">Debt review removal</option>
-              <option value="general">General question</option>
-            </select>
-          </div>
-          <div class="field" data-field="callbackTime">
-            <label for="c-time">Preferred callback time (optional)</label>
-            <select id="c-time" name="callbackTime">
-              <option value="">No preference</option>
-              <option value="morning">Morning (8am–12pm)</option>
-              <option value="afternoon">Afternoon (12pm–5pm)</option>
-              <option value="evening">Evening (5pm–7pm)</option>
-            </select>
-          </div>
-          <div class="field" data-field="language">
-            <label for="c-language">Preferred language for the call (optional)</label>
-            <select id="c-language" name="language">
-              <option value="">No preference</option>
-              <option value="English">English</option>
-              <option value="isiZulu">isiZulu</option>
-              <option value="isiXhosa">isiXhosa</option>
-              <option value="Afrikaans">Afrikaans</option>
-              <option value="Sesotho">Sesotho</option>
-              <option value="Setswana">Setswana</option>
-              <option value="Sepedi">Sepedi</option>
-            </select>
-            <p class="hint">We&rsquo;ll do our best to match this.</p>
-          </div>
-          <div class="field" data-field="message">
-            <label for="c-message">Anything you&rsquo;d like us to know? (optional)</label>
-            <textarea id="c-message" name="message" rows="4"></textarea>
-          </div>
-          <div class="field" data-field="marketing">
-            <div class="consent">
-              <input type="checkbox" id="c-marketing" name="marketing">
-              <label for="c-marketing">I&rsquo;d also like to receive occasional helpful updates by email or SMS (optional, separate from the consent above).</label>
-            </div>
-          </div>
+              <div class="field" data-field="email">
+                <label for="c-email">Email address</label>
+                <input type="email" id="c-email" name="email" autocomplete="email" aria-describedby="c-email-hint c-email-error">
+                <p class="hint" id="c-email-hint">Only if you would also like written correspondence.</p>
+                <p class="error" id="c-email-error" role="alert">Please enter a valid email address, or leave it blank.</p>
+              </div>
+              <div class="field" data-field="service">
+                <label for="c-service">What is this about?</label>
+                <select id="c-service" name="service">
+                  <option value="">Not sure yet</option>
+                  <option value="debt-review">Debt review</option>
+                  <option value="debt-mediation">Debt mediation</option>
+                  <option value="debt-review-removal">Debt review removal</option>
+                  <option value="general">General question</option>
+                </select>
+              </div>
+              <div class="field" data-field="language">
+                <label for="c-language">Preferred language for the call</label>
+                <select id="c-language" name="language">
+                  <option value="">No preference</option>
+                  <option value="English">English</option>
+                  <option value="isiZulu">isiZulu</option>
+                  <option value="isiXhosa">isiXhosa</option>
+                  <option value="Afrikaans">Afrikaans</option>
+                  <option value="Sesotho">Sesotho</option>
+                  <option value="Setswana">Setswana</option>
+                  <option value="Sepedi">Sepedi</option>
+                </select>
+                <p class="hint">We will do our best to match this.</p>
+              </div>
+              <div class="field" data-field="message">
+                <label for="c-message">Anything you would like us to know?</label>
+                <textarea id="c-message" name="message" rows="4"></textarea>
+              </div>
+              <div class="field" data-field="marketing">
+                <div class="consent">
+                  <input type="checkbox" id="c-marketing" name="marketing">
+                  <label for="c-marketing">I would also like to receive occasional helpful updates by email or SMS (optional, separate from the consent above).</label>
+                </div>
+              </div>
             </div>
           </details>
 
@@ -219,9 +224,11 @@
         <div class="card">
           <h2>Other ways to reach us</h2>
           <ul class="stack mt-0">
-            <li><strong>Phone:</strong> <a href="tel:+27210541141">021 054 1141</a></li>
-            <li><strong>Email:</strong> <a href="mailto:Marketing@ndcsa.co.za">Marketing@ndcsa.co.za</a></li>
-            <li><strong>Address:</strong> Buchanan Square Building, 160 Sir Lowry Road, Woodstock, Cape Town, 7915, South Africa</li>
+            <li><strong>Phone:</strong> <a href="tel:+27210541141">(021) 054 1141</a></li>
+            <li><strong>Email:</strong> <a href="mailto:marketing@ndcsa.co.za">marketing@ndcsa.co.za</a></li>
+            <!-- TODO(NDC): office opening hours were not supplied. Add a line here (and openingHoursSpecification in the JSON-LD) only once confirmed. -->
+            <li><strong>Address:</strong> <a href="https://maps.app.goo.gl/bq5FtkSw6TrXPfzp9" target="_blank" rel="noopener noreferrer">Buchanan Square, 160 Sir Lowry Rd, Woodstock, Cape Town, 7915<span class="visually-hidden"> (opens map in a new tab)</span></a></li>
+            <li><strong>Follow us:</strong> <a href="https://www.facebook.com/nationaldebtconsultants" target="_blank" rel="noopener noreferrer">Facebook</a>, <a href="https://www.instagram.com/national.debt.consultants/" target="_blank" rel="noopener noreferrer">Instagram</a>, <a href="https://www.linkedin.com/company/national-debt-consultants/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
           </ul>
         </div>
         <div class="card">
@@ -237,19 +244,22 @@
   <div class="wrap footer-grid">
     <div>
       <a class="brand" href="/" style="color: var(--color-on-dark);">
-        <picture>
-        <source srcset="/assets/img/ndc-logo-header.webp?v=3" type="image/webp">
-        <img class="brand__mark" src="/assets/img/ndc-logo-header.png?v=3" alt="National Debt Consultants" width="1031" height="785" loading="eager">
+      <picture>
+        <source type="image/webp" srcset="/assets/img/ndc-logo-h108.webp?v=4 1x, /assets/img/ndc-logo-h216.webp?v=4 2x, /assets/img/ndc-logo-h324.webp?v=4 3x">
+        <img class="brand__mark" src="/assets/img/ndc-logo-h192.png?v=4" width="205" height="192" alt="National Debt Consultants logo" loading="lazy" decoding="async">
       </picture>
       </a>
       <p class="disclosure-note" style="margin-top: var(--space-sm);">Plain-language guidance on debt review, debt mediation and debt review removal for South African consumers.</p>
-      <div class="footer-ncr">
-        <p>NCR debt counsellor registration number: <strong>NCR DC 4382</strong></p>
-      </div>
-      <div class="footer-contact">
-        <a href="tel:+27210541141">021 054 1141</a>
-        <a href="mailto:Marketing@ndcsa.co.za">Marketing@ndcsa.co.za</a>
-      </div>
+      <address class="footer-contact">
+        <a href="tel:+27210541141">(021) 054 1141</a>
+        <a href="mailto:marketing@ndcsa.co.za">marketing@ndcsa.co.za</a>
+        <a href="https://maps.app.goo.gl/bq5FtkSw6TrXPfzp9" target="_blank" rel="noopener noreferrer">Buchanan Square, 160 Sir Lowry Rd, Woodstock, Cape Town, 7915<span class="visually-hidden"> (opens map in a new tab)</span></a>
+      </address>
+      <ul class="footer-social" aria-label="National Debt Consultants on social media">
+          <li><a href="https://www.facebook.com/nationaldebtconsultants" target="_blank" rel="noopener noreferrer" aria-label="NDC on Facebook (opens in a new tab)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a></li>
+          <li><a href="https://www.instagram.com/national.debt.consultants/" target="_blank" rel="noopener noreferrer" aria-label="NDC on Instagram (opens in a new tab)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.4A4 4 0 1 1 12.6 8 4 4 0 0 1 16 11.4z"/><path d="M17.5 6.5h.01"/></svg></a></li>
+          <li><a href="https://www.linkedin.com/company/national-debt-consultants/" target="_blank" rel="noopener noreferrer" aria-label="NDC on LinkedIn (opens in a new tab)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></li>
+      </ul>
     </div>
     <div>
       <h2>Explore</h2>
@@ -259,14 +269,15 @@
         <li><a href="/debt-advice/">Debt advice</a></li>
         <li><a href="/calculator.html">Budget calculator</a></li>
         <li><a href="/faqs.html">FAQs</a></li>
+        <li><a href="/contact.html">Contact</a></li>
       </ul>
     </div>
     <div>
       <h2>Services</h2>
       <ul>
-        <li><a href="/debt-review.html">Debt review</a></li>
-        <li><a href="/debt-mediation.html">Debt mediation</a></li>
-        <li><a href="/debt-review-removal.html">Debt review removal</a></li>
+        <li><a href="/debt-review.html">Debt Review</a></li>
+        <li><a href="/debt-mediation.html">Debt Mediation</a></li>
+        <li><a href="/debt-review-removal.html">Debt Review Removal</a></li>
       </ul>
     </div>
     <div>
@@ -274,6 +285,7 @@
       <ul>
         <li><a href="/privacy-policy.html">Privacy policy</a></li>
         <li><a href="/terms.html">Terms of use</a></li>
+        <li><a href="https://ndcsa.co.za/job-openings/">Careers</a></li>
       </ul>
     </div>
   </div>
@@ -294,17 +306,28 @@
 
   <div class="wrap footer-lang" data-lang-mount></div>
 
+  <div class="wrap footer-legal">
+    <p>National Debt Consultants is a debt counsellor registered with the National Credit Regulator (NCRDC4382) under the National Credit Act 34 of 2005. Outcomes depend on your circumstances and your creditors&rsquo; responses. Fees are explained at your consultation. Personal information is processed in line with POPIA &mdash; see our <a href="/privacy-policy.html">Privacy Policy</a>. This website offers general information, not financial or legal advice.</p>
+  </div>
+
   <div class="wrap footer-bottom">
-    <p>&copy; <span data-year>2026</span> National Debt Consultants. All rights reserved.</p>
+    <p>&copy; <span data-year>2026</span> National Debt Consultants. <span class="footer-credit">Powered by Telepride (Pty) Ltd.</span></p>
+    <p class="footer-regulated">Regulated by the NCR &middot; <strong>NCRDC4382</strong></p>
   </div>
 </footer>
 
-<script src="/assets/js/nav.js?v=20" defer></script>
-<script src="/assets/js/contact-form.js?v=20" defer></script>
-<script src="/assets/js/analytics.js?v=20" defer></script>
-<script src="/assets/js/motion.js?v=20" defer></script>
-<script src="/assets/js/lang.js?v=20" defer></script>
-<script src="/assets/js/chat.js?v=20" defer></script>
+<nav class="mobile-actions" aria-label="Quick contact">
+    <a href="tel:+27210541141">Call us</a>
+    <a class="is-primary" href="/#callback-form">Call me back</a>
+  </nav>
+
+<script src="/assets/js/nav.js?v=23" defer></script>
+<script src="/assets/js/contact-form.js?v=23" defer></script>
+<script src="/assets/js/analytics.js?v=23" defer></script>
+<script src="/assets/js/motion.js?v=23" defer></script>
+<script src="/assets/js/lang.js?v=23" defer></script>
+<script src="/assets/js/sa-validate.js?v=23" defer></script>
+<script src="/assets/js/chat.js?v=23" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function(el){ el.textContent = new Date().getFullYear(); });</script>
 </body>
 </html>

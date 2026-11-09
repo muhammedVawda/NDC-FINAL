@@ -41,6 +41,16 @@
   to = "/contact.html"
   status = 301
 
+[[redirects]]
+  from = "/privacy-policy/"
+  to = "/privacy-policy.html"
+  status = 301
+
+[[redirects]]
+  from = "/privacy-policy"
+  to = "/privacy-policy.html"
+  status = 301
+
 # "The Month-End Challenge" game was removed with no equivalent
 # replacement page — served as Gone rather than silently redirected
 # somewhere unrelated.

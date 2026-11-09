@@ -408,15 +408,12 @@
 
   // ---- callback --------------------------------------------------------
 
-  // Mirrors netlify/functions/contact.js exactly. Client-side validation
-  // is a courtesy; the server remains the authority and is not bypassed.
+  // The same validator the page forms and the server use (assets/js/sa-validate.js).
+  // If that script somehow failed to load, defer to the server, which is the
+  // authority either way; a courtesy check must never block a real enquiry.
   function isValidSAPhone(raw) {
-    var digits = String(raw || "").replace(/[\s\-()]/g, "");
-    return (
-      /^\+27[1-9][0-9]{8}$/.test(digits) ||
-      /^27[1-9][0-9]{8}$/.test(digits) ||
-      /^0[1-9][0-9]{8}$/.test(digits)
-    );
+    var V = window.NDCValidate;
+    return V ? V.isValidSAPhone(raw) : true;
   }
 
   function field(id, label, type, required, hint) {
@@ -455,6 +452,7 @@
       ? "No problem — I'll pass your question on. Just your name and number and a consultant will call you."
       : "Happy to arrange that. I only need two things.");
 
+    var shownAt = Date.now(); // the server enforces a minimum gap before it accepts a submission
     var card = el("div", "chat-form-card");
     var f = el("form", "chat-callback");
     f.noValidate = true;
@@ -475,7 +473,8 @@
     timeLab.setAttribute("for", "ndc-cb-time");
     var time = el("select", "chat-field__input");
     time.id = "ndc-cb-time";
-    ["No preference", "Morning (8am–12pm)", "Afternoon (12pm–5pm)"].forEach(function (t) {
+    var timeChoices = (window.NDCValidate && window.NDCValidate.CALLBACK_TIMES) || ["As soon as possible"];
+    ["No preference"].concat(timeChoices).forEach(function (t) {
       var o = el("option", null, t);
       o.value = t === "No preference" ? "" : t;
       time.appendChild(o);
@@ -565,7 +564,7 @@
         bad = cb;
       }
       if (!isValidSAPhone(phone.input.value)) {
-        phone.error.textContent = "Please enter a valid South African number, like 082 123 4567.";
+        phone.error.textContent = (window.NDCValidate && window.NDCValidate.PHONE_HELP) || "Please enter a valid South African number, like 082 123 4567.";
         phone.error.hidden = false;
         phone.input.setAttribute("aria-invalid", "true");
         bad = phone.input;
@@ -605,6 +604,7 @@
           service: topic + " (website assistant)",
           message: msgParts.join(" "),
           pageRef: location.pathname,
+          formShownAt: shownAt,
           honeypot: hp.value
         })
       })

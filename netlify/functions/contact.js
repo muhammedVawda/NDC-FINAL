@@ -29,14 +29,8 @@
 
 var rateLimitStore = new Map();
 
-function isValidSAPhone(raw) {
-  var digits = String(raw || "").replace(/[\s\-()]/g, "");
-  return (
-    /^\+27[1-9][0-9]{8}$/.test(digits) ||
-    /^27[1-9][0-9]{8}$/.test(digits) ||
-    /^0[1-9][0-9]{8}$/.test(digits)
-  );
-}
+// Single shared implementation (also used by the page forms and the assistant).
+var V = require("../../assets/js/sa-validate.js");
 
 function isRateLimited(ip) {
   var max = parseInt(process.env.CONTACT_RATE_LIMIT_MAX || "5", 10);
@@ -53,10 +47,14 @@ function validatePayload(data) {
   var errors = [];
   if (!data || typeof data !== "object") return ["Invalid request body."];
   if (!data.name || !String(data.name).trim()) errors.push("Name is required.");
-  if (!isValidSAPhone(data.phone)) errors.push("A valid South African contact number is required.");
+  if (String(data.name || "").length > 120) errors.push("Name is too long.");
+  if (!V.isValidSAPhone(data.phone)) errors.push(V.PHONE_HELP);
   if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.push("Email address is invalid.");
   if (data.message && String(data.message).length > 2000) errors.push("Message is too long.");
   if (!data.consent) errors.push("Consent to be contacted is required.");
+  // Best-time choices are a fixed list; blank is allowed for older clients.
+  if (data.callbackTime && !V.isValidCallbackTime(data.callbackTime)) errors.push("Please choose a best time from the list.");
+  if (!V.isValidLanguage(data.language)) errors.push("Please choose a language from the list.");
   return errors;
 }
 
@@ -123,6 +121,18 @@ exports.handler = async function (event) {
     return { statusCode: 200, body: JSON.stringify({ success: true }) };
   }
 
+  // Minimum-time check. The form stamps when it was shown; a submission
+  // faster than a person could manage is refused with a friendly retry (not a
+  // silent drop, so a genuine autofill-and-tap is never lost). A missing
+  // stamp is allowed so a cached older page cannot lose a real enquiry; the
+  // honeypot and rate limit still apply to those.
+  if (V.submittedTooFast(data.formShownAt, Date.now())) {
+    return {
+      statusCode: 429,
+      body: JSON.stringify({ success: false, message: "That was very quick. Please check your details and send it again." }),
+    };
+  }
+
   var errors = validatePayload(data);
   if (errors.length) {
     return { statusCode: 422, body: JSON.stringify({ success: false, message: errors.join(" ") }) };
@@ -148,6 +158,7 @@ exports.handler = async function (event) {
     email: data.email ? String(data.email).trim() : "",
     service: data.service ? String(data.service).trim() : "",
     callbackTime: data.callbackTime ? String(data.callbackTime).trim() : "",
+    language: data.language ? String(data.language).trim() : "",
     message: data.message ? String(data.message).trim().slice(0, 2000) : "",
     marketing: !!data.marketing,
     pageRef: data.pageRef ? String(data.pageRef).slice(0, 120) : "",

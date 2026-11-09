@@ -29,7 +29,6 @@
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduced) return;
 
-  var EASE_DURATION = 620;
 
   /* ---------------------------------------------------------------
      1. Reveal system
@@ -220,103 +219,7 @@
   }
 
   /* ---------------------------------------------------------------
-     4. Count-up for calculator results
-     Reads the rendered rand figure, counts to it, then writes the
-     ORIGINAL string back so formatting is never altered by motion.
-     The calculation itself is untouched.
-     --------------------------------------------------------------- */
-  function countUp(el) {
-    var finalText = el.textContent;
-
-    // Match the digit run only. Trailing whitespace is deliberately NOT
-    // consumed: the figure sits inside a sentence ("R9 000 left over each
-    // month"), and swallowing the space rendered "R5004left over".
-    var match = finalText.match(/-?\d[\d  .,]*\d|-?\d/);
-    if (!match) return;
-
-    var raw = match[0];
-    var target = parseFloat(raw.replace(/[\s  ,]/g, "").replace(/\.(?=\d{3}\b)/g, ""));
-    if (!isFinite(target) || Math.abs(target) < 100) return; // small numbers aren't worth animating
-
-    // Mirror the site's own thousands separator rather than imposing a
-    // locale default — these figures render as "R9 000", not "R9,000".
-    var sep = /\d[  ]\d/.test(raw) ? (raw.indexOf(" ") !== -1 ? " " : " ") : "";
-    function format(n) {
-      var s = String(Math.abs(Math.round(n)));
-      if (sep) s = s.replace(/\B(?=(\d{3})+(?!\d))/g, sep);
-      return (n < 0 ? "-" : "") + s;
-    }
-
-    var startAt = performance.now();
-    var DURATION = 700;
-    var head = finalText.slice(0, match.index);
-    var tail = finalText.slice(match.index + raw.length);
-
-    function frame(now) {
-      var t = Math.min((now - startAt) / DURATION, 1);
-      var eased = 1 - Math.pow(1 - t, 3);
-      if (t < 1) {
-        el.textContent = head + format(target * eased) + tail;
-        window.requestAnimationFrame(frame);
-      } else {
-        el.textContent = finalText; // exact original string restored
-      }
-    }
-    window.requestAnimationFrame(frame);
-  }
-
-  function watchCalculatorResults() {
-    // Real hook in calculator.html — the results block is replaced
-    // wholesale via innerHTML each time the form is submitted.
-    var mount = document.querySelector("[data-calc-results]");
-    if (!mount) return;
-
-    var mo = new MutationObserver(function () {
-      // The headline figure and the summary-table amounts. Both are
-      // pre-formatted rand strings; countUp rewrites only the digits
-      // and restores the original string exactly on the last frame.
-      var figures = mount.querySelectorAll(".result-figure__amount, .summary-table td");
-      Array.prototype.forEach.call(figures, function (el) {
-        if (el.dataset.counted === "1") return;
-        el.dataset.counted = "1";
-        countUp(el);
-      });
-
-      // Summary rows follow the headline in, one after another.
-      var rows = mount.querySelectorAll(".summary-table tr");
-      Array.prototype.forEach.call(rows, function (tr, i) {
-        if (tr.dataset.revealed === "1") return;
-        tr.dataset.revealed = "1";
-        tr.style.opacity = "0";
-        tr.style.transform = "translate3d(0,8px,0)";
-        window.requestAnimationFrame(function () {
-          tr.style.transition =
-            "opacity 420ms var(--ease-out-soft) " + (160 + i * 70) + "ms, transform 420ms var(--ease-out-soft) " + (160 + i * 70) + "ms";
-          tr.style.opacity = "1";
-          tr.style.transform = "none";
-        });
-      });
-
-      // Result block itself rises in once, so the answer feels
-      // delivered rather than simply appearing.
-      var block = mount.querySelector(".result-figure");
-      if (block && block.dataset.revealed !== "1") {
-        block.dataset.revealed = "1";
-        block.style.opacity = "0";
-        block.style.transform = "translate3d(0,10px,0)";
-        window.requestAnimationFrame(function () {
-          block.style.transition =
-            "opacity 480ms var(--ease-out-soft), transform 480ms var(--ease-out-soft)";
-          block.style.opacity = "1";
-          block.style.transform = "none";
-        });
-      }
-    });
-    mo.observe(mount, { childList: true, subtree: true });
-  }
-
-  /* ---------------------------------------------------------------
-     5. Word-stagger headings
+     4. Word-stagger headings
      Section headings (and the hero h1) rise in a word at a time.
      Done at runtime so the HTML stays plain text for crawlers and
      screen readers; the spans are inline-block with no clipping, so
@@ -361,7 +264,7 @@
   }
 
   /* ---------------------------------------------------------------
-     6. In-view flags (no opacity/transform of their own)
+     5. In-view flags (no opacity/transform of their own)
      For containers whose CSS draws something when they arrive — the
      line through the steps, the calculator progress — without moving
      the container itself.
@@ -383,7 +286,7 @@
   }
 
   /* ---------------------------------------------------------------
-     7. Card depth — desktop pointers only
+     6. Card depth — desktop pointers only
      A card tilts a few degrees toward the cursor and a soft sheen
      follows it. Capped at 3deg so text never smears; on touch or
      coarse pointers nothing is armed at all.
@@ -416,7 +319,7 @@
   }
 
   /* ---------------------------------------------------------------
-     8. Scroll progress
+     7. Scroll progress
      A 2px line along the header's bottom edge. Absolutely positioned
      and transform-only, so it cannot change the header's height — the
      header must never resize on scroll (see header() above).
@@ -445,7 +348,7 @@
   }
 
   /* ---------------------------------------------------------------
-     9. Form success — a tick that draws
+     8. Form success — a tick that draws
      The alert markup is owned by contact-form.js; this only decorates
      a success alert once it exists, so a failed request never gets
      a tick.
@@ -472,7 +375,6 @@
     scrollProgress();
     heroTilt();
     cardDepth();
-    watchCalculatorResults();
     formSuccess();
   }
 
