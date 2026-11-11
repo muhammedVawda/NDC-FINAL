@@ -554,7 +554,7 @@ await run("Accessibility (axe-core, WCAG 2.x A/AA incl. contrast)", async () => 
   if (!axePath || !existsSync(axePath)) { console.log("  (skipped: set AXE=/path/to/axe.min.js)"); return; }
   const src = readFileSync(axePath, "utf-8");
   for (const [w, label] of [[1440, "desktop"], [390, "mobile"]]) {
-    for (const f of ["index.html", "calculator.html", "contact.html", "about.html", "debt-review.html", "faqs.html"]) {
+    for (const f of ["index.html", "calculator.html", "contact.html", "about.html", "debt-review.html", "debt-mediation.html", "debt-review-removal.html", "faqs.html", "404.html"]) {
       const p = await page({ viewport: { width: w, height: 900 } });
       await p.goto(`${BASE}/${f}`, { waitUntil: "networkidle" }); await p.waitForTimeout(1800);
       if (f === "index.html") await p.evaluate(() => document.querySelectorAll(".faq-item")[0].open = true);
@@ -564,6 +564,163 @@ await run("Accessibility (axe-core, WCAG 2.x A/AA incl. contrast)", async () => 
       ok(v.length === 0, `${label} ${f}: ${v.length} axe violations${v.length ? " :: " + v.join(" | ") : ""}`);
       await p.context().close();
     }
+  }
+});
+
+// ----------------------------------------------------------------------------
+await run("Hand-made layer: fonts, decoration, clickable rows, numbering, copy", async () => {
+  // Fonts come from this site only, on every page.
+  {
+    const p = await page({ viewport: { width: 1280, height: 900 } });
+    const external = []; const fontFiles = new Set();
+    p.on("request", (r) => { const u = r.url(); if (!u.startsWith(BASE) && !/^(data|blob):/.test(u)) external.push(u); });
+    p.on("response", (r) => { if (/\.woff2/.test(r.url())) fontFiles.add(r.url().split("/").pop().split("?")[0]); });
+    for (const f of PAGES) await p.goto(`${BASE}/${f}`, { waitUntil: "networkidle" });
+    await p.goto(`${BASE}/index.html`, { waitUntil: "networkidle" });
+    await p.evaluate(async () => { for (let y = 0; y < document.documentElement.scrollHeight; y += 500) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 30)); } await document.fonts.ready; });
+    ok(external.length === 0, `no third-party requests across ${PAGES.length + 1} page loads${external.length ? " :: " + external.slice(0, 3).join(", ") : ""}`);
+    const loaded = await p.evaluate(() => [...new Set([...document.fonts].filter((f) => f.status === "loaded").map((f) => f.family.replace(/"/g, "")))]);
+    ok(fontFiles.has("manrope-latin.woff2") && fontFiles.has("patrick-hand-latin.woff2") && loaded.includes("Manrope") && loaded.includes("Patrick Hand"), `Manrope and Patrick Hand load from the site (${[...fontFiles].join(", ")})`);
+    await p.context().close();
+  }
+
+  // Decoration is inert and hidden from assistive technology; the headline still reads as one sentence.
+  {
+    const p = await page({ viewport: { width: 1440, height: 900 } });
+    await p.goto(`${BASE}/index.html`, { waitUntil: "networkidle" });
+    const r = await p.evaluate(() => {
+      const deco = [...document.querySelectorAll(".slip, .stamp, .tape, .scrawl, .circle, .arrow, .art, .stop__dot, .path__n")];
+      const exposed = deco.filter((n) => !n.closest("[aria-hidden='true']") && n.getAttribute("aria-hidden") !== "true").map((n) => String(n.getAttribute("class")).slice(0, 30));
+      const live = [...document.querySelectorAll(".tape, .stamp, .scrawl, .circle")].filter((n) => getComputedStyle(n).pointerEvents !== "none").length;
+      const h1 = document.querySelector(".hero h1"); const m = h1.querySelector(".mark");
+      return { n: deco.length, exposed, live, text: h1.textContent.replace(/\s+/g, " ").trim(), markColor: getComputedStyle(m).color, h1s: document.querySelectorAll("h1").length };
+    });
+    ok(r.n > 20 && r.exposed.length === 0, `${r.n} decorative elements, all aria-hidden${r.exposed.length ? " :: " + r.exposed.join(", ") : ""}`);
+    ok(r.live === 0, "tape, stamp, notes and pen circles never catch a click");
+    ok(r.text === "Debt keeping you up at night? Let’s work through it together." && r.h1s === 1, `headline reads as one sentence: "${r.text}"`);
+    ok(ratio(rgb(r.markColor), [247, 199, 7]) >= 7, `marker highlight text keeps ${ratio(rgb(r.markColor), [247, 199, 7]).toFixed(1)}:1 on the yellow`);
+    const sizes = await p.evaluate(() => ({ eyebrow: parseFloat(getComputedStyle(document.querySelector(".eyebrow")).fontSize), note: parseFloat(getComputedStyle(document.querySelector(".note h4")).fontSize), tag: parseFloat(getComputedStyle(document.querySelector(".pin__tag")).fontSize) }));
+    ok(sizes.eyebrow >= 20 && sizes.note >= 24 && sizes.tag >= 20, `handwriting stays large enough to read (eyebrow ${sizes.eyebrow}px, note heading ${sizes.note}px, tag ${sizes.tag}px)`);
+
+    // Whole rows are links: clicking the number, the empty space or the text all work.
+    // Each target is centred first, as a visitor would, so the sticky header is never over it.
+    const clickMid = async (sel, re) => {
+      await p.goto(`${BASE}/index.html`, { waitUntil: "networkidle" });
+      await p.$eval(sel, (n) => n.scrollIntoView({ block: "center" })); await p.waitForTimeout(900);
+      const box = await p.$eval(sel, (n) => { const b = n.getBoundingClientRect(); return { x: b.left + b.width / 2, y: b.top + b.height / 2 }; });
+      await Promise.all([p.waitForURL(re), p.mouse.click(box.x, box.y)]);
+    };
+    await clickMid(".path:nth-child(1) .path__n", /calculator\.html/);
+    await clickMid(".pin--lead .pin__art", /debt-review\.html/);
+    await clickMid(".read:nth-child(2) p:not(.read__cat)", /debt-review-vs-debt-mediation/);
+    ok(true, "clicking a starting-point row, a service note and a reading-list row each opens its page");
+    await p.goto(`${BASE}/index.html`, { waitUntil: "networkidle" });
+    await p.focus(".path:nth-child(2) .path__go");
+    const ring = await p.evaluate(() => { const s = getComputedStyle(document.querySelector(".path:nth-child(2) .path__go"), "::after"); return { st: s.outlineStyle, w: s.outlineWidth }; });
+    ok(ring.st === "solid" && parseFloat(ring.w) >= 3, `keyboard focus on a whole-row link draws a ${ring.w} ring around the row`);
+    await p.context().close();
+  }
+
+  // FAQ: margin numbers, sticky intro on desktop only, and it still opens.
+  for (const [w, label] of [[1280, "desktop"], [390, "mobile"]]) {
+    const p = await page({ viewport: { width: w, height: 900 } });
+    await p.goto(`${BASE}/index.html`, { waitUntil: "networkidle" });
+    const r = await p.evaluate(() => {
+      const items = [...document.querySelectorAll(".faq-list .faq-item")];
+      const content = getComputedStyle(items[0].querySelector("summary"), "::before").content;
+      return { n: items.length, content, reset: getComputedStyle(document.querySelector(".faq-list")).counterReset, inc: items.every((i) => getComputedStyle(i).counterIncrement === "q 1"), pos: getComputedStyle(document.querySelector(".faq-aside")).position };
+    });
+    // The numerals come from CSS counters (not in the DOM), so check the mechanism: reset on the list, +1 per item, shown before each question.
+    ok(r.n === 12 && /^counter\(q, decimal-leading-zero\)$/.test(r.content) && /^q\b/.test(r.reset) && r.inc, `${label}: 12 questions numbered 01 to 12 by CSS counter (${r.content})`);
+    ok(r.pos === (w >= 1000 ? "sticky" : "static"), `${label}: intro column is ${r.pos}`);
+    await p.click(".faq-list .faq-item:nth-of-type(3) summary"); await p.waitForTimeout(250);
+    ok(await p.$eval(".faq-list .faq-item:nth-of-type(3)", (d) => d.open), `${label}: a question opens on click`);
+    await p.context().close();
+  }
+
+  // The trail between the three steps: dotted curves across on desktop, a dotted line down on phones.
+  for (const [w, label] of [[1280, "desktop"], [390, "mobile"]]) {
+    const p = await page({ viewport: { width: w, height: 900 } });
+    await p.goto(`${BASE}/index.html`, { waitUntil: "networkidle" });
+    const r = await p.evaluate(() => { const s = getComputedStyle(document.querySelector(".route .stop"), "::after"); return { w: parseFloat(s.width), h: parseFloat(s.height), bl: s.borderLeftStyle, bg: s.backgroundImage.slice(0, 12) }; });
+    ok(w >= 1000 ? r.w > 120 && r.h > 30 && r.bg.startsWith("url") : r.h > 30 && r.bl === "dashed", `${label}: trail between steps is drawn (${Math.round(r.w)} x ${Math.round(r.h)}px)`);
+    await p.context().close();
+  }
+
+  // With motion on, once a visitor has scrolled the whole page, every animated part has arrived and stayed.
+  for (const [w, label] of [[1280, "desktop"], [390, "mobile"]]) {
+    const p = await page({ viewport: { width: w, height: 900 } });
+    await p.goto(`${BASE}/index.html`, { waitUntil: "networkidle" });
+    await p.evaluate(async () => { for (let y = 0; y < document.documentElement.scrollHeight; y += 250) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); } });
+    await p.waitForTimeout(1500);
+    const r = await p.evaluate(() => ({
+      js: document.documentElement.classList.contains("js-motion"),
+      waiting: [...document.querySelectorAll("[data-reveal]:not(.is-revealed)")].length,
+      invisible: [...document.querySelectorAll("main *")].filter((n) => !n.closest("[aria-hidden='true']") && getComputedStyle(n).opacity === "0" && n.getClientRects().length).length,
+      marks: [...document.querySelectorAll(".mark--light")].map((n) => getComputedStyle(n).backgroundSize),
+      trail: getComputedStyle(document.querySelector(".route .stop"), "::after").clipPath,
+      freeCircle: getComputedStyle(document.querySelector(".circled .circle path")).strokeDashoffset,
+    }));
+    ok(r.js && r.waiting === 0 && r.invisible === 0, `${label}: after scrolling the page, nothing is left waiting or invisible (${r.waiting} unrevealed, ${r.invisible} hidden)`);
+    ok(r.marks.every((m) => /^100%/.test(m)) && /inset\(0(px)? (0(px)? )?0(px)? 0(px)?\)|inset\(0px\)/.test(r.trail) && parseFloat(r.freeCircle) === 0, `${label}: highlights wiped in (${r.marks.join(" | ")}), trail drawn (${r.trail}), "free" circled`);
+    await p.context().close();
+  }
+
+  // Pen marks: drawn in when motion is allowed, simply there when it is not.
+  {
+    const p = await page({ viewport: { width: 1280, height: 900 } });
+    await p.goto(`${BASE}/index.html`, { waitUntil: "networkidle" }); await p.waitForTimeout(2600);
+    const drawn = await p.$eval(".slip--hero .circle path", (n) => getComputedStyle(n).strokeDashoffset);
+    ok(parseFloat(drawn) === 0, `pen circle on the example slip finishes drawing (dash offset ${drawn})`);
+    await p.context().close();
+    const q = await page({ viewport: { width: 1280, height: 900 }, reducedMotion: "reduce" });
+    await q.goto(`${BASE}/index.html`, { waitUntil: "networkidle" });
+    const still = await q.$eval(".slip--hero .circle path", (n) => { const c = getComputedStyle(n); return { d: c.strokeDasharray, o: c.strokeDashoffset }; });
+    ok(still.d === "none" && parseFloat(still.o) === 0, "reduced motion: pen circle is fully drawn, nothing animates");
+    await q.context().close();
+  }
+
+  // Calculator: only a shortfall gets the pen circle.
+  {
+    const p = await page({ viewport: { width: 1280, height: 900 }, reducedMotion: "reduce" });
+    await p.goto(`${BASE}/calculator.html`, { waitUntil: "networkidle" });
+    const set = async (i, l, d) => { await p.fill("#calc-income", i); await p.fill("#calc-living", l); await p.fill("#calc-debt", d); await p.waitForTimeout(700); };
+    await set("15000", "8000", "9000");
+    const neg = await p.$eval("[data-r-amount]", (n) => { const c = getComputedStyle(n); return { st: c.borderTopStyle, col: c.borderTopColor }; });
+    await set("20000", "8000", "4000");
+    const pos = await p.$eval("[data-r-amount]", (n) => getComputedStyle(n).borderTopStyle);
+    ok(neg.st === "solid" && neg.col === "rgb(181, 57, 43)" && pos === "none", `shortfall amount is circled in red pen (${neg.col}); a healthy budget is not`);
+    await p.context().close();
+  }
+
+  // Service pages: each has its drawing on desktop (hidden from assistive tech) and none on phones.
+  for (const f of ["debt-review.html", "debt-mediation.html", "debt-review-removal.html"]) {
+    const d = await page({ viewport: { width: 1440, height: 900 } });
+    await d.goto(`${BASE}/${f}`, { waitUntil: "networkidle" });
+    const a = await d.evaluate(() => { const art = document.querySelector(".masthead__art"); return { hidden: art.getAttribute("aria-hidden"), shown: getComputedStyle(art).display !== "none", tag: document.querySelector(".masthead__tag").textContent }; });
+    await d.context().close();
+    const m = await page({ viewport: { width: 390, height: 800 } });
+    await m.goto(`${BASE}/${f}`, { waitUntil: "networkidle" });
+    const onPhone = await m.$eval(".masthead__art", (n) => getComputedStyle(n).display);
+    await m.context().close();
+    ok(a.hidden === "true" && a.shown && onPhone === "none", `${f}: drawing "${a.tag}" shows on desktop, hidden on phones`);
+  }
+
+  // Copy: no dashes left in what people read, and no talk of calculator steps that no longer exist.
+  {
+    const p = await page({ viewport: { width: 1280, height: 900 } });
+    const bad = [];
+    for (const f of ["index.html", "about.html", "contact.html", "calculator.html", "debt-review.html", "debt-mediation.html", "debt-review-removal.html", "faqs.html", "privacy-policy.html", "terms.html", "404.html"]) {
+      await p.goto(`${BASE}/${f}`, { waitUntil: "networkidle" });
+      const r = await p.evaluate(() => ({ body: document.body.innerText, head: document.title + " " + [...document.querySelectorAll("meta[name=description], meta[property='og:description']")].map((m) => m.content).join(" ") }));
+      if (/[—–]/.test(r.body.replace(/\d{2}:\d{2}–\d{2}:\d{2}/g, "")) || /—/.test(r.head)) bad.push(f);
+      if (/debts step/i.test(r.body)) bad.push(f + " (old calculator wording)");
+    }
+    ok(bad.length === 0, `no em-dashes or stale calculator wording on 11 pages${bad.length ? " :: " + bad.join(", ") : ""}`);
+    await p.goto(`${BASE}/index.html`, { waitUntil: "networkidle" });
+    const foot = await p.$eval(".footer-creditors__note", (n) => n.textContent);
+    ok(/^Names identify/.test(foot.trim()), "footer says names (not logos) identify the credit providers");
+    await p.context().close();
   }
 });
 

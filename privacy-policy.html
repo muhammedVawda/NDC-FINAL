@@ -25,13 +25,11 @@
 <link rel="icon" href="/assets/img/favicon-32.png?v=3" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=3">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2?v=1" as="font" type="font/woff2" crossorigin>
 <script>(function(){try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("js-motion");}}catch(e){}})();</script>
 <link rel="preload" as="image" type="image/webp" href="/assets/img/ndc-logo-h96.webp?v=4" imagesrcset="/assets/img/ndc-logo-h96.webp?v=4 1x, /assets/img/ndc-logo-h192.webp?v=4 2x, /assets/img/ndc-logo-h288.webp?v=4 3x" media="(min-width: 62rem)" fetchpriority="high">
 <link rel="preload" as="image" type="image/webp" href="/assets/img/ndc-logo-h64.webp?v=4" imagesrcset="/assets/img/ndc-logo-h64.webp?v=4 1x, /assets/img/ndc-logo-h128.webp?v=4 2x, /assets/img/ndc-logo-h192.webp?v=4 3x" media="(max-width: 61.99rem)" fetchpriority="high">
-<link rel="stylesheet" href="/assets/css/styles.css?v=23">
+<link rel="stylesheet" href="/assets/css/styles.css?v=30">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -101,7 +99,7 @@
       <p class="lede">Last updated: <span data-year>2026</span>. This policy explains what personal information National Debt Consultants (&ldquo;NDC&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) collects through this website, how we use it, and the choices you have.</p>
 
       <div class="form-alert form-alert--info" style="margin-top: var(--space-lg);">
-        <strong>Business details pending confirmation.</strong> The bracketed items below — our registered company details, physical address, Information Officer contact, and specific retention periods — need to be confirmed by NDC and inserted before this policy is published live. Do not treat this draft as final without that review.
+        <strong>Business details pending confirmation.</strong> The bracketed items below, our registered company details, physical address, Information Officer contact and specific retention periods, need to be confirmed by NDC and inserted before this policy is published live. Do not treat this draft as final without that review.
       </div>
 
       <h2>1. Who we are</h2>
@@ -113,7 +111,7 @@
         <li>Contact details you provide in a callback or enquiry form: name, phone number, and optionally an email address and message.</li>
         <li>Preferences you select, such as a preferred callback time or service of interest.</li>
         <li>Consent choices you make, recorded separately for being contacted about your enquiry and for optional marketing communication.</li>
-        <li>Basic, non-identifying usage information, such as which pages are visited and whether the calculator or a form was completed — collected without the specific figures you type into the calculator or the content of your messages. See &ldquo;Analytics&rdquo; below.</li>
+        <li>Basic, non-identifying usage information, such as which pages are visited and whether the calculator or a form was completed. This is collected without the specific figures you type into the calculator or the content of your messages. See &ldquo;Analytics&rdquo; below.</li>
       </ul>
       <p>Figures you enter into the Budget &amp; Debt Calculator (income, expenses and debt amounts) stay in your browser for that session only. They are not transmitted to our servers or stored unless you separately choose to submit them to us through a form.</p>
 
@@ -137,7 +135,7 @@
       <p>We do not currently use advertising networks or third-party tracking pixels on this website. We do not claim that information is &ldquo;never shared&rdquo; beyond what is described in this policy.</p>
 
       <h2>5. Analytics</h2>
-      <p>This site is built to track basic, non-sensitive events — such as a form being submitted or the calculator being completed — without recording the values you typed, without putting personal or financial information into analytics events or page URLs, and without an analytics provider actively connected at this stage. See our implementation notes for the current status of this integration.</p>
+      <p>This site is built to track basic, non-sensitive events, such as a form being submitted or the calculator being completed, without recording the values you typed, without putting personal or financial information into analytics events or page URLs, and without an analytics provider actively connected at this stage. See our implementation notes for the current status of this integration.</p>
 
       <h2>6. Your rights</h2>
       <p>Under POPIA, you may have the right to access, correct or request deletion of your personal information, and to object to certain processing, including marketing communication. To exercise these rights, contact us using the details on our <a href="/contact.html">Contact page</a> or email <a href="mailto:marketing@ndcsa.co.za?subject=Privacy%20request">marketing@ndcsa.co.za</a> with &ldquo;Privacy request&rdquo; in the subject line. You also have the right to complain to the Information Regulator of South Africa.</p>
@@ -208,7 +206,7 @@
   </div>
   <div class="wrap footer-creditors">
     <h2>Banks and credit providers</h2>
-    <p class="footer-creditors__note">Logos identify the respective credit providers and do not imply partnership, sponsorship or endorsement of NDC.</p>
+    <p class="footer-creditors__note">Names identify the respective credit providers and do not imply partnership, sponsorship or endorsement of NDC.</p>
     <ul class="footer-creditors__list">
       <li class="creditor-badge">Absa</li>
       <li class="creditor-badge">FNB</li>
@@ -224,7 +222,7 @@
   <div class="wrap footer-lang" data-lang-mount></div>
 
   <div class="wrap footer-legal">
-    <p>National Debt Consultants is a debt counsellor registered with the National Credit Regulator (NCRDC4382) under the National Credit Act 34 of 2005. Outcomes depend on your circumstances and your creditors&rsquo; responses. Fees are explained at your consultation. Personal information is processed in line with POPIA &mdash; see our <a href="/privacy-policy.html">Privacy Policy</a>. This website offers general information, not financial or legal advice.</p>
+    <p>National Debt Consultants is a debt counsellor registered with the National Credit Regulator (NCRDC4382) under the National Credit Act 34 of 2005. Outcomes depend on your circumstances and your creditors&rsquo; responses. Fees are explained at your consultation. Personal information is processed in line with POPIA. See our <a href="/privacy-policy.html">Privacy Policy</a>. This website offers general information, not financial or legal advice.</p>
   </div>
 
   <div class="wrap footer-bottom">
@@ -238,12 +236,12 @@
     <a class="is-primary" href="/#callback-form">Call me back</a>
   </nav>
 
-<script src="/assets/js/nav.js?v=23" defer></script>
-<script src="/assets/js/analytics.js?v=23" defer></script>
-<script src="/assets/js/motion.js?v=23" defer></script>
-<script src="/assets/js/lang.js?v=23" defer></script>
-<script src="/assets/js/sa-validate.js?v=23" defer></script>
-<script src="/assets/js/chat.js?v=23" defer></script>
+<script src="/assets/js/nav.js?v=30" defer></script>
+<script src="/assets/js/analytics.js?v=30" defer></script>
+<script src="/assets/js/motion.js?v=30" defer></script>
+<script src="/assets/js/lang.js?v=30" defer></script>
+<script src="/assets/js/sa-validate.js?v=30" defer></script>
+<script src="/assets/js/chat.js?v=30" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function(el){ el.textContent = new Date().getFullYear(); });</script>
 </body>
 </html>

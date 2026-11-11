@@ -16,7 +16,7 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 import { SITE, ASSET_V, LOGO_V } from "./site-config.mjs";
-import { header, footer, mobileBar, logoPreloads, coreScripts } from "./partials.mjs";
+import { header, footer, mobileBar, logoPreloads, fontPreloads, coreScripts } from "./partials.mjs";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const CSS_V = ASSET_V;
@@ -69,9 +69,7 @@ function head({ title, description, canonical, ogImage, extraSchema }) {
 <link rel="icon" href="/assets/img/favicon-32.png?${LOGO_V}" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?${LOGO_V}">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+${fontPreloads()}
 <script>(function(){try{if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("js-motion");}}catch(e){}})();</script>
 ${logoPreloads()}
 <link rel="stylesheet" href="/assets/css/styles.css?${CSS_V}">

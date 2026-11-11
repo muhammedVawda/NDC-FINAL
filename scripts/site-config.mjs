@@ -13,7 +13,7 @@ export const SITE = "https://ndcsa.co.za";
 // Appended to every /assets/css and /assets/js URL. /assets/* is served with
 // `Cache-Control: immutable` for a year, so ANY css/js change must bump this
 // (then run `npm run site:build` to rewrite every page).
-export const ASSET_V = "v=23";
+export const ASSET_V = "v=30";
 
 // Appended to the sized logo files. Bump if scripts/make-logo-assets.py is re-run.
 export const LOGO_V = "v=4";

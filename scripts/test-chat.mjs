@@ -167,13 +167,19 @@ await p3.goto(B + 'index.html', { waitUntil: 'networkidle' });
 await openChat(p3);
 await p3.fill('.chat-input', 'What is debt review?');
 await p3.press('.chat-input', 'Enter');
-await p3.waitForTimeout(900);
+// wait for the answer to arrive (conditions, not fixed pauses, so a loaded machine cannot reorder the two questions)
+await p3.waitForFunction(() => /National Credit Act/i.test(document.querySelector('.chat-log').innerText), null, { timeout: 10000 }).catch(() => {});
+// the assistant ignores a second question while the first is still being answered, so wait until it is ready again
+await p3.waitForFunction(() => { const b = document.querySelector('.chat-send'); return b && !b.disabled; }, null, { timeout: 10000 }).catch(() => {});
+await p3.waitForTimeout(300);
 const a9 = await txt(p3);
 ok(/National Credit Act/i.test(a9), 'answerable question answered from the site');
 
 await p3.fill('.chat-input', 'Can you guarantee you will remove my debt review?');
 await p3.press('.chat-input', 'Enter');
-await p3.waitForTimeout(900);
+await p3.waitForFunction(() => /don't have verified information|rather not guess/i.test(document.querySelector('.chat-log').innerText), null, { timeout: 10000 }).catch(() => {});
+await p3.waitForSelector('.chat-option--primary', { timeout: 10000 }).catch(() => {});
+await p3.waitForTimeout(300);
 const a9b = await txt(p3);
 ok(/don't have verified information|rather not guess/i.test(a9b), 'guarantee question refused');
 ok(!/^yes/im.test(a9b.split('guarantee you will remove my debt review?')[1] || ''), 'no "Yes" answer to a guarantee question');
@@ -187,9 +193,11 @@ await p3.waitForSelector('.chat-callback');
 await p3.fill('#ndc-cb-name', 'Ayanda');
 await p3.fill('#ndc-cb-phone', '0821234567');
 await p3.check('#ndc-cb-consent');
+sent = null;
 await p3.click('.chat-submit');
-await p3.waitForTimeout(500);
-ok(/Their question: Can you guarantee/.test(sent.message), 'typed question routed with the callback');
+// wait for the (mocked) request itself rather than a fixed pause, which flaked under load
+for (let i = 0; i < 60 && !sent; i++) await p3.waitForTimeout(100);
+ok(!!sent && /Their question: Can you guarantee/.test(sent.message), 'typed question routed with the callback');
 console.log('  message: ' + sent.message);
 
 // ---------- 10. mobile ----------

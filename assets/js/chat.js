@@ -277,7 +277,7 @@
     },
 
     helpDebt: {
-      text: "We help you understand your options when credit repayments are becoming unmanageable — and what each one actually involves.",
+      text: "We help you understand your options when credit repayments are becoming unmanageable, and what each one actually involves.",
       options: [
         CALLBACK_OPT,
         { label: "Check my budget", href: "/calculator.html" },
@@ -322,7 +322,7 @@
     leavingReview: {
       kbId: "svc-debt-review-removal",
       extraSource: "ncr-circular-2-2025",
-      note: "Whether that's possible in your case is an assessment a registered debt counsellor has to make — I can't decide it here.",
+      note: "Whether that's possible in your case is an assessment a registered debt counsellor has to make. I can't decide it here.",
       options: [CALLBACK_OPT]
     }
   };
@@ -334,7 +334,7 @@
     if (node.kbId) {
       loadKB().then(function () {
         var e = entry(node.kbId);
-        if (!e) { addMessage("assistant", "Sorry — I couldn't load that just now."); return; }
+        if (!e) { addMessage("assistant", "Sorry, I couldn't load that just now."); return; }
         var sources = [{ title: e.title, url: e.url }];
         if (node.extraSource) {
           var x = entry(node.extraSource);
@@ -449,7 +449,7 @@
     track("chat_callback_opened", { from: trail[trail.length - 1] || "direct" });
 
     addMessage("assistant", pendingQuestion
-      ? "No problem — I'll pass your question on. Just your name and number and a consultant will call you."
+      ? "No problem, I'll pass your question on. Just your name and number and a consultant will call you."
       : "Happy to arrange that. I only need two things.");
 
     var shownAt = Date.now(); // the server enforces a minimum gap before it accepts a submission
@@ -632,7 +632,7 @@
           submit.disabled = false;
           submit.textContent = original;
           status.textContent = String(err.message || "Something went wrong.") +
-            " Your details are still here — you can try again.";
+            " Your details are still here, so you can try again.";
           status.hidden = false;
           track("chat_callback_failed", {});
           // Offer the verified number as a way through, since the form
@@ -816,7 +816,7 @@
     titleWrap.appendChild(el("p", "chat-head__title", "NDC Virtual Assistant"));
     // Says plainly that this is not a person. There is no live-agent
     // backend, so anything vaguer would be a lie by omission.
-    titleWrap.appendChild(el("p", "chat-head__sub", "Automated help — not a live consultant"));
+    titleWrap.appendChild(el("p", "chat-head__sub", "Automated help, not a live consultant"));
     head.appendChild(titleWrap);
 
     var actions = el("div", "chat-head__actions");
@@ -869,7 +869,7 @@
       send(input.value);
     });
 
-    var note = el("p", "chat-note", "General information only — not financial or legal advice. This conversation isn't saved.");
+    var note = el("p", "chat-note", "General information only, not financial or legal advice. This conversation isn't saved.");
 
     panel.appendChild(head);
     panel.appendChild(log);

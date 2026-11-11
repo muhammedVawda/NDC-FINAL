@@ -246,11 +246,11 @@ server-side by the function's own rate limiter).
 - Palette, type scale, spacing, radii, shadows and motion are all defined
   as CSS custom properties in `assets/css/styles.css` — a single file to
   edit for brand updates.
-- Typography: a single family, "Manrope", used throughout for headings and
-  body/UI text (differentiated by size/weight, not a separate display
-  face), loaded from Google Fonts with `font-display: swap`; falls back to
-  the system sans-serif stack if the font request fails or is blocked, so
-  the page never blocks on it.
+- Typography: "Manrope" for headings and body/UI text (differentiated by
+  size/weight), plus "Patrick Hand" used only for short handwritten notes.
+  Both are self-hosted from `assets/fonts/` (no request to Google), with
+  `font-display: swap` and a metric-matched system fallback so the page
+  never blocks on them and does not shift when they arrive.
 - The homepage hero's visual is the official NDC logo itself (with a
   restrained entrance animation and soft glow, gated behind
   `@media (prefers-reduced-motion: no-preference)`) rather than a

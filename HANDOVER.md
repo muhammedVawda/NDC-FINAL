@@ -68,6 +68,8 @@ changed):
 | Logo and hero watermark | Source of truth is the approved artwork in `assets/img/`. `python scripts/make-logo-assets.py` regenerates the header/footer sizes (1x/2x/3x WebP + PNG fallback) and the watermark. The header logo is 96px tall on desktop and 64px on mobile (`LOGO` in `site-config.mjs`; CSS vars `--logo-h-desktop` / `--logo-h-mobile`). See §10 for why not 80/56 |
 | Debt advice articles | `assets/data/articles.json`, then `node scripts/build-blog.mjs` |
 | Assistant flow | `NODES` in `assets/js/chat.js` |
+| Fonts | Self-hosted in `assets/fonts/` (Manrope variable, Patrick Hand), declared at the top of `assets/css/styles.css`. The build adds one preload for Manrope on every page. No Google Fonts request is made anywhere |
+| The hand-made look (paper slips, marker highlights, tape, stamp, pen circles, drawings) | The block headed `HAND-MADE LAYER` at the end of `assets/css/styles.css`; the drawings are inline SVG in `index.html` and the three service pages |
 | Callback form fields | `index.html` and `contact.html` forms; `assets/js/contact-form.js` (behaviour); `assets/js/sa-validate.js` (phone rules and the list of "best time to call" options, shared by the pages, the assistant and the server); `netlify/functions/contact.js` (server validation + email template) |
 | Calculator | `calculator.html` (markup), `assets/js/budget-engine.js` (`estimateSimple`, the tested maths), `assets/js/calculator.js` (live UI) |
 | Languages | `assets/data/languages.json`: flip `status` to `published` only after human review (see §6) |
@@ -312,4 +314,64 @@ message and the enquiry arrives; the assistant opens with three options;
    test enquiry; confirm it arrives at marketing@ndcsa.co.za.
 2. Add the domain in Vercel, update DNS, wait for the certificate.
 3. Run the live checks in §9, then the Search Console steps in §5.
+
+## 11. Look and feel round: a hand-made design, and what it touched
+
+**The idea.** A consultant going through your budget at the kitchen table:
+paper slips, marker highlights, tape, a rubber stamp, notes in pen. It
+replaces the earlier row-of-three-identical-cards layout. Brand colours
+and Manrope are unchanged.
+
+**Where it shows**
+
+- Home page: the hero has an example budget slip with the shortfall
+  circled in red pen; the three starting points are a list, not boxes; the
+  services are paper notes pinned to a dark board, each with a small
+  drawing; the three steps follow a dotted trail; "good to know" are
+  sticky notes; the registration is a rubber stamp beside a fact sheet;
+  advice articles are a reading list; the FAQ is numbered with a sticky
+  intro on desktop.
+- Every page: section labels are handwritten notes, buttons are tactile
+  keys, cards are paper, a torn edge sits above dark bands and the footer,
+  page headings carry a marker highlight.
+- Service pages: a drawing on the right of the heading (desktop only).
+- About: mission, vision and values are pinned notes.
+- Calculator: the result is a note, and a shortfall is circled in pen.
+
+**Rules the new layer keeps**
+
+- Handwriting is for short notes only; anything that has to be understood
+  stays in Manrope, and handwritten text is 20px or larger.
+- All decoration is `aria-hidden` and ignores clicks. Whole rows (starting
+  points, service notes, reading list) are real links with a visible
+  keyboard focus ring.
+- Animation only runs when the visitor has not asked for reduced motion.
+  The old card tilt and cursor sheen were removed on purpose.
+- No facts were added. Wording changed in tone only.
+
+**Other changes in this round**
+
+- Fonts are now self-hosted. Layout shift fell (worst page 0.0003 on
+  desktop, 0.006 on mobile) and no visitor address goes to Google.
+- Em-dashes were removed from the text visitors read on every top-level
+  page, the footer, the assistant's own lines and its hand-written
+  knowledge entries.
+- Fixed stale wording: the FAQ, its structured data and the assistant said
+  results appear "after the debts step", a step that no longer exists.
+- The footer note under the bank names said "Logos"; they are text, so it
+  now says "Names".
+- Fixed a regression found in testing where centred button rows on the
+  About, 404 and calculator-teaser sections slid to the left.
+
+**Still open (found during this round)**
+
+- **Privacy policy is still a draft.** `privacy-policy.html` opens with a
+  notice that bracketed items (registered company details, physical
+  address, Information Officer contact, retention periods) must be
+  confirmed by NDC and inserted before it is published. The callback form
+  links to this page, so do this before going live.
+- The 16 debt advice articles (and the article entries in the assistant's
+  knowledge base) still contain em-dashes. They are long-form and were not
+  reworded line by line.
+- Everything else listed in section 10 still applies.
 

@@ -42,6 +42,12 @@ export function logoPicture(kind, extraImgAttrs = "") {
 }
 
 /** Preload the header logo for the viewport that will actually use it. */
+// Manrope is self-hosted (see @font-face in styles.css). Only the Latin file is preloaded:
+// it carries every character on the page that is not in a rarely used extended range.
+export function fontPreloads() {
+  return `<link rel="preload" href="/assets/fonts/manrope-latin.woff2?v=1" as="font" type="font/woff2" crossorigin>`;
+}
+
 export function logoPreloads() {
   const { desktop, mobile, breakpoint } = LOGO.header;
   const maxw = `${parseFloat(breakpoint) - 0.01}rem`;
@@ -150,7 +156,7 @@ export function footer(year = new Date().getFullYear()) {
   </div>
   <div class="wrap footer-creditors">
     <h2>Banks and credit providers</h2>
-    <p class="footer-creditors__note">Logos identify the respective credit providers and do not imply partnership, sponsorship or endorsement of NDC.</p>
+    <p class="footer-creditors__note">Names identify the respective credit providers and do not imply partnership, sponsorship or endorsement of NDC.</p>
     <ul class="footer-creditors__list">
       <li class="creditor-badge">Absa</li>
       <li class="creditor-badge">FNB</li>
@@ -166,7 +172,7 @@ export function footer(year = new Date().getFullYear()) {
   <div class="wrap footer-lang" data-lang-mount></div>
 
   <div class="wrap footer-legal">
-    <p>${COMPANY.name} is a debt counsellor registered with the National Credit Regulator (${COMPANY.ncr}) under the National Credit Act 34 of 2005. Outcomes depend on your circumstances and your creditors&rsquo; responses. Fees are explained at your consultation. Personal information is processed in line with POPIA &mdash; see our <a href="${COMPANY.privacyUrl}">Privacy Policy</a>. This website offers general information, not financial or legal advice.</p>
+    <p>${COMPANY.name} is a debt counsellor registered with the National Credit Regulator (${COMPANY.ncr}) under the National Credit Act 34 of 2005. Outcomes depend on your circumstances and your creditors&rsquo; responses. Fees are explained at your consultation. Personal information is processed in line with POPIA. See our <a href="${COMPANY.privacyUrl}">Privacy Policy</a>. This website offers general information, not financial or legal advice.</p>
   </div>
 
   <div class="wrap footer-bottom">

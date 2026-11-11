@@ -19,21 +19,21 @@
       "type": "company",
       "title": "How to contact National Debt Consultants",
       "url": "/contact.html",
-      "text": "You can reach National Debt Consultants by phone on (021) 054 1141, by email at marketing@ndcsa.co.za, or by requesting a callback through the contact form on this website. Our address is Buchanan Square, 160 Sir Lowry Rd, Woodstock, Cape Town, 7915. Requesting a callback is an enquiry, not a commitment to anything — a consultant reviews your request and contacts you."
+      "text": "You can reach National Debt Consultants by phone on (021) 054 1141, by email at marketing@ndcsa.co.za, or by requesting a callback through the contact form on this website. Our address is Buchanan Square, 160 Sir Lowry Rd, Woodstock, Cape Town, 7915. Requesting a callback is an enquiry, not a commitment to anything. A consultant reviews your request and contacts you."
     },
     {
       "id": "company-about",
       "type": "company",
       "title": "About National Debt Consultants",
       "url": "/about.html",
-      "text": "National Debt Consultants (NDC) helps South Africans understand their budget and debt options — debt review, debt mediation and debt review removal. Our NCR debt counsellor registration number is NCRDC4382. We provide general information and guidance; nothing on the site is financial or legal advice for your specific circumstances."
+      "text": "National Debt Consultants (NDC) helps South Africans understand their budget and debt options: debt review, debt mediation and debt review removal. Our NCR debt counsellor registration number is NCRDC4382. We provide general information and guidance; nothing on the site is financial or legal advice for your specific circumstances."
     },
     {
       "id": "svc-debt-review",
       "type": "service",
       "title": "Debt Review",
       "url": "/debt-review.html",
-      "text": "Debt review is a formal, legally regulated process under the National Credit Act, regulated by the National Credit Regulator (NCR), that restructures your debt repayments into one affordable monthly plan. It offers legal protection from credit providers while you comply with the plan. Not everyone qualifies — it depends on an assessment of whether you're over-indebted."
+      "text": "Debt review is a formal, legally regulated process under the National Credit Act, regulated by the National Credit Regulator (NCR), that restructures your debt repayments into one affordable monthly plan. It offers legal protection from credit providers while you comply with the plan. Not everyone qualifies. It depends on an assessment of whether you're over-indebted."
     },
     {
       "id": "svc-debt-mediation",
@@ -47,14 +47,14 @@
       "type": "service",
       "title": "Debt Review Removal",
       "url": "/debt-review-removal.html",
-      "text": "Debt review removal is for consumers already under formal debt review who want to understand their options for exiting the process. Removal follows specific legal routes and requires an assessment — an improved income alone doesn't automatically qualify you. A clearance certificate is issued by a registered debt counsellor once debts covered by your plan are paid off in full. Exiting before debts are settled generally requires a court application instead."
+      "text": "Debt review removal is for consumers already under formal debt review who want to understand their options for exiting the process. Removal follows specific legal routes and requires an assessment. An improved income alone doesn't automatically qualify you. A clearance certificate is issued by a registered debt counsellor once debts covered by your plan are paid off in full. Exiting before debts are settled generally requires a court application instead."
     },
     {
       "id": "svc-calculator",
       "type": "service",
       "title": "Budget & Debt Calculator",
       "url": "/calculator.html",
-      "text": "A free calculator that gives you a general budget summary based on income, expenses and debts you enter. It is not a formal debt review proposal or a personalised repayment estimate — that requires a full assessment. You don't need to share contact details to see your results, and the figures you type in stay in your browser for that session; they are not saved on our servers unless you separately submit a callback request."
+      "text": "A free calculator that gives you a general budget summary based on income, expenses and debts you enter. It is not a formal debt review proposal or a personalised repayment estimate. That requires a full assessment. You don't need to share contact details to see your results, and the figures you type in stay in your browser for that session; they are not saved on our servers unless you separately submit a callback request."
     },
     {
       "id": "faq-1",
@@ -68,7 +68,7 @@
       "type": "faq",
       "title": "Does everyone qualify for debt review?",
       "url": "/faqs.html",
-      "text": "No. Qualifying depends on an assessment of whether you’re over-indebted — meaning you can’t comfortably meet your credit repayments alongside reasonable living expenses. A consultant or debt counsellor needs to assess your specific situation."
+      "text": "No. Qualifying depends on an assessment of whether you’re over-indebted, meaning you can’t comfortably meet your credit repayments alongside reasonable living expenses. A consultant or debt counsellor needs to assess your specific situation."
     },
     {
       "id": "faq-3",
@@ -103,7 +103,7 @@
       "type": "faq",
       "title": "Can I get removed from debt review automatically once my income improves?",
       "url": "/faqs.html",
-      "text": "No. Removal follows specific legal routes and requires an assessment — an improved income alone doesn’t automatically qualify you. See debt review removal."
+      "text": "No. Removal follows specific legal routes and requires an assessment. An improved income alone doesn’t automatically qualify you. See debt review removal."
     },
     {
       "id": "faq-8",
@@ -124,14 +124,14 @@
       "type": "faq",
       "title": "Is a combined repayment arrangement the same as a consolidation loan?",
       "url": "/faqs.html",
-      "text": "No. Restructuring your repayments through debt review is not a new loan — it’s a revised repayment plan across your existing credit agreements. We don’t offer a consolidation loan product."
+      "text": "No. Restructuring your repayments through debt review is not a new loan. It’s a revised repayment plan across your existing credit agreements. We don’t offer a consolidation loan product."
     },
     {
       "id": "faq-11",
       "type": "faq",
       "title": "Do I need to give my contact details to see my results?",
       "url": "/faqs.html",
-      "text": "No. Your results appear immediately after the debts step — you can request a callback afterwards, but it’s entirely optional."
+      "text": "No. Your estimate appears as you type, and nothing is sent unless you choose to submit a form. You can ask for a callback afterwards, but that is entirely optional."
     },
     {
       "id": "faq-12",
@@ -166,14 +166,14 @@
       "type": "checklist",
       "title": "Documents needed for Debt Review",
       "url": "/debt-advice/what-documents-do-i-need-for-debt-review.html",
-      "text": "What a debt counsellor typically asks for. The exact list can vary — confirm with the consultant handling your application. Documents typically required: South African ID (smart card or green book); Recent payslips (usually last 3 months); If self-employed: business bank statements, financial statements or management accounts, drawings records; Bank statements (usually last 3 months, all accounts you use); Details of every credit agreement — provider, account number, balance, monthly instalment; Proof of residence (recent utility bill or lease); A realistic list of monthly living expenses"
+      "text": "What a debt counsellor typically asks for. The exact list can vary, so confirm with the consultant handling your application. Documents typically required: South African ID (smart card or green book); Recent payslips (usually last 3 months); If self-employed: business bank statements, financial statements or management accounts, drawings records; Bank statements (usually last 3 months, all accounts you use); Details of every credit agreement: provider, account number, balance, monthly instalment; Proof of residence (recent utility bill or lease); A realistic list of monthly living expenses"
     },
     {
       "id": "checklist-debt-review-removal",
       "type": "checklist",
       "title": "Documents needed for Debt Review Removal / Termination",
       "url": "/debt-advice/can-debt-review-be-removed-or-terminated.html",
-      "text": "What's relevant depends heavily on your stage. These are the things that determine what options exist — not a guarantee of removal. Documents typically required: Your current debt review status and stage; Any court order granted in your matter; Clearance certificate, if your debts are already settled; Your current credit report; Debt counsellor details and correspondence; Current proof of income"
+      "text": "What's relevant depends heavily on your stage. These are the things that determine what options exist, not a guarantee of removal. Documents typically required: Your current debt review status and stage; Any court order granted in your matter; Clearance certificate, if your debts are already settled; Your current credit report; Debt counsellor details and correspondence; Current proof of income"
     },
     {
       "id": "checklist-mediation",
@@ -326,7 +326,7 @@
   "checklists": {
     "debt-review": {
       "label": "Debt Review",
-      "intro": "What a debt counsellor typically asks for. The exact list can vary — confirm with the consultant handling your application.",
+      "intro": "What a debt counsellor typically asks for. The exact list can vary, so confirm with the consultant handling your application.",
       "learnMore": "/debt-advice/what-documents-do-i-need-for-debt-review.html",
       "items": [
         {
@@ -346,7 +346,7 @@
           "why": "Shows what actually leaves your account, including debit orders you may have forgotten. A budget built on memory tends to collapse."
         },
         {
-          "item": "Details of every credit agreement — provider, account number, balance, monthly instalment",
+          "item": "Details of every credit agreement: provider, account number, balance, monthly instalment",
           "why": "The restructuring proposal has to cover every debt. Your free annual credit report helps surface accounts you've lost track of."
         },
         {
@@ -361,7 +361,7 @@
     },
     "debt-review-removal": {
       "label": "Debt Review Removal / Termination",
-      "intro": "What's relevant depends heavily on your stage. These are the things that determine what options exist — not a guarantee of removal.",
+      "intro": "What's relevant depends heavily on your stage. These are the things that determine what options exist, not a guarantee of removal.",
       "learnMore": "/debt-advice/can-debt-review-be-removed-or-terminated.html",
       "items": [
         {
@@ -386,7 +386,7 @@
         },
         {
           "item": "Current proof of income",
-          "why": "If your circumstances have genuinely changed, that's a legitimate basis for reassessment — though improved income alone doesn't automatically qualify you."
+          "why": "If your circumstances have genuinely changed, that's a legitimate basis for reassessment, though improved income alone doesn't automatically qualify you."
         }
       ]
     },

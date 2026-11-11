@@ -23,7 +23,7 @@ import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { ASSET_V } from "./site-config.mjs";
-import { header, footer, mobileBar, logoPreloads, faqItemsHtml, homeJsonLd, coreScripts } from "./partials.mjs";
+import { header, footer, mobileBar, logoPreloads, fontPreloads, faqItemsHtml, homeJsonLd, coreScripts } from "./partials.mjs";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const year = new Date().getFullYear();
@@ -65,6 +65,11 @@ for (const file of pages) {
     /<meta name="viewport" content="[^"]*">/,
     '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">'
   );
+
+  // Fonts are self-hosted: swap the old Google Fonts links for one preload (idempotent).
+  const googleFonts = /<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">\n<link rel="preconnect" href="https:\/\/fonts\.gstatic\.com" crossorigin>\n<link href="https:\/\/fonts\.googleapis\.com\/css2[^>]*>/;
+  if (googleFonts.test(html)) html = html.replace(googleFonts, () => fontPreloads());
+  else html = html.replace(/<link rel="preload" href="\/assets\/fonts\/[^>]*>/, () => fontPreloads());
 
   html = html.replace(/<link rel="preload" as="image"[^>]*>\n?/g, "");
   html = html.replace(/(<link rel="stylesheet" href="\/assets\/css\/styles\.css)/, (m) => `${logoPreloads()}\n${m}`);

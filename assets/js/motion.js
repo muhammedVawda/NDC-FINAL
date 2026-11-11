@@ -4,8 +4,8 @@
   WHY THIS ISN'T GSAP
   -------------------
   GSAP + ScrollTrigger is ~45KB gzipped. Everything this site
-  actually needs — one-shot reveals with stagger, a header state, a
-  capped pointer tilt, and a count-up — is an IntersectionObserver
+  actually needs: one-shot reveals with stagger, a header state and a
+  scroll-progress bar. That is an IntersectionObserver
   and a few CSS custom properties. This file is ~3KB and adds no
   third-party runtime dependency to a financial-services site.
   If scrub-linked or timeline-sequenced effects are ever wanted,
@@ -42,6 +42,9 @@
       // Cards and repeated items stagger across the row.
       { sel: ".grid > .card, .grid > .pathway-card, .grid > .blog-card, .grid > a.card", stagger: true },
       { sel: ".steps > .step", stagger: true },
+      { sel: ".paths > .path, .reading > .read, .route > .stop, .factsheet > .factsheet__row", stagger: true },
+      { sel: ".board > .pin, .notes > .note", stagger: true },
+      { sel: ".fee-note", stagger: false },
       { sel: ".faq-item", stagger: true },
       { sel: ".footer-creditors__list > .creditor-badge", stagger: true },
       // Article prose: blocks rise as you read down.
@@ -185,40 +188,6 @@
   }
 
   /* ---------------------------------------------------------------
-     3. Hero pointer depth (desktop pointers only, capped at 6px)
-     Applied via custom properties on the wrapper so the logo asset's
-     own background blending is never transformed or filtered.
-     --------------------------------------------------------------- */
-  function heroTilt() {
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-    var visual = document.querySelector(".hero__visual, .hero__brand-visual");
-    var hero = document.querySelector(".hero");
-    if (!visual || !hero) return;
-
-    var MAX = 6;
-    var raf = null;
-    hero.addEventListener(
-      "pointermove",
-      function (e) {
-        if (raf) return;
-        raf = window.requestAnimationFrame(function () {
-          var r = hero.getBoundingClientRect();
-          var dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
-          var dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
-          visual.style.setProperty("--tilt-x", (dx * MAX).toFixed(2) + "px");
-          visual.style.setProperty("--tilt-y", (dy * MAX).toFixed(2) + "px");
-          raf = null;
-        });
-      },
-      { passive: true }
-    );
-    hero.addEventListener("pointerleave", function () {
-      visual.style.setProperty("--tilt-x", "0px");
-      visual.style.setProperty("--tilt-y", "0px");
-    });
-  }
-
-  /* ---------------------------------------------------------------
      4. Word-stagger headings
      Section headings (and the hero h1) rise in a word at a time.
      Done at runtime so the HTML stays plain text for crawlers and
@@ -270,7 +239,7 @@
      the container itself.
      --------------------------------------------------------------- */
   function inViewFlags() {
-    var targets = document.querySelectorAll(".steps, .calc-progress");
+    var targets = document.querySelectorAll(".steps, .route, .calc-progress");
     if (!targets.length || !("IntersectionObserver" in window)) {
       Array.prototype.forEach.call(targets, function (el) { el.classList.add("is-inview"); });
       return;
@@ -283,39 +252,6 @@
       });
     }, { rootMargin: "0px 0px -12% 0px", threshold: 0.05 });
     Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
-  }
-
-  /* ---------------------------------------------------------------
-     6. Card depth — desktop pointers only
-     A card tilts a few degrees toward the cursor and a soft sheen
-     follows it. Capped at 3deg so text never smears; on touch or
-     coarse pointers nothing is armed at all.
-     --------------------------------------------------------------- */
-  function cardDepth() {
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-    var cards = document.querySelectorAll(".card.service-card, .card.pathway-card, .card.trust-card, .card.blog-card");
-    var MAX = 3;
-    Array.prototype.forEach.call(cards, function (card) {
-      card.classList.add("card-depth");
-      var raf = null;
-      card.addEventListener("pointermove", function (e) {
-        if (raf) return;
-        raf = window.requestAnimationFrame(function () {
-          var r = card.getBoundingClientRect();
-          var px = (e.clientX - r.left) / r.width;   // 0..1
-          var py = (e.clientY - r.top) / r.height;
-          card.style.setProperty("--ry", ((px - 0.5) * 2 * MAX).toFixed(2) + "deg");
-          card.style.setProperty("--rx", ((0.5 - py) * 2 * MAX).toFixed(2) + "deg");
-          card.style.setProperty("--mx", (px * 100).toFixed(1) + "%");
-          card.style.setProperty("--my", (py * 100).toFixed(1) + "%");
-          raf = null;
-        });
-      }, { passive: true });
-      card.addEventListener("pointerleave", function () {
-        card.style.setProperty("--rx", "0deg");
-        card.style.setProperty("--ry", "0deg");
-      });
-    });
   }
 
   /* ---------------------------------------------------------------
@@ -373,8 +309,6 @@
     inViewFlags();
     header();
     scrollProgress();
-    heroTilt();
-    cardDepth();
     formSuccess();
   }
 
